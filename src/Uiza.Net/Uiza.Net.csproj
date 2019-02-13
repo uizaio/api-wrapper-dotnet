@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="..\..\netfx.props" />
   <PropertyGroup>
     <Description>Uiza API Wrapper</Description>
     <AssemblyTitle>Uiza.net</AssemblyTitle>
