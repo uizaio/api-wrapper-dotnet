@@ -26,7 +26,7 @@ namespace Uiza.Net.Services
             if (string.IsNullOrWhiteSpace(param.URL))
             {
                 param.URL = string.Empty;
-                param.InputType = Enum.EntityInputTypes.S3Uiza;
+                param.InputType = Enums.EntityInputTypes.S3Uiza;
             }
 
             return this.PostRequest<UizaData>(Constants.ApiAction.Entity, param);

@@ -40,11 +40,6 @@ namespace Uiza.Net.Configuration
         {
             get
             {
-                if (string.IsNullOrEmpty(apiBase))
-                {
-                    apiBase = Constants.DefaultBaseUrl;
-                }
-
                 return apiBase;
             }
         }

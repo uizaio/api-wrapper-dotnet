@@ -45,5 +45,16 @@ namespace Uiza.Net.UizaHandleException
         {
             this.UizaInnerException = error;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="error"></param>
+        public UizaException(string message, UizaExceptionResponse error)
+            : base(message)
+        {
+            this.UizaInnerException = error;
+        }
     }
 }
