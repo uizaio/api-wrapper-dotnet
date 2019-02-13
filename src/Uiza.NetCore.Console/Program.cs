@@ -65,7 +65,20 @@ namespace Uiza.NetCore.ConsoleTest
                 Console.WriteLine(string.Format("Get Entity Id = {0} Success", getResultRetrieveCategory.Data.id));
 
                 var getResultRetrieveCategoryList = service.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
+                Console.WriteLine(string.Format("Success Get EntitiesList, total record {0}", getResultRetrieveCategoryList.MetaData.result));
 
+                var resultUpdateCategory = service.Update(new UpdateEntityParameter()
+                {
+                    Id = result.Data.id,
+                    Name = "Sample update",
+                    Description = "Description update",
+                    ShortDescription = "ShortDescription update",
+                    Poster = "/example.com/updatePoster",
+                    Thumbnail = "/example.com/updateThumbnail"
+                });
+
+                var deleteEntity = service.Delete(new RetrieveItemParameter() { Id = result.Data.id });
+                Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
                 Console.ReadLine();
             }
             catch (UizaException ex)
@@ -82,7 +95,8 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = ""
+                    ApiKey = "",
+                    ApiBase = "https://apiwrapper.uiza.co"
                 });
                 TestEntity();
             }
