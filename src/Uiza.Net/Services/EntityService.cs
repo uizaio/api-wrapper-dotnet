@@ -11,7 +11,7 @@ namespace Uiza.Net.Services
     /// 
     /// </summary>
     public class EntityService : Service,
-        ICreate<UizaData, BaseParameter>,
+        ICreate<UizaData, CreateEntityParameter>,
         IRetrieve<UizaData, BaseParameter>,
         IUpdate<UizaData, BaseParameter>,
         IDelete<UizaData, BaseParameter>,
@@ -23,9 +23,15 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Create(BaseParameter param)
+        public UizaData Create(CreateEntityParameter param)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(param.URL))
+            {
+                param.URL = string.Empty;
+                param.InputType = Enum.EntityInputTypes.S3Uiza;
+            }
+
+            return this.PostRequest<UizaData>(Constants.ApiAction.Entity, param);
         }
 
         /// <summary>
