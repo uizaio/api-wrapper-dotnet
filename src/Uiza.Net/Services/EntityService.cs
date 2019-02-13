@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Uiza.Net.Parameters;
 using Uiza.Net.Response;
 using Uiza.Net.Services.Interface;
@@ -8,7 +6,7 @@ using Uiza.Net.Services.Interface;
 namespace Uiza.Net.Services
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class EntityService : Service,
         ICreate<UizaData, CreateEntityParameter>,
@@ -19,7 +17,7 @@ namespace Uiza.Net.Services
         IEntityService
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -35,7 +33,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -45,7 +43,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public UizaData GetAWSUploadKey()
@@ -54,7 +52,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public UizaData GetStatusPublish()
@@ -63,17 +61,17 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         public UizaData List(BaseParameter param)
         {
-            throw new NotImplementedException();
+            return this.GetRequest<UizaData>(Constants.ApiAction.Entity, param);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public UizaData Publish()
@@ -82,17 +80,17 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         public UizaData Retrieve(BaseParameter param)
         {
-            throw new NotImplementedException();
+            return this.GetRequest<UizaData>(Constants.ApiAction.Entity, param);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
