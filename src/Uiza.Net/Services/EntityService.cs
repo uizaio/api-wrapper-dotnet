@@ -11,7 +11,7 @@ namespace Uiza.Net.Services
     public class EntityService : Service,
         ICreate<UizaData, CreateEntityParameter>,
         IRetrieve<UizaData, BaseParameter>,
-        IUpdate<UizaData, BaseParameter>,
+        IUpdate<UizaData, UpdateEntityParameter>,
         IDelete<UizaData, BaseParameter>,
         IRetrieveList<UizaData, BaseParameter>,
         IEntityService
@@ -39,7 +39,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData Delete(BaseParameter param)
         {
-            throw new NotImplementedException();
+            return this.DeleteRequest<UizaData>(Constants.ApiAction.Entity, param);
         }
 
         /// <summary>
@@ -94,9 +94,9 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Update(BaseParameter param)
+        public UizaData Update(UpdateEntityParameter param)
         {
-            throw new NotImplementedException();
+            return this.PutRequest<UizaData>(Constants.ApiAction.Entity, param);
         }
     }
 }
