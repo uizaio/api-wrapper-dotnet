@@ -11,7 +11,7 @@ namespace Uiza.Test.Net45
         {
             UizaConfiguration.SetupUiza(new UizaConfigOptions
             {
-                ApiKey = "uap-4f892058d35e46dd8a3a660481583b79-6a1319cb"
+                ApiKey = ""
             });
         }
 
