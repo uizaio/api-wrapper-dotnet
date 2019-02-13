@@ -63,6 +63,8 @@ namespace Uiza.Net.UizaHandleException
             {
                 if (Data.IsJArray())
                     return JsonConvert.DeserializeObject<List<ErrorData>>(JsonConvert.SerializeObject(Data));
+                if (Data is IList<ErrorData>)
+                    return (List<ErrorData>)Data;
                 if (Data is string)
                     return new List<ErrorData>() {
                         new ErrorData()

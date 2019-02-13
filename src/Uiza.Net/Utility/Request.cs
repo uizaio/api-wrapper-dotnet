@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uiza.Net.Configuration;
+using Uiza.Net.Extension;
 using Uiza.Net.Parameters;
 using Uiza.Net.Response;
 using Uiza.Net.UizaHandleException;
@@ -164,11 +167,21 @@ namespace Uiza.Net.Utility
 #if NET45
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 #endif
+            var apiKey = UizaConfiguration.GetApiKey();
+            if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(UizaConfiguration.ApiBase))
+                throw new UizaException("Validation Errors", new UizaExceptionResponse()
+                {
+                    Data = new ErrorData()
+                    {
+                        Field = "Configuration",
+                        Message = "Please Setup Uiza Configuration",
+                        Type = "Configuration"
+                    }
+                });
+
             var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DefaultApiRoute}/{url}";
             var request = RenderRequest(method, apiUrl, param);
-            var apiKey = UizaConfiguration.GetApiKey();
-            if (!string.IsNullOrWhiteSpace(apiKey))
-                request.Headers.Add("Authorization", UizaConfiguration.GetApiKey());
+            request.Headers.Add("Authorization", UizaConfiguration.GetApiKey());
 
             return request;
         }
@@ -182,6 +195,10 @@ namespace Uiza.Net.Utility
         private static HttpRequestMessage RenderRequest(HttpMethod method, string url, BaseParameter param)
         {
             param = param ?? new BaseParameter();
+            var errors = param.GetValidationErrors();
+            if (errors.Any())
+                throw HandleUizaValidationException(errors);
+
             var serialzeObject = JsonConvert.SerializeObject(param);
 
             if (method != HttpMethod.Post && method != HttpMethod.Put)
@@ -253,6 +270,24 @@ namespace Uiza.Net.Utility
         private static UizaException HandleUizaException(string errorsResponse)
         {
             return new UizaException(JsonConvert.DeserializeObject<UizaExceptionResponse>(errorsResponse));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="errors"></param>
+        /// <returns></returns>
+        private static UizaException HandleUizaValidationException(IList<ValidationResult> errors)
+        {
+            return new UizaException("Validation Errors", new UizaExceptionResponse()
+            {
+                Data = errors.Select(x => new ErrorData()
+                {
+                    Field = x.MemberNames.FirstOrDefault(),
+                    Message = x.ErrorMessage,
+                    Type = "Validate"
+                }).ToList()
+            });
         }
         #endregion
     }
