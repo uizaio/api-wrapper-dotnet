@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System.Runtime.Serialization;
 
-namespace Uiza.Net.Enum
+namespace Uiza.Net.Enums
 {
     /// <summary>
     /// 
@@ -10,6 +10,12 @@ namespace Uiza.Net.Enum
     [JsonConverter(typeof(StringEnumConverter))]
     public enum EntityInputTypes
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        [EnumMember(Value = "s3-uiza")]
+        S3Uiza,
+
         /// <summary>
         /// 
         /// </summary>
@@ -26,12 +32,6 @@ namespace Uiza.Net.Enum
         /// 
         /// </summary>
         [EnumMember(Value = "ftp")]
-        Ftp,
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [EnumMember(Value = "s3-uiza")]
-        S3Uiza
+        Ftp
     }
 }

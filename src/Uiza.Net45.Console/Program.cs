@@ -1,6 +1,6 @@
 ﻿using System;
 using Uiza.Net.Configuration;
-using Uiza.Net.Enum;
+using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 using Uiza.Net.UizaHandleException;
@@ -15,12 +15,13 @@ namespace Uiza.Net45.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = ""
+                    ApiKey = "",
+                    ApiBase = "https://apiwrapper.uiza.co"
                 });
                 var service = new EntityService();
                 var result = service.Create(new CreateEntityParameter()
                 {
-                    Name = "Sample Video",
+                    //Name = "Sample Video",
                     InputType = EntityInputTypes.S3Uiza,
                     URL = ""
                 });

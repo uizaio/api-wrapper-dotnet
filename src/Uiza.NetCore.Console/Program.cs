@@ -1,6 +1,6 @@
 ﻿using System;
 using Uiza.Net.Configuration;
-using Uiza.Net.Enum;
+using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 using Uiza.Net.UizaHandleException;
@@ -95,7 +95,8 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "uap-4f892058d35e46dd8a3a660481583b79-6a1319cb"
+                    ApiKey = "",
+                    ApiBase = "https://apiwrapper.uiza.co"
                 });
                 TestEntity();
             }

@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Uiza.Net.Enum;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Uiza.Net.Enums;
 using Uiza.Net.Response;
 
 namespace Uiza.Net.Parameters
@@ -14,18 +17,23 @@ namespace Uiza.Net.Parameters
         /// 
         /// </summary>
         [JsonProperty("name")]
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = Constants.ErrorMessages.Required)]
         public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [JsonProperty("url")]
+        [Display(Name = "URL")]
+        [Required(AllowEmptyStrings = true, ErrorMessage = Constants.ErrorMessages.Required)]
         public string URL { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [JsonProperty("inputType")]
+        [Required(ErrorMessage = Constants.ErrorMessages.InputTypeRequired)]
         public EntityInputTypes InputType { get; set; }
 
         /// <summary>
@@ -74,6 +82,6 @@ namespace Uiza.Net.Parameters
         /// 
         /// </summary>
         [JsonProperty("extendMetadata")]
-        public Dictionary<string,object> ExtendMetadata { get; set; }
+        public Dictionary<string, object> ExtendMetadata { get; set; }
     }
 }
