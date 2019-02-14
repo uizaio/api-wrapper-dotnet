@@ -77,6 +77,15 @@ namespace Uiza.NetCore.ConsoleTest
                     Thumbnail = "/example.com/updateThumbnail"
                 });
 
+                var getAwsUploadKey = service.GetAWSUploadKey();
+                Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", getAwsUploadKey.Data.temp_access_id));
+
+                var publishEntity = service.Publish(new RetrieveItemParameter() { Id = result.Data.id });
+                Console.WriteLine(string.Format("Publish Entity Success : entityId = {0} ", publishEntity.Data.entityId));
+
+                var getStatusPublish = service.GetStatusPublish(new RetrieveItemParameter() { Id = result.Data.id });
+                Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
+
                 var deleteEntity = service.Delete(new RetrieveItemParameter() { Id = result.Data.id });
                 Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
                 Console.ReadLine();

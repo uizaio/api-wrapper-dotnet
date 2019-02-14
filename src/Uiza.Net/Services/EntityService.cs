@@ -1,5 +1,4 @@
-﻿using System;
-using Uiza.Net.Parameters;
+﻿using Uiza.Net.Parameters;
 using Uiza.Net.Response;
 using Uiza.Net.Services.Interface;
 
@@ -48,16 +47,16 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData GetAWSUploadKey()
         {
-            throw new NotImplementedException();
+            return this.GetRequest<UizaData>(Constants.ApiAction.AwsUploadKey);
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        public UizaData GetStatusPublish()
+        public UizaData GetStatusPublish(BaseParameter param)
         {
-            throw new NotImplementedException();
+            return this.GetRequest<UizaData>(Constants.ApiAction.EntityStatusPublish, param);
         }
 
         /// <summary>
@@ -74,9 +73,9 @@ namespace Uiza.Net.Services
         ///
         /// </summary>
         /// <returns></returns>
-        public UizaData Publish()
+        public UizaData Publish(BaseParameter param)
         {
-            throw new NotImplementedException();
+            return this.PostRequest<UizaData>(Constants.ApiAction.EntityPublish, param);
         }
 
         /// <summary>
