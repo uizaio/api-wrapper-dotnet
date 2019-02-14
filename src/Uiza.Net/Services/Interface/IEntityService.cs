@@ -25,5 +25,11 @@ namespace Uiza.Net.Services.Interface
         /// </summary>
         /// <returns></returns>
         UizaData GetAWSUploadKey();
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        UizaData Search(BaseParameter param);
     }
 }

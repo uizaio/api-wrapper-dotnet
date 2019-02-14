@@ -93,6 +93,16 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
+        public UizaData Search(BaseParameter param)
+        {
+            return this.GetRequest<UizaData>(Constants.ApiAction.EntitySearch, param);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public UizaData Update(UpdateEntityParameter param)
         {
             return this.PutRequest<UizaData>(Constants.ApiAction.Entity, param);
