@@ -1,41 +1,35 @@
-﻿using System;
+﻿using Moq;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Uiza.Net.Parameters;
+using Uiza.Net.Response;
 using Uiza.Net.Services;
 using Uiza.Net.UizaHandleException;
+using UizaTest.Enums;
 using UizaTest.MockData;
+using UizaTest.MockResponse;
 using Xunit;
 
 namespace UizaTest.Services
 {
-    public class EntityServiceTest : UizaTestBase
+    public class EntityServiceTest : UizaTestBase<EntityService>
     {
-        private readonly EntityService service;
-        private string entityId;
-
-        public EntityServiceTest()
-        {
-            this.service = new EntityService();
-        }
-
-
         [Fact]
         public void CreateSuccess()
         {
-            var customer = service.Create(EntityData.CreateValidEntityParameter());
-            Assert.NotNull(customer.Data.id);
-        }
-
-        [Fact]
-        public void CreateFailWithValidation()
-        {
-            Assert.Throws<UizaException>(() => this.service.Create(EntityData.CreateMissingPropertyParameter()));
+            mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Returns(EntityResponse.CreateSuccessResponse());
+            var result = mockService.Object.Create(EntityMockParameter.CreateValidEntityParameter());
+            Assert.NotNull(result.Data.id);
         }
 
         [Fact]
         public void CreateFailWithAPIResponse()
         {
-            Assert.Throws<UizaException>(() => this.service.Create(EntityData.CreateInValidEntityParameter()));
+            mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Throws(EntityResponse.CreateErrorResponse());
+            var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(EntityMockParameter.CreateInValidEntityParameter()));
+            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
     }
 }

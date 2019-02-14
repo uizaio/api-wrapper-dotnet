@@ -20,7 +20,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Create(CreateEntityParameter param)
+        public virtual UizaData Create(CreateEntityParameter param)
         {
             if (string.IsNullOrWhiteSpace(param.URL))
             {

@@ -6,7 +6,7 @@ using Uiza.Net.Parameters;
 
 namespace UizaTest.MockData
 {
-    public static class EntityData
+    public static class EntityMockParameter
     {
         public static CreateEntityParameter CreateValidEntityParameter()
         {
@@ -18,18 +18,10 @@ namespace UizaTest.MockData
             };
         }
 
-        public static CreateEntityParameter CreateMissingPropertyParameter()
-        {
-            return new CreateEntityParameter()
-            {
-            };
-        }
-
         public static CreateEntityParameter CreateInValidEntityParameter()
         {
             return new CreateEntityParameter()
             {
-                Name = string.Empty,
                 InputType = EntityInputTypes.Ftp,
                 URL = "http"
             };
