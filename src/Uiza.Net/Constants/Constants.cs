@@ -15,6 +15,7 @@
             public const string AwsUploadKey = "admin/app/config/aws";
             public const string EntityStatusPublish = "media/entity/publish/status";
             public const string EntityPublish = "media/entity/publish";
+            public const string EntitySearch = "media/entity/search";
         }
 
         internal struct ErrorMessages

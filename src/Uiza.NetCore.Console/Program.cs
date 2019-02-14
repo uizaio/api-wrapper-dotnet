@@ -86,6 +86,9 @@ namespace Uiza.NetCore.ConsoleTest
                 var getStatusPublish = service.GetStatusPublish(new RetrieveItemParameter() { Id = result.Data.id });
                 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
 
+                var searchEntity = service.Search(new SearchEntityParameter() { Keyword = "Sample" });
+                Console.WriteLine(string.Format("Search Success, , total record {0}", searchEntity.Data.Count));
+
                 var deleteEntity = service.Delete(new RetrieveItemParameter() { Id = result.Data.id });
                 Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
                 Console.ReadLine();
