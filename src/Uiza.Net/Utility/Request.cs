@@ -195,9 +195,9 @@ namespace Uiza.Net.Utility
         private static HttpRequestMessage RenderRequest(HttpMethod method, string url, BaseParameter param)
         {
             param = param ?? new BaseParameter();
-            var errors = param.GetValidationErrors();
-            if (errors.Any())
-                throw HandleUizaValidationException(errors);
+            //var errors = param.GetValidationErrors();
+            //if (errors.Any())
+            //    throw HandleUizaValidationException(errors);
 
             var serialzeObject = JsonConvert.SerializeObject(param);
 
