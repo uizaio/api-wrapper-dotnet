@@ -27,3 +27,5 @@ src/Uiza.Test.Net45/bin/
 src/Uiza.Test.NetCore/bin/
 src/Uiza.Test.NetCore/bin/
 src/Uiza.Net45.Console/bin/
+src/UizaTest/bin/
+src/UizaTest/obj/
