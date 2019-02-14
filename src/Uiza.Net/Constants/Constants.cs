@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Uiza.Net
+﻿namespace Uiza.Net
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     internal static class Constants
     {
@@ -16,6 +12,9 @@ namespace Uiza.Net
             public const string Category = "media/metadata";
             public const string Entity = "media/entity";
             public const string CategoryRelation = "media/entity/related/metadata";
+            public const string AwsUploadKey = "admin/app/config/aws";
+            public const string EntityStatusPublish = "media/entity/publish/status";
+            public const string EntityPublish = "media/entity/publish";
         }
 
         internal struct ErrorMessages
