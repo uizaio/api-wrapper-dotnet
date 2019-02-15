@@ -28,7 +28,7 @@ namespace Uiza.Net.Services
                 param.InputType = Enums.EntityInputTypes.S3Uiza;
             }
 
-            return this.PostRequest<UizaData>(Constants.ApiAction.Entity, param);
+            return this.PostRequest<UizaData>(Constants.ApiAction.ENTITY, param);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Delete(string entityId)
         {
-            return this.DeleteRequest<UizaData>(Constants.ApiAction.Entity, new RetrieveItemParameter() { Id = entityId });
+            return this.DeleteRequest<UizaData>(Constants.ApiAction.ENTITY, new RetrieveItemParameter() { Id = entityId });
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData GetEntityAWSUploadKey()
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.AwsUploadKey);
+            return this.GetRequest<UizaData>(Constants.ApiAction.AWS_UPLOAD_KEY);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData GetEntityStatusPublish(string id)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.EntityStatusPublish, new RetrieveItemParameter() { Id = id });
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY_STATUS_PUBLISH, new RetrieveItemParameter() { Id = id });
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData List(BaseParameter param)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.Entity, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, param);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData PublishEntity(string entityId)
         {
-            return this.PostRequest<UizaData>(Constants.ApiAction.EntityPublish, new RetrieveItemParameter() { Id = entityId });
+            return this.PostRequest<UizaData>(Constants.ApiAction.ENTITY_PUBLISH, new RetrieveItemParameter() { Id = entityId });
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Retrieve(string entityId)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.Entity, new RetrieveItemParameter() { Id = entityId });
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, new RetrieveItemParameter() { Id = entityId });
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData SearchEntity(string keyWord)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.EntitySearch, new SearchEntityParameter() { Keyword = keyWord });
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY_SEARCH, new SearchEntityParameter() { Keyword = keyWord });
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Update(UpdateEntityParameter param)
         {
-            return this.PutRequest<UizaData>(Constants.ApiAction.Entity, param);
+            return this.PutRequest<UizaData>(Constants.ApiAction.ENTITY, param);
         }
     }
 }

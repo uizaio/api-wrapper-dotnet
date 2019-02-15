@@ -22,7 +22,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData List(RetrieveListParameter param)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.Category, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, param);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Update(UpdateCategoryParameter param)
         {
-            return this.PutRequest<UizaData>(Constants.ApiAction.Category, param);
+            return this.PutRequest<UizaData>(Constants.ApiAction.CATEGORY, param);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Delete(string categoryId)
         {
-            return this.DeleteRequest<UizaData>(Constants.ApiAction.Category, new RetrieveItemParameter() { Id = categoryId });
+            return this.DeleteRequest<UizaData>(Constants.ApiAction.CATEGORY, new RetrieveItemParameter() { Id = categoryId });
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData Create(CreateCategoryParameter param)
         {
-            return this.PostRequest<UizaData>(Constants.ApiAction.Category, param);
+            return this.PostRequest<UizaData>(Constants.ApiAction.CATEGORY, param);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData Retrieve(string categoryId)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.Category, new RetrieveItemParameter() { Id = categoryId });
+            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, new RetrieveItemParameter() { Id = categoryId });
         }
 
         /// <summary>

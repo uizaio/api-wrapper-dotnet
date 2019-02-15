@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uiza.Net.Configuration;
+using Uiza.Net.Enum;
 using Uiza.Net.Extension;
 using Uiza.Net.Parameters;
 using Uiza.Net.Response;
@@ -171,6 +172,7 @@ namespace Uiza.Net.Utility
             if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(UizaConfiguration.ApiBase))
                 throw new UizaException("Validation Errors", new UizaExceptionResponse()
                 {
+                    Code = (int)ResponseStatusCode.Unauthorized,
                     Data = new ErrorData()
                     {
                         Field = "Configuration",
@@ -179,7 +181,7 @@ namespace Uiza.Net.Utility
                     }
                 });
 
-            var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DefaultApiRoute}/{url}";
+            var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DEFAULT_API_ROUTE}/{url}";
             var request = RenderRequest(method, apiUrl, param);
             request.Headers.Add("Authorization", UizaConfiguration.GetApiKey());
 

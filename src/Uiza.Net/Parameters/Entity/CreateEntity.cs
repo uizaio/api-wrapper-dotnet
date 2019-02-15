@@ -18,7 +18,7 @@ namespace Uiza.Net.Parameters
         /// </summary>
         [JsonProperty("name")]
         [Display(Name = "Name")]
-        [Required(ErrorMessage = Constants.ErrorMessages.Required)]
+        [Required(ErrorMessage = Constants.ErrorMessages.REQUIRED)]
         public string Name { get; set; }
 
         /// <summary>
@@ -26,14 +26,14 @@ namespace Uiza.Net.Parameters
         /// </summary>
         [JsonProperty("url")]
         [Display(Name = "URL")]
-        [Required(AllowEmptyStrings = true, ErrorMessage = Constants.ErrorMessages.Required)]
+        [Required(AllowEmptyStrings = true, ErrorMessage = Constants.ErrorMessages.REQUIRED)]
         public string URL { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [JsonProperty("inputType")]
-        [Required(ErrorMessage = Constants.ErrorMessages.InputTypeRequired)]
+        [Required(ErrorMessage = Constants.ErrorMessages.INPUT_TYPE_REQUIRED)]
         public EntityInputTypes InputType { get; set; }
 
         /// <summary>
