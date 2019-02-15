@@ -10,16 +10,14 @@ namespace Uiza.Net.Services
     /// 
     /// </summary>
     /// <typeparam name="R"></typeparam>
-    /// <typeparam name="P"></typeparam>
-    public interface IRetrieve<R, P>
+    public interface IRetrieve<R>
          where R : IUizaResponse
-         where P : IBaseParameter
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        R Retrieve(P param);
+        R Retrieve(string id);
     }
 }

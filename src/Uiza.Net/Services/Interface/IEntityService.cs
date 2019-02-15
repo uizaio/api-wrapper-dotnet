@@ -12,24 +12,24 @@ namespace Uiza.Net.Services.Interface
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData Publish(BaseParameter param);
+        UizaData PublishEntity(string entityId);
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData GetStatusPublish(BaseParameter param);
+        UizaData GetEntityStatusPublish(string entityId);
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData GetAWSUploadKey();
+        UizaData GetEntityAWSUploadKey();
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData Search(BaseParameter param);
+        UizaData SearchEntity(string keyWord);
     }
 }

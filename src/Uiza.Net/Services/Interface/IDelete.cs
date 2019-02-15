@@ -10,16 +10,14 @@ namespace Uiza.Net.Services.Interface
     /// 
     /// </summary>
     /// <typeparam name="R"></typeparam>
-    /// <typeparam name="P"></typeparam>
-    public interface IDelete<R, P>
+    public interface IDelete<R>
            where R : IUizaResponse
-           where P : IBaseParameter
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        R Delete(P param);
+        R Delete(string id);
     }
 }
