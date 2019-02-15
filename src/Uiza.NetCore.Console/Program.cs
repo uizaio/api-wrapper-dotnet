@@ -80,16 +80,16 @@ namespace Uiza.NetCore.ConsoleTest
                 var getAwsUploadKey = service.GetAWSUploadKey();
                 Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", getAwsUploadKey.Data.temp_access_id));
 
-                var publishEntity = service.Publish(new RetrieveItemParameter() { Id = result.Data.id });
+                var publishEntity = service.Publish(new PublishEntityParameter() { Id = result.Data.id });
                 Console.WriteLine(string.Format("Publish Entity Success : entityId = {0} ", publishEntity.Data.entityId));
 
-                var getStatusPublish = service.GetStatusPublish(new RetrieveItemParameter() { Id = result.Data.id });
+                var getStatusPublish = service.GetStatusPublish(new GetStatusPublishEnityParameter() { Id = result.Data.id });
                 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
 
                 var searchEntity = service.Search(new SearchEntityParameter() { Keyword = "Sample" });
                 Console.WriteLine(string.Format("Search Success, , total record {0}", searchEntity.Data.Count));
 
-                var deleteEntity = service.Delete(new RetrieveItemParameter() { Id = result.Data.id });
+                var deleteEntity = service.Delete(new DeleteEntityParameter() { Id = result.Data.id });
                 Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
                 Console.ReadLine();
             }

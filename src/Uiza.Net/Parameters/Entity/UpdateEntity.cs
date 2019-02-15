@@ -6,8 +6,14 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class UpdateEntityParameter : RetrieveItemParameter
+    public class UpdateEntityParameter : BaseParameter
     {
+        /// <summary>
+        ///
+        /// </summary>
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
         /// <summary>
         ///
         /// </summary>
