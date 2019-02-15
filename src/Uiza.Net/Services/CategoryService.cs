@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Uiza.Net.Parameters;
 using Uiza.Net.Response;
 using Uiza.Net.Services.Interface;
@@ -10,19 +6,18 @@ using Uiza.Net.Services.Interface;
 namespace Uiza.Net.Services
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    public class CategoryService : Service, 
+    public class CategoryService : Service,
         ICreate<UizaData, CreateCategoryParameter>,
-        IRetrieve<UizaData, RetrieveItemParameter>,
+        IRetrieve<UizaData>,
         IUpdate<UizaData, UpdateCategoryParameter>,
-        IDelete<UizaData, RetrieveItemParameter>,
+        IDelete<UizaData>,
         IRetrieveList<UizaData, RetrieveListParameter>,
         ICategoryService
     {
-       
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual UizaData List(RetrieveListParameter param)
@@ -31,7 +26,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public virtual UizaData Update(UpdateCategoryParameter param)
@@ -40,16 +35,16 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
-        public virtual UizaData Delete(RetrieveItemParameter param)
+        public virtual UizaData Delete(string categoryId)
         {
-            return this.DeleteRequest<UizaData>(Constants.ApiAction.Category, param);
+            return this.DeleteRequest<UizaData>(Constants.ApiAction.Category, new RetrieveItemParameter() { Id = categoryId });
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -59,17 +54,17 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="categoryId"></param>
         /// <returns></returns>
-        public UizaData Retrieve(RetrieveItemParameter param)
+        public UizaData Retrieve(string categoryId)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.Category, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.Category, new RetrieveItemParameter() { Id = categoryId });
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void CreateRelation()
         {
@@ -77,7 +72,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void DeleteRelation()
         {

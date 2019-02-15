@@ -23,7 +23,7 @@ namespace Uiza.NetCore.ConsoleTest
 
             Console.WriteLine(string.Format("Create New Category Id = {0} Success", result.Data.id));
 
-            var getResultRetrieveCategory = service.Retrieve(new RetrieveItemParameter() { Id = result.Data.id });
+            var getResultRetrieveCategory = service.Retrieve(result.Data.id);
             Console.WriteLine(string.Format("Get Category Id = {0} Success", getResultRetrieveCategory.Data.id));
 
             var getResultRetrieveCategoryList = service.List(new RetrieveListParameter());
@@ -41,7 +41,7 @@ namespace Uiza.NetCore.ConsoleTest
 
             Console.WriteLine(string.Format("Update Category Id = {0} Success", getResultRetrieveCategory.Data.id));
 
-            var deleteCategory = service.Delete(new RetrieveItemParameter() { Id = result.Data.id });
+            var deleteCategory = service.Delete(result.Data.id);
             Console.WriteLine(string.Format("Delete Category Id = {0} Success", getResultRetrieveCategory.Data.id));
 
             Console.WriteLine("Success");
@@ -61,7 +61,7 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 Console.WriteLine(string.Format("Create New Entity Id = {0} Success", result.Data.id));
 
-                var getResultRetrieveCategory = service.Retrieve(new RetrieveItemParameter() { Id = result.Data.id });
+                var getResultRetrieveCategory = service.Retrieve((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Entity Id = {0} Success", getResultRetrieveCategory.Data.id));
 
                 var getResultRetrieveCategoryList = service.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
@@ -77,19 +77,19 @@ namespace Uiza.NetCore.ConsoleTest
                     Thumbnail = "/example.com/updateThumbnail"
                 });
 
-                var getAwsUploadKey = service.GetAWSUploadKey();
+                var getAwsUploadKey = service.GetEntityAWSUploadKey();
                 Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", getAwsUploadKey.Data.temp_access_id));
 
-                var publishEntity = service.Publish(new RetrieveItemParameter() { Id = result.Data.id });
+                var publishEntity = service.PublishEntity((string)result.Data.id);
                 Console.WriteLine(string.Format("Publish Entity Success : entityId = {0} ", publishEntity.Data.entityId));
 
-                var getStatusPublish = service.GetStatusPublish(new RetrieveItemParameter() { Id = result.Data.id });
+                var getStatusPublish = service.GetEntityStatusPublish((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
 
-                var searchEntity = service.Search(new SearchEntityParameter() { Keyword = "Sample" });
+                var searchEntity = service.SearchEntity("Sample");
                 Console.WriteLine(string.Format("Search Success, , total record {0}", searchEntity.Data.Count));
 
-                var deleteEntity = service.Delete(new RetrieveItemParameter() { Id = result.Data.id });
+                var deleteEntity = service.Delete((string)result.Data.id);
                 Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
                 Console.ReadLine();
             }
