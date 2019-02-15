@@ -7,13 +7,7 @@ namespace Uiza.Net.Services
     /// <summary>
     ///
     /// </summary>
-    public class EntityService : Service,
-        ICreate<UizaData, CreateEntityParameter>,
-        IRetrieve<UizaData>,
-        IUpdate<UizaData, UpdateEntityParameter>,
-        IDelete<UizaData>,
-        IRetrieveList<UizaData, BaseParameter>,
-        IEntityService
+    internal class EntityService : Service, IEntityService
     {
         /// <summary>
         ///

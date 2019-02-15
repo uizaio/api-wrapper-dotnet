@@ -3,9 +3,9 @@ using Uiza.Net.Services;
 
 namespace UizaTest
 {
-    public class UizaTestBase<T> where T : Service
+    public class UizaTestBase<T> where T : class, IBaseServices
     {
-        protected Mock<T> mockService;
+        public Mock<T> mockService;
 
         protected UizaTestBase()
         {

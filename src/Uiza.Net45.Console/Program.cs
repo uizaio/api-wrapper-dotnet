@@ -18,8 +18,7 @@ namespace Uiza.Net45.ConsoleTest
                     ApiKey = "",
                     ApiBase = "https://apiwrapper.uiza.co"
                 });
-                var service = new EntityService();
-                var result = service.Create(new CreateEntityParameter()
+                var result = UizaServices.Entity.Create(new CreateEntityParameter()
                 {
                     //Name = "Sample Video",
                     InputType = EntityInputTypes.S3Uiza,
