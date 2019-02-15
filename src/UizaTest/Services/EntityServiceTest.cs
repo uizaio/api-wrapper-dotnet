@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services;
+using Uiza.Net.Services.Interface;
 using Uiza.Net.UizaHandleException;
 using UizaTest.Enums;
 using UizaTest.MockData;
@@ -9,7 +10,7 @@ using Xunit;
 
 namespace UizaTest.Services
 {
-    public class EntityServiceTest : UizaTestBase<EntityService>
+    public class EntityServiceTest : UizaTestBase<IEntityService>
     {
         [Fact]
         public void CreateSuccess()
