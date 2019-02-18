@@ -84,6 +84,11 @@ namespace Uiza.Net.UizaHandleException
                 };
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DescriptionLink { get; set; }
     }
 
     /// <summary>

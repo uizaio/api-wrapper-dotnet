@@ -1,6 +1,7 @@
 ﻿using Uiza.Net.Parameters;
 using Uiza.Net.Response;
 using Uiza.Net.Services.Interface;
+using Uiza.Net.Utility;
 
 namespace Uiza.Net.Services
 {
@@ -14,8 +15,9 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public virtual UizaData Create(CreateStorageParameter param)
+        public virtual UizaData Add(CreateStorageParameter param)
         {
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.STORAGE.ADD);
             return this.PostRequest<UizaData>(Constants.ApiAction.STORAGE, param);
         }
 
@@ -24,9 +26,13 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="storageId"></param>
         /// <returns></returns>
-        public virtual UizaData Delete(string storageId)
+        public virtual UizaData Remove(string storageId)
         {
-            return this.DeleteRequest<UizaData>(Constants.ApiAction.STORAGE, new RetrieveItemParameter() { Id = storageId });
+            return this.DeleteRequest<UizaData>(Constants.ApiAction.STORAGE, new RetrieveItemParameter()
+            {
+                Id = storageId,
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.STORAGE.REMOVE)
+            });
         }
 
         /// <summary>
@@ -36,7 +42,11 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Retrieve(string storageId)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.STORAGE, new RetrieveItemParameter() { Id = storageId });
+            return this.GetRequest<UizaData>(Constants.ApiAction.STORAGE, new RetrieveItemParameter()
+            {
+                Id = storageId,
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.STORAGE.RETRIEVE)
+            });
         }
 
         /// <summary>
@@ -46,6 +56,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Update(UpdateStorageParameter param)
         {
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.STORAGE.UPDATE);
             return this.PutRequest<UizaData>(Constants.ApiAction.STORAGE, param);
         }
     }

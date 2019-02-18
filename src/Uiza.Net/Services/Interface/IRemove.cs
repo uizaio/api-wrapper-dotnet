@@ -9,15 +9,15 @@ namespace Uiza.Net.Services.Interface
     /// <summary>
     /// 
     /// </summary>
-    public interface ICreate<R, P>
+    /// <typeparam name="R"></typeparam>
+    public interface IRemove<R>
         where R : IUizaResponse
-        where P : IBaseParameter
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        R Create(P param);
+        R Remove(string id);
     }
 }
