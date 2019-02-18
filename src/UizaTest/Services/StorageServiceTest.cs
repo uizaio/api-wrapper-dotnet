@@ -17,16 +17,16 @@ namespace UizaTest.Services
         [Fact]
         public void CreateStorageSuccess()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateStorageParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Create(StorageMockParameter.CreateValidStorageParameter());
+            mockService.Setup(_ => _.Add(It.IsAny<CreateStorageParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Add(StorageMockParameter.CreateValidStorageParameter());
             Assert.NotNull(result.Data.id);
         }
 
         [Fact]
         public void CreateStorageFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateStorageParameter>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(StorageMockParameter.CreateInValidStorageParameter()));
+            mockService.Setup(_ => _.Add(It.IsAny<CreateStorageParameter>())).Throws(BaseMockResponse.ErrorResponse());
+            var ex = Assert.Throws<UizaException>(() => mockService.Object.Add(StorageMockParameter.CreateInValidStorageParameter()));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
 
@@ -49,16 +49,16 @@ namespace UizaTest.Services
         [Fact]
         public void DeleteStorageSuccess()
         {
-            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Delete("2e173ee3-be45-46bd-a355-c9182a2a41ec");
+            mockService.Setup(_ => _.Remove(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Remove("2e173ee3-be45-46bd-a355-c9182a2a41ec");
             Assert.NotNull(result.Data.id);
         }
 
         [Fact]
         public void DeleteStorageFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.Delete(""));
+            mockService.Setup(_ => _.Remove(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
+            var ex = Assert.Throws<UizaException>(() => mockService.Object.Remove(""));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
 

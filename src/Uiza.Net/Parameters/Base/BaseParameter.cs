@@ -25,6 +25,8 @@ namespace Uiza.Net.Parameters
             set { this.extraParams = value; }
         }
 
+        internal string DescriptionLink { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

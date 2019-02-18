@@ -85,7 +85,7 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = UizaServices.Entity.Create(new CreateEntityParameter()
                 {
-                    Name = "Sample Video",
+                    //Name = "Sample Video",
                     InputType = EntityInputTypes.S3Uiza,
                     URL = ""
                 });
@@ -134,7 +134,7 @@ namespace Uiza.NetCore.ConsoleTest
         {
             try
             {
-                var result = UizaServices.Storage.Create(new CreateStorageParameter()
+                var result = UizaServices.Storage.Add(new CreateStorageParameter()
                 {
                     Name = "FTP Uiza",
                     Host = "ftp-example.uiza.io",
@@ -144,7 +144,7 @@ namespace Uiza.NetCore.ConsoleTest
                     Password = "=59x@LPsd+w7qW",
                     Port = 21
                 });
-                Console.WriteLine(string.Format("Create New Storage Id = {0} Success", result.Data.id));
+                Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
 
                 var getResultRetrieveStorage = UizaServices.Storage.Retrieve((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Storage Id = {0} Success", getResultRetrieveStorage.Data.id));
@@ -164,8 +164,8 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 Console.WriteLine(string.Format("Update Storage Id = {0} Success", resultUpdateStorage.Data.id));
 
-                var deleteStorage = UizaServices.Storage.Delete((string)result.Data.id);
-                Console.WriteLine(string.Format("Delete Storage Id = {0} Success", deleteStorage.Data.id));
+                var deleteStorage = UizaServices.Storage.Remove((string)result.Data.id);
+                Console.WriteLine(string.Format("Remove Storage Id = {0} Success", deleteStorage.Data.id));
             }
             catch (UizaException ex)
             {
