@@ -14,7 +14,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public virtual UizaData Create(CreateStogeParameter param)
+        public virtual UizaData Create(CreateStorageParameter param)
         {
             return this.PostRequest<UizaData>(Constants.ApiAction.STORAGE, param);
         }
