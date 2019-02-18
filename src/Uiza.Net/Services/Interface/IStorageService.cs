@@ -7,7 +7,7 @@ namespace Uiza.Net.Services.Interface
     ///
     /// </summary>
     public interface IStorageService : IBaseServices,
-        ICreate<UizaData, CreateStogeParameter>,
+        ICreate<UizaData, CreateStorageParameter>,
         IRetrieve<UizaData>,
         IUpdate<UizaData, UpdateStorageParameter>,
         IDelete<UizaData>
