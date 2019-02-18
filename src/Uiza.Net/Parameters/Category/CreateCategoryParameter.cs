@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using Uiza.Net.Enums;
 
 namespace Uiza.Net.Parameters
 {
@@ -21,7 +22,7 @@ namespace Uiza.Net.Parameters
         /// 
         /// </summary>
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public CategoryTypes Type { get; set; }
 
         /// <summary>
         /// 

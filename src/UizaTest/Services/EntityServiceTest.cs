@@ -15,7 +15,7 @@ namespace UizaTest.Services
         [Fact]
         public void CreateSuccess()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Returns(EntityResponse.CreateSuccessResponse());
+            mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.Create(EntityMockParameter.CreateValidEntityParameter());
             Assert.NotNull(result.Data.id);
         }
@@ -23,7 +23,7 @@ namespace UizaTest.Services
         [Fact]
         public void CreateFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Throws(EntityResponse.CreateErrorResponse());
+            mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Throws(BaseMockResponse.ErrorResponse());
             var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(EntityMockParameter.CreateInValidEntityParameter()));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
@@ -39,7 +39,7 @@ namespace UizaTest.Services
         [Fact]
         public void RetrieveFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(EntityResponse.ErrorResponse());
+            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
             var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(""));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
@@ -47,7 +47,7 @@ namespace UizaTest.Services
         [Fact]
         public void ListEntitiesSuccess()
         {
-            mockService.Setup(_ => _.List(It.IsAny<RetrieveListEntitiesParameter>())).Returns(EntityResponse.ListSuccessResponse());
+            mockService.Setup(_ => _.List(It.IsAny<RetrieveListEntitiesParameter>())).Returns(BaseMockResponse.ListSuccessResponse());
             var result = mockService.Object.List(EntityMockParameter.ListValidEntityParameter());
             Assert.Equal(2, result.Data.Count);
         }
@@ -63,7 +63,7 @@ namespace UizaTest.Services
         [Fact]
         public void UpdateFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Update(It.IsAny<UpdateEntityParameter>())).Throws(EntityResponse.ErrorResponse());
+            mockService.Setup(_ => _.Update(It.IsAny<UpdateEntityParameter>())).Throws(BaseMockResponse.ErrorResponse());
             var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(EntityMockParameter.UpdateInValidEntityParameter()));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
@@ -79,7 +79,7 @@ namespace UizaTest.Services
         [Fact]
         public void DeleteFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Throws(EntityResponse.ErrorResponse());
+            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
             var ex = Assert.Throws<UizaException>(() => mockService.Object.Delete(""));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
@@ -95,7 +95,7 @@ namespace UizaTest.Services
         [Fact]
         public void SearchFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.SearchEntity(It.IsAny<string>())).Throws(EntityResponse.ErrorResponse());
+            mockService.Setup(_ => _.SearchEntity(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
             var ex = Assert.Throws<UizaException>(() => mockService.Object.SearchEntity(""));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
@@ -111,7 +111,7 @@ namespace UizaTest.Services
         [Fact]
         public void PublishEntityFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.PublishEntity(It.IsAny<string>())).Throws(EntityResponse.ErrorResponse());
+            mockService.Setup(_ => _.PublishEntity(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
             var ex = Assert.Throws<UizaException>(() => mockService.Object.PublishEntity(""));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
@@ -127,7 +127,7 @@ namespace UizaTest.Services
         [Fact]
         public void GetStatusPublishFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Throws(EntityResponse.ErrorResponse());
+            mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
             var ex = Assert.Throws<UizaException>(() => mockService.Object.GetEntityStatusPublish(""));
             Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
         }
