@@ -203,7 +203,7 @@ namespace Uiza.Net.Utility
 
             var serialzeObject = JsonConvert.SerializeObject(param);
 
-            if (method != HttpMethod.Post && method != HttpMethod.Put)
+            if (method != HttpMethod.Post && method != HttpMethod.Put && method != HttpMethod.Delete)
             {
                 var listParam = JsonConvert.DeserializeObject<Dictionary<string, string>>(serialzeObject);
                 foreach (var item in listParam)

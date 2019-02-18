@@ -21,6 +21,11 @@
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Validation\**" />
+    <EmbeddedResource Remove="Validation\**" />
+    <None Remove="Validation\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
@@ -58,9 +63,5 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.2'">
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0">
     </PackageReference>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Validation\" />
   </ItemGroup>
 </Project>
