@@ -29,3 +29,4 @@ src/Uiza.Test.NetCore/bin/
 src/Uiza.Net45.Console/bin/
 src/UizaTest/bin/
 src/UizaTest/obj/
+*.suo

@@ -130,6 +130,51 @@ namespace Uiza.NetCore.ConsoleTest
             }
         }
 
+        private static void TestStorage()
+        {
+            try
+            {
+                var result = UizaServices.Storage.Create(new CreateStogeParameter()
+                {
+                    Name = "FTP Uiza",
+                    Host = "ftp-example.uiza.io",
+                    Description = "FTP of Uiza, use for transcode",
+                    StorageType = StorageInputTypes.Ftp,
+                    UserName = "uiza",
+                    Password = "=59x@LPsd+w7qW",
+                    Port = 21
+                });
+                Console.WriteLine(string.Format("Create New Storage Id = {0} Success", result.Data.id));
+
+                var getResultRetrieveStorage = UizaServices.Storage.Retrieve((string)result.Data.id);
+                Console.WriteLine(string.Format("Get Storage Id = {0} Success", getResultRetrieveStorage.Data.id));
+
+                var resultUpdateStorage = UizaServices.Storage.Update(new UpdateStorageParameter()
+                {
+                    Id = result.Data.id,
+                    Name = "FTP Uiza Update",
+                    Host = "ftp-example.uiza.io",
+                    Description = "FTP of Uiza, use for transcode Update",
+                    StorageType = StorageInputTypes.S3,
+                    UserName = "uizaUpdate",
+                    Password = "=59x@LPsd+w7qW",
+                    AwsAccessKey = "ASIAV*******GPHO2DTZ",
+                    AwsSecretKey = "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc",
+                    Port = 22
+                });
+                Console.WriteLine(string.Format("Update Storage Id = {0} Success", resultUpdateStorage.Data.id));
+
+                var deleteStorage = UizaServices.Storage.Delete((string)result.Data.id);
+                Console.WriteLine(string.Format("Delete Storage Id = {0} Success", deleteStorage.Data.id));
+            }
+            catch (UizaException ex)
+            {
+                var result = ex.UizaInnerException.Error;
+                Console.WriteLine(ex.Message);
+                Console.ReadLine();
+            }
+        }
+
         private static void Main(string[] args)
         {
             try
@@ -141,6 +186,7 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 TestEntity();
                 TestCategory();
+                TestStorage();
                 Console.ReadLine();
             }
             catch (UizaException ex)
