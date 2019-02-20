@@ -19,7 +19,8 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Validation\**" />
@@ -64,4 +65,8 @@
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0">
     </PackageReference>
   </ItemGroup>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /E /Y &quot;$(ProjectDir)bin\$(ConfigurationName)\net45&quot; /r &quot;$(SolutionDir)PublicNuget\lib\net45&quot;&#xD;&#xA;xcopy /E /Y &quot;$(ProjectDir)bin\$(ConfigurationName)\netstandard1.6&quot; /r &quot;$(SolutionDir)PublicNuget\lib\netstandard1.6&quot;&#xD;&#xA;xcopy /E /Y &quot;$(ProjectDir)bin\$(ConfigurationName)\netstandard2.0&quot; /r &quot;$(SolutionDir)PublicNuget\lib\netstandard2.0&quot;&#xD;&#xA;" />
+  </Target>
 </Project>
