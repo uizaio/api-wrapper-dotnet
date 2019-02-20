@@ -30,3 +30,4 @@ src/Uiza.Net45.Console/bin/
 src/UizaTest/bin/
 src/UizaTest/obj/
 *.suo
+src/PublicNuget/lib/
