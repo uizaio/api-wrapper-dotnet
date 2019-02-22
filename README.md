@@ -279,6 +279,55 @@ The[`UizaExceptionResponse`](.src/Uiza.Net/UizaException/UizaExceptionResponse.c
 	}
 ```
 
+## Entity
+These below APIs used to take action with your media files (we called Entity). [Entity API](https://docs.uiza.io/#video).
+See details [here](.docs/Entity.md).
+
+```Csharp
+var result = UizaServices.Entity.Create(new CreateEntityParameter()
+{
+	Name = "Sample Video",
+	InputType = EntityInputTypes.S3Uiza,
+	URL = ""
+});
+Console.WriteLine(string.Format("Create New Entity Id = {0} Success", result.Data.id));
+```
+
+## Category
+Category has been splits into 3 types: `folder`, `playlist` and `tag`. These will make the management of category more easier. [Category API](https://docs.uiza.io/#category).
+
+See details [here](.docs/Category.md).
+
+```Csharp
+ var createResult = UizaServices.Category.Create(new CreateCategoryParameter()
+{
+	Name = string.Format("Category name {0}", Guid.NewGuid().ToString()),
+	Type = CategoryTypes.Folder
+});
+
+Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
+```
+
+## Storage
+You can add your storage (`FTP`, `AWS S3`) with UIZA.
+After synced, you can select your content easier from your storage to [Store API](https://docs.uiza.io/#add-a-storage).
+
+See details [here](.docs/Storage.md).
+
+```Csharp
+var result = UizaServices.Storage.Create(new CreateStogeParameter()
+{
+    Name = "FTP Uiza",
+    Host = "ftp-example.uiza.io",
+    Description = "FTP of Uiza, use for transcode",
+    StorageType = StorageInputTypes.Ftp,
+    UserName = "uiza",
+    Password = "=59x@LPsd+w7qW",
+    Port = 21
+});
+Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
+```
+
 ## Contribution Guidelines
 
 We welcome contributions from anyone interested in Uiza or Uiza.net development. If you'd like to submit a pull request, it's best to start with an issue to describe what you'd like to build.
