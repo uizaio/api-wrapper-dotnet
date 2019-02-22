@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Uiza.Net.Configuration;
 using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
@@ -10,13 +11,81 @@ namespace Uiza.NetCore.ConsoleTest
     internal class Program
     {
 
+        private static void TestCategory()
+        {
+            try
+            {
+                var createResult = UizaServices.Category.Create(new CreateCategoryParameter()
+                {
+                    Name = string.Format("Category name {0}", Guid.NewGuid().ToString()),
+                    Type = CategoryTypes.Folder
+                });
+
+                Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
+
+                var resultUpdate = UizaServices.Category.Update(new UpdateCategoryParameter()
+                {
+                    Id = createResult.Data.id,
+                    Name = string.Format("Category name {0}", Guid.NewGuid().ToString()),
+                    Type = CategoryTypes.PlayList
+                });
+
+                Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
+
+                var retrieveResult = UizaServices.Category.Retrieve((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
+
+                var listResult = UizaServices.Category.List(new BaseParameter());
+                Console.WriteLine(string.Format("Success Get List Category, total record {0}", listResult.MetaData.result));
+
+                var listMetadata = new List<string>()
+                    {
+                        Guid.NewGuid().ToString(),
+                        Guid.NewGuid().ToString(),
+                        Guid.NewGuid().ToString(),
+                    };
+
+                var entity = UizaServices.Entity.Create(new CreateEntityParameter()
+                {
+                    Name = "Sample Video",
+                    InputType = EntityInputTypes.S3Uiza,
+                    URL = ""
+                });
+
+                var createCategoryRelationResult = UizaServices.Category.CreateCategoryRelation(new CategoryRelationParameter()
+                {
+                    EntityId = entity.Data.id,
+                    MetadataIds = listMetadata
+                });
+                Console.WriteLine(string.Format("Create Success Category Relation, total record {0}", createCategoryRelationResult.MetaData.result));
+
+                var deleteCategoryRelationResult = UizaServices.Category.DeleteCategoryRelation(new CategoryRelationParameter()
+                {
+                    EntityId = entity.Data.id,
+                    MetadataIds = listMetadata
+                });
+                Console.WriteLine(string.Format("Delete Success Category Relation, total record {0}", deleteCategoryRelationResult.MetaData.result));
+
+                var resultDelete = UizaServices.Category.Delete((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Delete Category Id = {0} Success", resultUpdate.Data.id));
+
+                UizaServices.Entity.Delete((string)entity.Data.id);
+            }
+            catch (UizaException ex)
+            {
+                var result = ex.UizaInnerException.Error;
+                Console.WriteLine(ex.Message);
+                Console.ReadLine();
+            }
+        }
+
         private static void TestEntity()
         {
             try
             {
                 var result = UizaServices.Entity.Create(new CreateEntityParameter()
                 {
-                    Name = "Sample Video",
+                    //Name = "Sample Video",
                     InputType = EntityInputTypes.S3Uiza,
                     URL = ""
                 });
@@ -52,7 +121,51 @@ namespace Uiza.NetCore.ConsoleTest
 
                 var deleteEntity = UizaServices.Entity.Delete((string)result.Data.id);
                 Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
+            }
+            catch (UizaException ex)
+            {
+                var result = ex.UizaInnerException.Error;
+                Console.WriteLine(ex.Message);
                 Console.ReadLine();
+            }
+        }
+
+        private static void TestStorage()
+        {
+            try
+            {
+                var result = UizaServices.Storage.Add(new CreateStorageParameter()
+                {
+                    Name = "FTP Uiza",
+                    Host = "ftp-example.uiza.io",
+                    Description = "FTP of Uiza, use for transcode",
+                    StorageType = StorageInputTypes.Ftp,
+                    UserName = "uiza",
+                    Password = "=59x@LPsd+w7qW",
+                    Port = 21
+                });
+                Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
+
+                var getResultRetrieveStorage = UizaServices.Storage.Retrieve((string)result.Data.id);
+                Console.WriteLine(string.Format("Get Storage Id = {0} Success", getResultRetrieveStorage.Data.id));
+
+                var resultUpdateStorage = UizaServices.Storage.Update(new UpdateStorageParameter()
+                {
+                    Id = result.Data.id,
+                    Name = "FTP Uiza Update",
+                    Host = "ftp-example.uiza.io",
+                    Description = "FTP of Uiza, use for transcode Update",
+                    StorageType = StorageInputTypes.S3,
+                    UserName = "uizaUpdate",
+                    Password = "=59x@LPsd+w7qW",
+                    AwsAccessKey = "ASIAV*******GPHO2DTZ",
+                    AwsSecretKey = "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc",
+                    Port = 22
+                });
+                Console.WriteLine(string.Format("Update Storage Id = {0} Success", resultUpdateStorage.Data.id));
+
+                var deleteStorage = UizaServices.Storage.Remove((string)result.Data.id);
+                Console.WriteLine(string.Format("Remove Storage Id = {0} Success", deleteStorage.Data.id));
             }
             catch (UizaException ex)
             {
@@ -72,6 +185,9 @@ namespace Uiza.NetCore.ConsoleTest
                     ApiBase = "https://apiwrapper.uiza.co"
                 });
                 TestEntity();
+                TestCategory();
+                TestStorage();
+                Console.ReadLine();
             }
             catch (UizaException ex)
             {

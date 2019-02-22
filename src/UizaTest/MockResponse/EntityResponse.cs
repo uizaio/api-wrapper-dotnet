@@ -7,49 +7,15 @@ using UizaTest.Enums;
 
 namespace UizaTest.MockResponse
 {
-    public static class EntityResponse
+    public static class EntityResponse 
     {
-        public static UizaData CreateSuccessResponse()
-        {
-            dynamic data = new JObject();
-            data.id = Guid.NewGuid().ToString();
-
-            return new UizaData() { Data = data };
-        }
-
-        public static UizaException CreateErrorResponse()
-        {
-            return new UizaException()
-            {
-                UizaInnerException = new UizaExceptionResponse()
-                {
-                    Code = (int)ResponseCodeEnums.Unprocessable
-                }
-            };
-        }
-
+       
         public static UizaData RetrieveSuccessResponse()
         {
             dynamic data = new JObject();
             data.id = Guid.NewGuid().ToString();
 
             return new UizaData() { Data = data };
-        }
-
-        public static UizaData ListSuccessResponse()
-        {
-            dynamic firstEntity = new JObject();
-            firstEntity.id = Guid.NewGuid().ToString();
-            dynamic seconrdEntity = new JObject();
-            seconrdEntity.id = Guid.NewGuid().ToString();
-
-            List<dynamic> arrData = new List<dynamic>
-            {
-               firstEntity,
-               seconrdEntity
-            };
-
-            return new UizaData() { Data = arrData };
         }
 
         public static UizaData UpdateSuccessResponse()
@@ -70,18 +36,7 @@ namespace UizaTest.MockResponse
 
         public static UizaData SearchSuccessResponse()
         {
-            return ListSuccessResponse();
-        }
-
-        public static UizaException ErrorResponse()
-        {
-            return new UizaException()
-            {
-                UizaInnerException = new UizaExceptionResponse()
-                {
-                    Code = (int)ResponseCodeEnums.Unprocessable
-                }
-            };
+            return BaseMockResponse.ListSuccessResponse();
         }
 
         public static UizaData PublishEntitySuccessResponse()

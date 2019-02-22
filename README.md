@@ -59,62 +59,7 @@ You can obtain your secret API key from the [API Settings](https://docs.uiza.io/
 
 ### Responses
 
-The[`UizaResponse`](./src/Uiza.Net/Response/Base/UizaResponse.cs) class is an base Response which all Responses in Uiza.net inheritance. 
-
-Please see [`Uiza introduction`](https://docs.uiza.io/#introduction)
-
-```Csharp
-    public class UizaResponse : IUizaResponse
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("version")]
-        public int Version { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("datetime")]
-        public string DateTime { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("policy")]
-        public string policy { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("requestId")]
-        public string RequestId { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("serviceName")]
-        public string ServiceName { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("code")]
-        public int Code { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("metadata")]
-        public dynamic MetaData { get; set; }
-    }
-```
-
-The[`UizaData`](.src/Uiza.Net/Response/Base/UizaData.cs) class inheritance from **UizaResponse**. 
+The[`UizaData`](src/Uiza.Net/Response/Base/UizaData.cs) class inheritance from **UizaResponse**. 
 
 ```Csharp
     /// <summary>
@@ -142,7 +87,7 @@ see the [`Create Entity API`](https://docs.uiza.io/#create-entity) and Example
 
 ### UizaException
 
-The[`UizaException`](.src/Uiza.Net/UizaException/UizaException.cs) Object is an attribute inheritance from [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/system.exception?view=netframework-4.5.2)
+The[`UizaException`](src/Uiza.Net/UizaException/UizaException.cs) Object is an attribute inheritance from [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/system.exception?view=netframework-4.5.2)
 
 ```Csharp
 	/// <summary>
@@ -214,7 +159,7 @@ using **try catch** to handle Error
 ```
 
 **UizaExceptionResponse**
-The[`UizaExceptionResponse`](.src/Uiza.Net/UizaException/UizaExceptionResponse.cs)
+The[`UizaExceptionResponse`](src/Uiza.Net/UizaException/UizaExceptionResponse.cs)
 
 ```Csharp
 	public class UizaExceptionResponse
@@ -332,6 +277,55 @@ The[`UizaExceptionResponse`](.src/Uiza.Net/UizaException/UizaExceptionResponse.c
 		Console.WriteLine(ex.Message);
 		Console.ReadLine();
 	}
+```
+
+## Entity
+These below APIs used to take action with your media files (we called Entity). [Entity API](https://docs.uiza.io/#video).
+See details [here](docs/Entity.md).
+
+```Csharp
+var result = UizaServices.Entity.Create(new CreateEntityParameter()
+{
+	Name = "Sample Video",
+	InputType = EntityInputTypes.S3Uiza,
+	URL = ""
+});
+Console.WriteLine(string.Format("Create New Entity Id = {0} Success", result.Data.id));
+```
+
+## Category
+Category has been splits into 3 types: `folder`, `playlist` and `tag`. These will make the management of category more easier. [Category API](https://docs.uiza.io/#category).
+
+See details [here](docs/Category.md).
+
+```Csharp
+ var createResult = UizaServices.Category.Create(new CreateCategoryParameter()
+{
+	Name = string.Format("Category name {0}", Guid.NewGuid().ToString()),
+	Type = CategoryTypes.Folder
+});
+
+Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
+```
+
+## Storage
+You can add your storage (`FTP`, `AWS S3`) with UIZA.
+After synced, you can select your content easier from your storage to [Store API](https://docs.uiza.io/#add-a-storage).
+
+See details [here](docs/Storage.md).
+
+```Csharp
+var result = UizaServices.Storage.Create(new CreateStogeParameter()
+{
+    Name = "FTP Uiza",
+    Host = "ftp-example.uiza.io",
+    Description = "FTP of Uiza, use for transcode",
+    StorageType = StorageInputTypes.Ftp,
+    UserName = "uiza",
+    Password = "=59x@LPsd+w7qW",
+    Port = 21
+});
+Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
 ```
 
 ## Contribution Guidelines

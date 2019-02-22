@@ -34,14 +34,8 @@ namespace Uiza.Net.UizaHandleException
         /// <summary>
         /// 
         /// </summary>
-        [JsonIgnore]
-        public string Message
-        {
-            get
-            {
-                return Code.GetErrorMessage();
-            }
-        }
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
         /// <summary>
         /// 
@@ -84,6 +78,11 @@ namespace Uiza.Net.UizaHandleException
                 };
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DescriptionLink { get; set; }
     }
 
     /// <summary>

@@ -59,7 +59,7 @@ namespace Uiza.Net.Utility
         {
             var wr = CreateRequestConfig(url, param, HttpMethod.Post);
 
-            return ExecuteRequest(wr);
+            return ExecuteRequest(wr, param.DescriptionLink);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Uiza.Net.Utility
         {
             var wr = CreateRequestConfig(url, param, HttpMethod.Get);
 
-            return ExecuteRequestAsync(wr, cancellationToken);
+            return ExecuteRequestAsync(wr, cancellationToken, param.DescriptionLink);
         }
 
         /// <summary>
@@ -178,7 +178,8 @@ namespace Uiza.Net.Utility
                         Field = "Configuration",
                         Message = "Please Setup Uiza Configuration",
                         Type = "Configuration"
-                    }
+                    },
+                    DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.AUTHENTICATION)
                 });
 
             var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DEFAULT_API_ROUTE}/{url}";
@@ -203,7 +204,7 @@ namespace Uiza.Net.Utility
 
             var serialzeObject = JsonConvert.SerializeObject(param);
 
-            if (method != HttpMethod.Post && method != HttpMethod.Put)
+            if (method != HttpMethod.Post && method != HttpMethod.Put && method != HttpMethod.Delete)
             {
                 var listParam = JsonConvert.DeserializeObject<Dictionary<string, string>>(serialzeObject);
                 foreach (var item in listParam)
@@ -227,13 +228,16 @@ namespace Uiza.Net.Utility
 
             return request;
         }
+
+
         /// <summary>
-        /// Excute Request With Async
+        /// 
         /// </summary>
         /// <param name="requestMessage"></param>
         /// <param name="cancellationToken"></param>
+        /// <param name="descriptionLink"></param>
         /// <returns></returns>
-        private static async Task<string> ExecuteRequestAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private static async Task<string> ExecuteRequestAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken), string descriptionLink = null)
         {
             var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
             var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -243,15 +247,16 @@ namespace Uiza.Net.Utility
                 return responseText;
             }
 
-            throw HandleUizaException(responseText);
+            throw HandleUizaException(responseText, descriptionLink);
         }
 
         /// <summary>
-        /// Excute Request
+        /// 
         /// </summary>
         /// <param name="requestMessage"></param>
+        /// <param name="descriptionLink"></param>
         /// <returns></returns>
-        private static string ExecuteRequest(HttpRequestMessage requestMessage)
+        private static string ExecuteRequest(HttpRequestMessage requestMessage, string descriptionLink = null)
         {
             var response = HttpClient.SendAsync(requestMessage).ConfigureAwait(false).GetAwaiter().GetResult();
             var responseText = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
@@ -261,25 +266,30 @@ namespace Uiza.Net.Utility
                 return responseText;
             }
 
-            throw HandleUizaException(responseText);
+            throw HandleUizaException(responseText, descriptionLink);
         }
 
         /// <summary>
-        /// Handle Uiza Exception
+        /// 
         /// </summary>
         /// <param name="errorsResponse"></param>
+        /// <param name="descriptionLink"></param>
         /// <returns></returns>
-        private static UizaException HandleUizaException(string errorsResponse)
+        private static UizaException HandleUizaException(string errorsResponse, string descriptionLink = null)
         {
-            return new UizaException(JsonConvert.DeserializeObject<UizaExceptionResponse>(errorsResponse));
+            var uizaExceptionResponse = JsonConvert.DeserializeObject<UizaExceptionResponse>(errorsResponse);
+            uizaExceptionResponse.DescriptionLink = descriptionLink;
+
+            return new UizaException(uizaExceptionResponse);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="errors"></param>
+        /// <param name="descriptionLink"></param>
         /// <returns></returns>
-        private static UizaException HandleUizaValidationException(IList<ValidationResult> errors)
+        private static UizaException HandleUizaValidationException(IList<ValidationResult> errors, string descriptionLink = null)
         {
             return new UizaException("Validation Errors", new UizaExceptionResponse()
             {
@@ -288,7 +298,8 @@ namespace Uiza.Net.Utility
                     Field = x.MemberNames.FirstOrDefault(),
                     Message = x.ErrorMessage,
                     Type = "Validate"
-                }).ToList()
+                }).ToList(),
+                DescriptionLink = descriptionLink
             });
         }
         #endregion

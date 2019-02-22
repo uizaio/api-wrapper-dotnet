@@ -9,7 +9,9 @@ namespace Uiza.Net.Services.Interface
     /// <summary>
     /// 
     /// </summary>
-    public interface ICreate<R, P>
+    /// <typeparam name="R"></typeparam>
+    /// <typeparam name="P"></typeparam>
+    public interface IAdd<R, P>
         where R : IUizaResponse
         where P : IBaseParameter
     {
@@ -18,6 +20,6 @@ namespace Uiza.Net.Services.Interface
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        R Create(P param);
+        R Add(P param);
     }
 }
