@@ -7,7 +7,7 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class CreateStorageParameter : BaseParameter
+    public class AddStorageParameter : BaseParameter
     {
         /// <summary>
         ///

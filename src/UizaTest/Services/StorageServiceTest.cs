@@ -17,7 +17,7 @@ namespace UizaTest.Services
         [Fact]
         public void CreateStorageSuccess()
         {
-            mockService.Setup(_ => _.Add(It.IsAny<CreateStorageParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            mockService.Setup(_ => _.Add(It.IsAny<AddStorageParameter>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.Add(StorageMockParameter.CreateValidStorageParameter());
             Assert.NotNull(result);
         }
@@ -27,7 +27,7 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Add(It.IsAny<CreateStorageParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                mockService.Setup(_ => _.Add(It.IsAny<AddStorageParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
                 var ex = Assert.Throws<UizaException>(() => mockService.Object.Add(StorageMockParameter.CreateInValidStorageParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }

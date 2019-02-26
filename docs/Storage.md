@@ -15,7 +15,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createResult = UizaServices.Storage.Add(new CreateStorageParameter()
+var createResult = UizaServices.Storage.Add(new AddStorageParameter()
 {
 	Name = "FTP Uiza",
 	Host = "ftp-example.uiza.io",

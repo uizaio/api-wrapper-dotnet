@@ -228,7 +228,7 @@ namespace Uiza.NetCore.ConsoleTest
         {
             try
             {
-                var result = UizaServices.Storage.Add(new CreateStorageParameter()
+                var result = UizaServices.Storage.Add(new AddStorageParameter()
                 {
                     Name = "FTP Uiza",
                     Host = "ftp-example.uiza.io",
