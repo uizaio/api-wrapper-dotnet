@@ -12,6 +12,7 @@ namespace Uiza.NetCore.ConsoleTest
     {
         private static void TestCallback()
         {
+            LogActivity("Call back");
             try
             {
                 var createResult = UizaServices.Callback.Create(new CreateCallbackParameter()
@@ -42,12 +43,14 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+
+            LogActivity("Call back", true);
         }
 
         private static void TestLiveStreaming()
         {
+            LogActivity("Live Streaming");
             try
             {
                 var createResult = UizaServices.LiveStreaming.Create(new CreateLiveStreamingParameter()
@@ -101,12 +104,13 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+            LogActivity("Live Streaming", true);
         }
 
         private static void TestCategory()
         {
+            LogActivity("Category");
             try
             {
                 var createResult = UizaServices.Category.Create(new CreateCategoryParameter()
@@ -169,17 +173,19 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+
+            LogActivity("Category", true);
         }
 
         private static void TestEntity()
         {
+            LogActivity("Entity");
             try
             {
                 var result = UizaServices.Entity.Create(new CreateEntityParameter()
                 {
-                    //Name = "Sample Video",
+                    Name = Guid.NewGuid().ToString(),
                     InputType = EntityInputTypes.S3Uiza,
                     URL = ""
                 });
@@ -220,12 +226,14 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+
+            LogActivity("Entity", true);
         }
 
         private static void TestStorage()
         {
+            LogActivity("Storage");
             try
             {
                 var result = UizaServices.Storage.Add(new AddStorageParameter()
@@ -265,8 +273,8 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+            LogActivity("Storage", true);
         }
 
         private static void Main(string[] args)
@@ -290,6 +298,13 @@ namespace Uiza.NetCore.ConsoleTest
                 Console.WriteLine(ex.Message);
                 Console.ReadLine();
             }
+        }
+
+        private static void LogActivity(string apiName, bool isEnd = false)
+        {
+            Console.WriteLine();
+            Console.WriteLine(string.Format("--------------------------{0} Run {1} ---------------------", isEnd ? "End" : "Start", apiName));
+            Console.WriteLine();
         }
     }
 }
