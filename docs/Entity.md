@@ -54,7 +54,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var result =  UizaServices.Entity.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
-Console.WriteLine(string.Format("Success Get EntitiesList, total record {0}", result.MetaData.result));
+Console.WriteLine(string.Format("Get Entity List Success, total record {0}", result.MetaData.result));
 ```
 
 ## Update entity
@@ -96,7 +96,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var result = UizaServices.Entity.Delete("Entity Id");
-Console.WriteLine(string.Format("Create New Entity Id = {0} Success", result.Data.id));
+Console.WriteLine(string.Format("Delete Entity Id = {0} Success", result.Data.id));
 ```
 
 ## Search entity
@@ -112,8 +112,8 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result = UizaServices.Entity.SearchEntity("Sample");
-  Console.WriteLine(string.Format("Search Success, , total record {0}", result.Data.Count));
+var result = UizaServices.Entity.Search("Sample");
+  Console.WriteLine(string.Format("Search Success, total record {0}", result.Data.Count));
 ```
 
 ## Publish entity to CDN
@@ -129,7 +129,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result = UUizaServices.Entity.PublishEntity("Entity Id");
+var result = UUizaServices.Entity.Publish("Entity Id");
 Console.WriteLine(string.Format("Publish Entity Success : entityId = {0} ", result.Data.entityId));
 ```
 
@@ -146,7 +146,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result =  UizaServices.Entity.GetEntityStatusPublish("Entity Id");
+var result =  UizaServices.Entity.GetStatusPublish("Entity Id");
 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", result.Data.status));
 ```
 
@@ -163,6 +163,6 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result =  UizaServices.Entity.GetEntityAWSUploadKey();
+var result =  UizaServices.Entity.GetAWSUploadKey();
 Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", result.Data.temp_access_id));
 ```

@@ -6,9 +6,9 @@ namespace UizaTest.MockParameter
 {
     public static class StorageMockParameter
     {
-        public static CreateStorageParameter CreateValidStorageParameter()
+        public static AddStorageParameter CreateValidStorageParameter()
         {
-            return new CreateStorageParameter()
+            return new AddStorageParameter()
             {
                 Name = string.Format("Storage name {0}", Guid.NewGuid().ToString()),
                 Host = "ftp-example.uiza.io",
@@ -20,9 +20,9 @@ namespace UizaTest.MockParameter
             };
         }
 
-        public static CreateStorageParameter CreateInValidStorageParameter()
+        public static AddStorageParameter CreateInValidStorageParameter()
         {
-            return new CreateStorageParameter()
+            return new AddStorageParameter()
             {
             };
         }

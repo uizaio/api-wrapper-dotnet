@@ -10,9 +10,107 @@ namespace Uiza.NetCore.ConsoleTest
 {
     internal class Program
     {
+        private static void TestCallback()
+        {
+            LogActivity("Call back");
+            try
+            {
+                var createResult = UizaServices.Callback.Create(new CreateCallbackParameter()
+                {
+                    Url = "https://callback-url.uiza.co",
+                    Method = CallbackMethodTypes.Post,
+                });
+
+                Console.WriteLine(string.Format("Create New Callback Id = {0} Success", createResult.Data.id));
+
+                var resultUpdate = UizaServices.Callback.Update(new UpdateCallbackParameter()
+                {
+                    Id = createResult.Data.id,
+                    Url = "https://callback-url.uiza.co/update",
+                    Method = CallbackMethodTypes.Post
+                });
+
+                Console.WriteLine(string.Format("Update Callback Id = {0} Success", resultUpdate.Data.id));
+
+                var retrieveResult = UizaServices.Callback.Retrieve((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Get Callback Id = {0} Success", retrieveResult.Data.id));
+
+                var resultDelete = UizaServices.Callback.Delete((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Delete Callback Id = {0} Success", resultUpdate.Data.id));
+
+            }
+            catch (UizaException ex)
+            {
+                var result = ex.UizaInnerException.Error;
+                Console.WriteLine(ex.Message);
+            }
+
+            LogActivity("Call back", true);
+        }
+
+        private static void TestLiveStreaming()
+        {
+            LogActivity("Live Streaming");
+            try
+            {
+                var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    Mode = "push",
+                    Encode = EncodeTypes.Encode,
+                    Drv = DvrTypes.ActiveFeatureRecord,
+                    LinkStream = new List<string>() { "https://playlist.m3u8" },
+                    Poster = "//image1.jpeg",
+                    Thumbnail = "//image1.jpeg",
+                    ResourceMode = ResourceModes.Single
+                });
+
+                Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
+
+                var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
+                {
+                    Id = createResult.Data.id,
+                    Name = Guid.NewGuid().ToString(),
+                    Mode = "pull",
+                    Encode = EncodeTypes.Encode,
+                    Drv = DvrTypes.ActiveFeatureRecord,
+                    ResourceMode = ResourceModes.Single
+                });
+
+                Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
+
+                var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
+
+                var listResult = UizaServices.Live.ListRecorded();
+                Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
+
+                var startLiveFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
+
+                var getViewOfLiveFeedResult = UizaServices.Live.GetView((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Get View Live Feed Success", getViewOfLiveFeedResult.Data.id));
+
+                var convertIntoVODResult = UizaServices.Live.GetView((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Convert VOD Success", convertIntoVODResult.Data.id));
+
+                var stopALiveFeedResult = UizaServices.Live.StopFeed((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Stop A Live Feed Success", stopALiveFeedResult.Data.entityId));
+
+                var deleteRecordFileResult = UizaServices.Live.Delete((string)createResult.Data.id);
+                Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));
+            }
+            catch (UizaException ex)
+            {
+                var result = ex.UizaInnerException.Error;
+                Console.WriteLine(ex.Message);
+            }
+            LogActivity("Live Streaming", true);
+        }
 
         private static void TestCategory()
         {
+            LogActivity("Category");
             try
             {
                 var createResult = UizaServices.Category.Create(new CreateCategoryParameter()
@@ -52,14 +150,14 @@ namespace Uiza.NetCore.ConsoleTest
                     URL = ""
                 });
 
-                var createCategoryRelationResult = UizaServices.Category.CreateCategoryRelation(new CategoryRelationParameter()
+                var createCategoryRelationResult = UizaServices.Category.CreateRelation(new CategoryRelationParameter()
                 {
                     EntityId = entity.Data.id,
                     MetadataIds = listMetadata
                 });
                 Console.WriteLine(string.Format("Create Success Category Relation, total record {0}", createCategoryRelationResult.MetaData.result));
 
-                var deleteCategoryRelationResult = UizaServices.Category.DeleteCategoryRelation(new CategoryRelationParameter()
+                var deleteCategoryRelationResult = UizaServices.Category.DeleteRelation(new CategoryRelationParameter()
                 {
                     EntityId = entity.Data.id,
                     MetadataIds = listMetadata
@@ -75,17 +173,19 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+
+            LogActivity("Category", true);
         }
 
         private static void TestEntity()
         {
+            LogActivity("Entity");
             try
             {
                 var result = UizaServices.Entity.Create(new CreateEntityParameter()
                 {
-                    //Name = "Sample Video",
+                    Name = Guid.NewGuid().ToString(),
                     InputType = EntityInputTypes.S3Uiza,
                     URL = ""
                 });
@@ -107,16 +207,16 @@ namespace Uiza.NetCore.ConsoleTest
                     Thumbnail = "/example.com/updateThumbnail"
                 });
 
-                var getAwsUploadKey = UizaServices.Entity.GetEntityAWSUploadKey();
+                var getAwsUploadKey = UizaServices.Entity.GetAWSUploadKey();
                 Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", getAwsUploadKey.Data.temp_access_id));
 
-                var publishEntity = UizaServices.Entity.PublishEntity((string)result.Data.id);
+                var publishEntity = UizaServices.Entity.Publish((string)result.Data.id);
                 Console.WriteLine(string.Format("Publish Entity Success : entityId = {0} ", publishEntity.Data.entityId));
 
-                var getStatusPublish = UizaServices.Entity.GetEntityStatusPublish((string)result.Data.id);
+                var getStatusPublish = UizaServices.Entity.GetStatusPublish((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
 
-                var searchEntity = UizaServices.Entity.SearchEntity("Sample");
+                var searchEntity = UizaServices.Entity.Search("Sample");
                 Console.WriteLine(string.Format("Search Success, , total record {0}", searchEntity.Data.Count));
 
                 var deleteEntity = UizaServices.Entity.Delete((string)result.Data.id);
@@ -126,15 +226,17 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+
+            LogActivity("Entity", true);
         }
 
         private static void TestStorage()
         {
+            LogActivity("Storage");
             try
             {
-                var result = UizaServices.Storage.Add(new CreateStorageParameter()
+                var result = UizaServices.Storage.Add(new AddStorageParameter()
                 {
                     Name = "FTP Uiza",
                     Host = "ftp-example.uiza.io",
@@ -171,8 +273,8 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 var result = ex.UizaInnerException.Error;
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
             }
+            LogActivity("Storage", true);
         }
 
         private static void Main(string[] args)
@@ -187,6 +289,7 @@ namespace Uiza.NetCore.ConsoleTest
                 TestEntity();
                 TestCategory();
                 TestStorage();
+                TestLiveStreaming();
                 Console.ReadLine();
             }
             catch (UizaException ex)
@@ -195,6 +298,13 @@ namespace Uiza.NetCore.ConsoleTest
                 Console.WriteLine(ex.Message);
                 Console.ReadLine();
             }
+        }
+
+        private static void LogActivity(string apiName, bool isEnd = false)
+        {
+            Console.WriteLine();
+            Console.WriteLine(string.Format("--------------------------{0} Run {1} ---------------------", isEnd ? "End" : "Start", apiName));
+            Console.WriteLine();
         }
     }
 }

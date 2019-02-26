@@ -54,7 +54,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var listResult = UizaServices.Category.List(new BaseParameter());
-Console.WriteLine(string.Format("Success Get List Category, total record {0}", listResult.MetaData.result));
+Console.WriteLine(string.Format("Get List Category Success, total record {0}", listResult.MetaData.result));
 ```
 
 ## Update Category
@@ -80,28 +80,6 @@ var resultUpdate = UizaServices.Category.Update(new UpdateCategoryParameter()
 Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 ```
 
-## Delete Category
-Delete Category.
-See details [here](https://docs.uiza.io/#delete-an-Category).
-
-```Cshard
-using Uiza.Net.Services;
-
-UizaConfiguration.SetupUiza(new UizaConfigOptions
-{
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
-
-var deleteCategoryRelationResult = UizaServices.Category.DeleteCategoryRelation(new CategoryRelationParameter()
-{
-	EntityId = entity.Data.id,
-	MetadataIds = listMetadata
-});
-Console.WriteLine(string.Format("Delete Success Category Relation, total record {0}", deleteCategoryRelationResult.MetaData.result));
-```
-
-
 ## Create Category Relation
 Create Category Relation, use for streaming
 See details [here](https://docs.uiza.io/#create-category-relation).
@@ -115,14 +93,14 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createCategoryRelationResult = UizaServices.Category.CreateCategoryRelation(new CategoryRelationParameter()
+var createCategoryRelationResult = UizaServices.Category.CreateRelation(new CategoryRelationParameter()
 {
-	EntityId = entity.Data.id,
+	EntityId = "Entity id",
 	MetadataIds = listMetadata
 });
-Console.WriteLine(string.Format("Create Success Category Relation, total record {0}", createCategoryRelationResult.MetaData.result));
+Console.WriteLine(string.Format("Create Category Relation Success, total record {0}", createCategoryRelationResult.MetaData.result));
 ```
-
+See Entity details [here](../docs/Entity.md).
 ## Delete category relation
 Delete category relation, use for streaming
 See details [here](https://docs.uiza.io/#delete-category-relation).
@@ -136,10 +114,27 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var deleteCategoryRelationResult = UizaServices.Category.DeleteCategoryRelation(new CategoryRelationParameter()
+var deleteCategoryRelationResult = UizaServices.Category.DeleteRelation(new CategoryRelationParameter()
 {
 	EntityId = entity.Data.id,
 	MetadataIds = listMetadata
 });
-Console.WriteLine(string.Format("Delete Success Category Relation, total record {0}", deleteCategoryRelationResult.MetaData.result));
+Console.WriteLine(string.Format("Delete Category Relation Success, total record {0}", deleteCategoryRelationResult.MetaData.result));
+```
+
+## Delete Category
+Delete Category.
+See details [here](https://docs.uiza.io/#delete-an-Category).
+
+```Cshard
+using Uiza.Net.Services;
+
+UizaConfiguration.SetupUiza(new UizaConfigOptions
+{
+	ApiKey = "your-ApiKey",
+	ApiBase = "your-workspace-api-domain.uiza.co"
+});
+
+var resultDelete = UizaServices.Category.Delete((string)createResult.Data.id);
+Console.WriteLine(string.Format("Delete Category Id = {0} Success", resultUpdate.Data.id));
 ```

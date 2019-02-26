@@ -15,7 +15,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public virtual UizaData Add(CreateStorageParameter param)
+        public virtual UizaData Add(AddStorageParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.STORAGE.ADD);
             return this.PostRequest<UizaData>(Constants.ApiAction.STORAGE, param);

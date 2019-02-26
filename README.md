@@ -10,27 +10,27 @@ See the [.NET API docs](https://docs.uiza.io/).
 
 ## Installation
 
-### Install Uiza.net via NuGet
+### Install Uiza via NuGet
 
 From the command line:
 
-	nuget install Uiza.net
+	nuget install Uiza
 
 From Package Manager:
 
-	PM> Install-Package Uiza.net
+	PM> Install-Package Uiza
 
 From within Visual Studio:
 
 1. Open the Solution Explorer.
 2. Right-click on a project within your solution.
 3. Click on *Manage NuGet Packages...*
-4. Click on the *Browse* tab and search for "Uiza.net".
-5. Click on the Uiza.net package, select the appropriate version in the right-tab and click *Install*.
+4. Click on the *Browse* tab and search for "Uiza".
+5. Click on the Uiza package, select the appropriate version in the right-tab and click *Install*.
 
 ### Set the API Key for your project
 
-You can configure the Uiza.net package to use your secret API key by the way:
+You can configure the Uiza package to use your secret API key by the way:
 
 In your application initialization, set your API key (only once once during startup):
 
@@ -162,104 +162,111 @@ using **try catch** to handle Error
 The[`UizaExceptionResponse`](src/Uiza.Net/UizaException/UizaExceptionResponse.cs)
 
 ```Csharp
-	public class UizaExceptionResponse
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("code")]
-        public int Code { get; set; }
+public class UizaExceptionResponse
+{
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("code")]
+	public int Code { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("type")]
+	public string Type { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("retryable")]
-        public bool RetryAble { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("retryable")]
+	public bool RetryAble { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("message")]
+	public string Message { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("data")]
-        public object Data { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("data")]
+	public dynamic Data { get; set; }
 
-        /// <summary>
-        /// First Error
-        /// </summary>
-        public ErrorData Error
-        {
-            get
-            {
-                return Errors.FirstOrDefault() ?? new ErrorData();
-            }
-        }
+	/// <summary>
+	/// 
+	/// </summary>
+	public ErrorData Error
+	{
+		get
+		{
+			return Errors.FirstOrDefault() ?? new ErrorData();
+		}
+	}
 
-        /// <summary>
-        /// This Property Handle Error and return list Error
-		///	The error may be one of the formats
-		///	- string
-		///	- object
-		///	- json Array
-		///	- List custom Error (List<ErrorData>)
-        /// </summary>
-        public List<ErrorData> Errors
-        {
-            get
-            {
-                if (Data.IsJArray())
-                    return JsonConvert.DeserializeObject<List<ErrorData>>(JsonConvert.SerializeObject(Data));
-                if (Data is IList<ErrorData>)
-                    return (List<ErrorData>)Data;
-                if (Data is string)
-                    return new List<ErrorData>() {
-                        new ErrorData()
-                        {
-                            Message = Message,
-                            Type = Type
-                        }
-                    };
-                return new List<ErrorData>() {
-                    JsonConvert.DeserializeObject<ErrorData>(JsonConvert.SerializeObject(Data))
-                };
-            }
-        }
-    }
+	/// <summary>
+	/// 
+	/// </summary>
+	public List<ErrorData> Errors
+	{
+		get
+		{
+			if (Data is JArray)
+				return JsonConvert.DeserializeObject<List<ErrorData>>(JsonConvert.SerializeObject(Data));
+			if (Data is string)
+				return new List<ErrorData>() {
+					new ErrorData()
+					{
+						Message = Message,
+						Type = Type
+					}
+				};
+			if (Data is JObject)
+				return new List<ErrorData>() {
+					 JsonConvert.DeserializeObject<ErrorData>(JsonConvert.SerializeObject(Data))
+				};
 
-    /// <summary>
-    /// This Object Constain Error Infomation
-    /// </summary>
-    public class ErrorData
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; set; }
+			return new List<ErrorData>() {
+				JsonConvert.DeserializeObject<ErrorData>(JsonConvert.SerializeObject(Data))
+			};
+		}
+	}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
+	/// <summary>
+	/// 
+	/// </summary>
+	public string DescriptionLink { get; set; }
+}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("field")]
-        public string Field { get; set; }
-    }
+/// <summary>
+/// 
+/// </summary>
+public class ErrorData
+{
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("message")]
+	public string Message { get; set; }
+
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("type")]
+	public string Type { get; set; }
+
+	/// <summary>
+	/// 
+	/// </summary>
+	[JsonProperty("field")]
+	public string Field { get; set; }
+}
 ```
+
+## Test
+Uiza use Xunit to Unitest and OpenCover to test Code Coverage
+See details [here](docs/Test.md).
 
 ## Usage
 
@@ -315,7 +322,7 @@ After synced, you can select your content easier from your storage to [Store API
 See details [here](docs/Storage.md).
 
 ```Csharp
-var result = UizaServices.Storage.Create(new CreateStogeParameter()
+var result = UizaServices.Storage.Add(new AddStorageParameter()
 {
     Name = "FTP Uiza",
     Host = "ftp-example.uiza.io",
@@ -327,6 +334,55 @@ var result = UizaServices.Storage.Create(new CreateStogeParameter()
 });
 Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
 ```
+
+## Live Streaming
+These APIs used to create and manage live streaming event.
+* When a Live is not start : it's named as `Event`.
+* When have an `Event` , you can start it : it's named as `Feed`.
+
+```Csharp
+using Uiza.Net.Services;
+
+UizaConfiguration.SetupUiza(new UizaConfigOptions
+{
+	ApiKey = "your-ApiKey",
+	ApiBase = "your-workspace-api-domain.uiza.co"
+});
+
+var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+{
+	Name = Guid.NewGuid().ToString(),
+	Mode = "push",
+	Encode = EncodeTypes.Encode,
+	Drv = DvrTypes.ActiveFeatureRecord,
+	LinkStream = new List<string>() { "https://playlist.m3u8" },
+	Poster = "//image1.jpeg",
+	Thumbnail = "//image1.jpeg",
+	ResourceMode = ResourceModes.Single
+});
+
+Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", createResult.Data.id));
+```
+
+See details [here](docs/LiveStreaming.md).
+
+## Callback
+Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
+
+```Csharp
+using Uiza.Net.Services;
+
+UizaConfiguration.SetupUiza(new UizaConfigOptions
+{
+	ApiKey = "your-ApiKey",
+	ApiBase = "your-workspace-api-domain.uiza.co"
+});
+
+var retrieveResult = UizaServices.Callback.Retrieve((string)createResult.Data.id);
+Console.WriteLine(string.Format("Get Callback Id = {0} Success", retrieveResult.Data.id));
+```
+
+See details [here](docs/Callback.md).
 
 ## Contribution Guidelines
 

@@ -7,34 +7,30 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class CreateStorageParameter : BaseParameter
+    public class AddStorageParameter : BaseParameter
     {
         /// <summary>
         ///
         /// </summary>
         [JsonProperty("name")]
-        [Required(ErrorMessage = Constants.ErrorMessages.REQUIRED)]
         public string Name { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [JsonProperty("host")]
-        [Required(ErrorMessage = Constants.ErrorMessages.REQUIRED)]
         public string Host { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [JsonProperty("port")]
-        [Required(ErrorMessage = Constants.ErrorMessages.REQUIRED)]
         public int Port { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [JsonProperty("storageType")]
-        [Required(ErrorMessage = Constants.ErrorMessages.REQUIRED)]
         public StorageInputTypes StorageType { get; set; }
 
         /// <summary>

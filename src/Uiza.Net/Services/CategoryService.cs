@@ -23,7 +23,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData CreateCategoryRelation(CategoryRelationParameter param)
+        public UizaData CreateRelation(CategoryRelationParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.CREATE_CATEGORY_RELATION);
             return this.PostRequest<UizaData>(Constants.ApiAction.CATEGORY_RELATION, param);
@@ -48,7 +48,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData DeleteCategoryRelation(CategoryRelationParameter param)
+        public UizaData DeleteRelation(CategoryRelationParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.DELETE_CATEGORY_RELATION);
             return this.DeleteRequest<UizaData>(Constants.ApiAction.CATEGORY_RELATION, param);

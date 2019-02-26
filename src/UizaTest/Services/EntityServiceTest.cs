@@ -17,31 +17,37 @@ namespace UizaTest.Services
         {
             mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.Create(EntityMockParameter.CreateValidEntityParameter());
-            Assert.NotNull(result.Data.id);
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void CreateFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(EntityMockParameter.CreateInValidEntityParameter()));
-            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Create(It.IsAny<CreateEntityParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(EntityMockParameter.CreateInValidEntityParameter()));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
 
         [Fact]
         public void RetrieveSuccess()
         {
-            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Returns(EntityResponse.RetrieveSuccessResponse());
+            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse);
             var result = mockService.Object.Retrieve("2e173ee3-be45-46bd-a355-c9182a2a41ec");
-            Assert.NotNull(result.Data.id);
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void RetrieveFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(""));
-            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(""));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
 
         [Fact]
@@ -49,95 +55,110 @@ namespace UizaTest.Services
         {
             mockService.Setup(_ => _.List(It.IsAny<RetrieveListEntitiesParameter>())).Returns(BaseMockResponse.ListSuccessResponse());
             var result = mockService.Object.List(EntityMockParameter.ListValidEntityParameter());
-            Assert.Equal(2, result.Data.Count);
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void UpdateSuccess()
         {
-            mockService.Setup(_ => _.Update(It.IsAny<UpdateEntityParameter>())).Returns(EntityResponse.UpdateSuccessResponse());
+            mockService.Setup(_ => _.Update(It.IsAny<UpdateEntityParameter>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.Update(EntityMockParameter.UpdateValidEntityParameter());
-            Assert.NotNull(result.Data.id);
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void UpdateFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Update(It.IsAny<UpdateEntityParameter>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(EntityMockParameter.UpdateInValidEntityParameter()));
-            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Update(It.IsAny<UpdateEntityParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(EntityMockParameter.UpdateInValidEntityParameter()));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
 
         [Fact]
         public void DeleteSuccess()
         {
-            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Returns(EntityResponse.DeleteSuccessResponse());
+            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.Delete("2e173ee3-be45-46bd-a355-c9182a2a41ec");
-            Assert.NotNull(result.Data.id);
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void DeleteFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.Delete(""));
-            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Delete(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Delete(""));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
 
         [Fact]
         public void SearchSuccess()
         {
-            mockService.Setup(_ => _.SearchEntity(It.IsAny<string>())).Returns(EntityResponse.SearchSuccessResponse());
-            var result = mockService.Object.SearchEntity("Sample");
-            Assert.Equal(2, result.Data.Count);
+            mockService.Setup(_ => _.Search(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.Search("Sample");
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void SearchFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.SearchEntity(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.SearchEntity(""));
-            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Search(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Search(""));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
 
         [Fact]
         public void PublishEntitySuccess()
         {
-            mockService.Setup(_ => _.PublishEntity(It.IsAny<string>())).Returns(EntityResponse.RetrieveSuccessResponse());
-            var result = mockService.Object.PublishEntity("2e173ee3-be45-46bd-a355-c9182a2a41ec");
-            Assert.NotNull(result.Data.id);
+            mockService.Setup(_ => _.Publish(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Publish("2e173ee3-be45-46bd-a355-c9182a2a41ec");
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void PublishEntityFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.PublishEntity(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.PublishEntity(""));
-            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Publish(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Publish(""));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
 
         [Fact]
         public void GetStatusPublishSuccess()
         {
-            mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Returns(EntityResponse.GetStatusPublishSuccessResponse());
-            var result = mockService.Object.GetEntityStatusPublish("2e173ee3-be45-46bd-a355-c9182a2a41ec");
-            Assert.NotNull(result.Data.status);
+            mockService.Setup(_ => _.GetStatusPublish(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.GetStatusPublish("2e173ee3-be45-46bd-a355-c9182a2a41ec");
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void GetStatusPublishFailWithAPIResponse()
         {
-            mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse());
-            var ex = Assert.Throws<UizaException>(() => mockService.Object.GetEntityStatusPublish(""));
-            Assert.Equal((int)ResponseCodeEnums.Unprocessable, ex.UizaInnerException.Code);
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.GetStatusPublish(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.GetStatusPublish(""));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
 
         [Fact]
         public void GetAWSUploadKeySuccess()
         {
-            mockService.Setup(_ => _.GetEntityAWSUploadKey()).Returns(EntityResponse.GetAWSUploadKeySuccessResponse());
-            var result = mockService.Object.GetEntityAWSUploadKey();
-            Assert.NotNull(result.Data.temp_expire_at);
+            mockService.Setup(_ => _.GetAWSUploadKey()).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.GetAWSUploadKey();
+            Assert.NotNull(result);
         }
     }
 }

@@ -20,13 +20,13 @@ namespace Uiza.Net.Services.Interface
         /// 
         /// </summary>
         /// <returns></returns>
-        UizaData CreateCategoryRelation(CategoryRelationParameter param);
+        UizaData CreateRelation(CategoryRelationParameter param);
 
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        UizaData DeleteCategoryRelation(CategoryRelationParameter param);
+        UizaData DeleteRelation(CategoryRelationParameter param);
     }
 }
