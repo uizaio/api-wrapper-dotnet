@@ -21,7 +21,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createResult = UizaServices.LiveStreaming.Create(new CreateLiveStreamingParameter()
+var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
 {
 	Name = Guid.NewGuid().ToString(),
 	Mode = "push",
@@ -52,7 +52,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var retrieveResult = UizaServices.LiveStreaming.Retrieve((string)createResult.Data.id);
+var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
 Console.WriteLine(string.Format("Retrieve Live Streaming Success, Id = {0}", retrieveResult.Data.id));
 ```
 
@@ -70,7 +70,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var resultUpdate = UizaServices.LiveStreaming.Update(new UpdateLiveStreamingParameter()
+var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
 {
 	Id = createResult.Data.id,
 	Name = Guid.NewGuid().ToString(),
@@ -98,8 +98,8 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var startLiveFeedResult = UizaServices.LiveStreaming.StartALiveFeed((string)createResult.Data.id);
-Console.WriteLine(string.Format("Start Live Feed Success", startLiveFeedResult.Data.id));
+var startFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
+Console.WriteLine(string.Format("Start Live Feed Success", startFeedResult.Data.id));
 ```
 
 ## List all recorded files
@@ -116,7 +116,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var listResult = UizaServices.LiveStreaming.ListAllRecordedFiles();
+var listResult = UizaServices.Live.ListRecorded();
 Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
 ```
 API will return a blank array if don't have any Recorded Files and MetaData will be null.
@@ -135,8 +135,8 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var getViewOfLiveFeedResult = UizaServices.LiveStreaming.GetViewOfLiveFeed((string)createResult.Data.id);
-Console.WriteLine(string.Format("Get View Live Feed Success", getViewOfLiveFeedResult.Data.id));
+var getViewResult = UizaServices.Live.GetView((string)createResult.Data.id);
+Console.WriteLine(string.Format("Get View Live Feed Success", getViewResult.Data.id));
 ```
 
 ## Stop a live feed
@@ -152,26 +152,10 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var stopALiveFeedResult = UizaServices.LiveStreaming.StopALiveFeed((string)createResult.Data.id);
-Console.WriteLine(string.Format("Stop A Live Feed Success", stopALiveFeedResult.Data.entityId));
+var stopFeedResult = UizaServices.Live.StopFeed((string)createResult.Data.id);
+Console.WriteLine(string.Format("Stop A Live Feed Success", stopFeedResult.Data.entityId));
 ```
 
-## Delete a record file
-Delete a recorded file.
-See details [here](https://docs.uiza.io/#delete-a-record-file).
-
-```Cshard
-using Uiza.Net.Services;
-
-UizaConfiguration.SetupUiza(new UizaConfigOptions
-{
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
-
-var deleteRecordFileResult = UizaServices.LiveStreaming.DeleteRecordFile((string)createResult.Data.id);
-Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));
-```
 
 ## Convert into VOD
 Convert recorded file into VOD entity. After converted, your file can be stream via Uiza's CDN..
@@ -186,7 +170,22 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var convertIntoVODResult = UizaServices.LiveStreaming.GetViewOfLiveFeed((string)createResult.Data.id);
+var convertIntoVODResult = UizaServices.Live.ConvertToVOD((string)createResult.Data.id);
 Console.WriteLine(string.Format("Convert VOD Success", convertIntoVODResult.Data.id));
 ```
 
+
+## Delete a record file
+Delete a recorded file.
+See details [here](https://docs.uiza.io/#delete-a-record-file).
+```Cshard
+using Uiza.Net.Services;
+
+UizaConfiguration.SetupUiza(new UizaConfigOptions	
+{	
+	ApiKey = "your-ApiKey",	
+	ApiBase = "your-workspace-api-domain.uiza.co"	
+});	
+var deleteRecordFileResult = UizaServices.LiveStreaming.Delete((string)createResult.Data.id);	
+Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));
+```

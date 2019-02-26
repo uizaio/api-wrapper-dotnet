@@ -99,8 +99,8 @@ namespace UizaTest.Services
         [Fact]
         public void SearchSuccess()
         {
-            mockService.Setup(_ => _.SearchEntity(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.SearchEntity("Sample");
+            mockService.Setup(_ => _.Search(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.Search("Sample");
             Assert.NotNull(result);
         }
 
@@ -109,8 +109,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.SearchEntity(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.SearchEntity(""));
+                mockService.Setup(_ => _.Search(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Search(""));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -118,8 +118,8 @@ namespace UizaTest.Services
         [Fact]
         public void PublishEntitySuccess()
         {
-            mockService.Setup(_ => _.PublishEntity(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.PublishEntity("2e173ee3-be45-46bd-a355-c9182a2a41ec");
+            mockService.Setup(_ => _.Publish(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Publish("2e173ee3-be45-46bd-a355-c9182a2a41ec");
             Assert.NotNull(result);
         }
 
@@ -128,8 +128,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.PublishEntity(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.PublishEntity(""));
+                mockService.Setup(_ => _.Publish(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Publish(""));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -137,8 +137,8 @@ namespace UizaTest.Services
         [Fact]
         public void GetStatusPublishSuccess()
         {
-            mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.GetEntityStatusPublish("2e173ee3-be45-46bd-a355-c9182a2a41ec");
+            mockService.Setup(_ => _.GetStatusPublish(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.GetStatusPublish("2e173ee3-be45-46bd-a355-c9182a2a41ec");
             Assert.NotNull(result);
         }
 
@@ -147,8 +147,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.GetEntityStatusPublish(""));
+                mockService.Setup(_ => _.GetStatusPublish(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.GetStatusPublish(""));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -156,8 +156,8 @@ namespace UizaTest.Services
         [Fact]
         public void GetAWSUploadKeySuccess()
         {
-            mockService.Setup(_ => _.GetEntityAWSUploadKey()).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.GetEntityAWSUploadKey();
+            mockService.Setup(_ => _.GetAWSUploadKey()).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.GetAWSUploadKey();
             Assert.NotNull(result);
         }
     }

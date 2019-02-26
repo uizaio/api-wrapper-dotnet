@@ -349,7 +349,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createResult = UizaServices.LiveStreaming.Create(new CreateLiveStreamingParameter()
+var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
 {
 	Name = Guid.NewGuid().ToString(),
 	Mode = "push",

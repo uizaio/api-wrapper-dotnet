@@ -33,7 +33,7 @@ namespace Uiza.Net.Services
         /// 
         /// </summary>
         /// <returns></returns>
-        public UizaData ListAllRecordedFiles()
+        public UizaData ListRecorded()
         {
             return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_RECORDED, new BaseParameter()
             {
@@ -60,7 +60,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="recordId">Identifier of record (get from list record)</param>
         /// <returns></returns>
-        public UizaData DeleteRecordFile(string recordId)
+        public UizaData Delete(string recordId)
         {
             return this.DeleteRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_RECORDED, new RetrieveItemParameter()
             {
@@ -74,7 +74,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        public UizaData GetViewOfLiveFeed(string eventId)
+        public UizaData GetView(string eventId)
         {
             return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, new RetrieveItemParameter()
             {
@@ -88,7 +88,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        public UizaData StartALiveFeed(string eventId)
+        public UizaData StartFeed(string eventId)
         {
             return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_FEED, new RetrieveItemParameter()
             {
@@ -102,7 +102,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        public UizaData StopALiveFeed(string eventId)
+        public UizaData StopFeed(string eventId)
         {
             return this.PutRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_FEED, new RetrieveItemParameter()
             {
@@ -116,7 +116,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="recordId"></param>
         /// <returns></returns>
-        public UizaData ConvertIntoVOD(string recordId)
+        public UizaData ConvertToVOD(string recordId)
         {
             return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_CONVERT_VOD, new RetrieveItemParameter()
             {
