@@ -3,8 +3,8 @@
   <PropertyGroup>
     <Description>Wrapper API SDK</Description>
     <AssemblyTitle>Uiza.net</AssemblyTitle>
-    <VersionPrefix>1.0.1</VersionPrefix>
-    <Version>1.0.1</Version>
+    <VersionPrefix>1.0.2</VersionPrefix>
+    <Version>1.0.2</Version>
     <Authors>Uiza</Authors>
     <TargetFrameworks>netstandard1.6;netstandard2.0;net45</TargetFrameworks>
     <AssemblyName>Uiza.net</AssemblyName>
@@ -28,10 +28,8 @@
     <PackageIconUrl>https://static.uiza.io/uiza_logo_128.png</PackageIconUrl>
     <PackageTags>Uiza, API SDK</PackageTags>
     <PackageReleaseNotes>
-      Public SDK version 1.0
-      Wrapper API https://docs.uiza.io
-    </PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+https://docs.uiza.io</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Validation\**" />
