@@ -44,7 +44,7 @@ namespace Uiza.Net.Services
         ///
         /// </summary>
         /// <returns></returns>
-        public virtual UizaData GetEntityAWSUploadKey()
+        public virtual UizaData GetAWSUploadKey()
         {
             return this.GetRequest<UizaData>(Constants.ApiAction.AWS_UPLOAD_KEY, new BaseParameter() { DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.GET_AWS_UPLOAD_KEY) });
         }
@@ -53,7 +53,7 @@ namespace Uiza.Net.Services
         ///
         /// </summary>
         /// <returns></returns>
-        public virtual UizaData GetEntityStatusPublish(string id)
+        public virtual UizaData GetStatusPublish(string id)
         {
             return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY_STATUS_PUBLISH, new RetrieveItemParameter()
             {
@@ -77,7 +77,7 @@ namespace Uiza.Net.Services
         ///
         /// </summary>
         /// <returns></returns>
-        public virtual UizaData PublishEntity(string entityId)
+        public virtual UizaData Publish(string entityId)
         {
             return this.PostRequest<UizaData>(Constants.ApiAction.ENTITY_PUBLISH, new RetrieveItemParameter()
             {
@@ -105,7 +105,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public virtual UizaData SearchEntity(string keyWord)
+        public virtual UizaData Search(string keyWord)
         {
             return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY_SEARCH, new SearchEntityParameter()
             {

@@ -53,7 +53,7 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Live Streaming");
             try
             {
-                var createResult = UizaServices.LiveStreaming.Create(new CreateLiveStreamingParameter()
+                var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Mode = "push",
@@ -67,7 +67,7 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
 
-                var resultUpdate = UizaServices.LiveStreaming.Update(new UpdateLiveStreamingParameter()
+                var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
                 {
                     Id = createResult.Data.id,
                     Name = Guid.NewGuid().ToString(),
@@ -79,25 +79,25 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 
-                var retrieveResult = UizaServices.LiveStreaming.Retrieve((string)createResult.Data.id);
+                var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.LiveStreaming.ListAllRecordedFiles();
+                var listResult = UizaServices.Live.ListRecorded();
                 Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
 
-                var startLiveFeedResult = UizaServices.LiveStreaming.StartALiveFeed((string)createResult.Data.id);
+                var startLiveFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
 
-                var getViewOfLiveFeedResult = UizaServices.LiveStreaming.GetViewOfLiveFeed((string)createResult.Data.id);
+                var getViewOfLiveFeedResult = UizaServices.Live.GetView((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Get View Live Feed Success", getViewOfLiveFeedResult.Data.id));
 
-                var convertIntoVODResult = UizaServices.LiveStreaming.GetViewOfLiveFeed((string)createResult.Data.id);
+                var convertIntoVODResult = UizaServices.Live.GetView((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Convert VOD Success", convertIntoVODResult.Data.id));
 
-                var stopALiveFeedResult = UizaServices.LiveStreaming.StopALiveFeed((string)createResult.Data.id);
+                var stopALiveFeedResult = UizaServices.Live.StopFeed((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Stop A Live Feed Success", stopALiveFeedResult.Data.entityId));
 
-                var deleteRecordFileResult = UizaServices.LiveStreaming.DeleteRecordFile((string)createResult.Data.id);
+                var deleteRecordFileResult = UizaServices.Live.Delete((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));
             }
             catch (UizaException ex)
@@ -150,14 +150,14 @@ namespace Uiza.NetCore.ConsoleTest
                     URL = ""
                 });
 
-                var createCategoryRelationResult = UizaServices.Category.CreateCategoryRelation(new CategoryRelationParameter()
+                var createCategoryRelationResult = UizaServices.Category.CreateRelation(new CategoryRelationParameter()
                 {
                     EntityId = entity.Data.id,
                     MetadataIds = listMetadata
                 });
                 Console.WriteLine(string.Format("Create Success Category Relation, total record {0}", createCategoryRelationResult.MetaData.result));
 
-                var deleteCategoryRelationResult = UizaServices.Category.DeleteCategoryRelation(new CategoryRelationParameter()
+                var deleteCategoryRelationResult = UizaServices.Category.DeleteRelation(new CategoryRelationParameter()
                 {
                     EntityId = entity.Data.id,
                     MetadataIds = listMetadata
@@ -207,16 +207,16 @@ namespace Uiza.NetCore.ConsoleTest
                     Thumbnail = "/example.com/updateThumbnail"
                 });
 
-                var getAwsUploadKey = UizaServices.Entity.GetEntityAWSUploadKey();
+                var getAwsUploadKey = UizaServices.Entity.GetAWSUploadKey();
                 Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", getAwsUploadKey.Data.temp_access_id));
 
-                var publishEntity = UizaServices.Entity.PublishEntity((string)result.Data.id);
+                var publishEntity = UizaServices.Entity.Publish((string)result.Data.id);
                 Console.WriteLine(string.Format("Publish Entity Success : entityId = {0} ", publishEntity.Data.entityId));
 
-                var getStatusPublish = UizaServices.Entity.GetEntityStatusPublish((string)result.Data.id);
+                var getStatusPublish = UizaServices.Entity.GetStatusPublish((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
 
-                var searchEntity = UizaServices.Entity.SearchEntity("Sample");
+                var searchEntity = UizaServices.Entity.Search("Sample");
                 Console.WriteLine(string.Format("Search Success, , total record {0}", searchEntity.Data.Count));
 
                 var deleteEntity = UizaServices.Entity.Delete((string)result.Data.id);

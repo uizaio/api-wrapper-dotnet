@@ -93,7 +93,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createCategoryRelationResult = UizaServices.Category.CreateCategoryRelation(new CategoryRelationParameter()
+var createCategoryRelationResult = UizaServices.Category.CreateRelation(new CategoryRelationParameter()
 {
 	EntityId = "Entity id",
 	MetadataIds = listMetadata
@@ -114,7 +114,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var deleteCategoryRelationResult = UizaServices.Category.DeleteCategoryRelation(new CategoryRelationParameter()
+var deleteCategoryRelationResult = UizaServices.Category.DeleteRelation(new CategoryRelationParameter()
 {
 	EntityId = entity.Data.id,
 	MetadataIds = listMetadata

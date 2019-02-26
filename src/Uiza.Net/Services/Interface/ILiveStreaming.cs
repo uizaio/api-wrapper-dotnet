@@ -13,47 +13,41 @@ namespace Uiza.Net.Services.Interface
         IBaseServices,
         ICreate<UizaData, CreateLiveStreamingParameter>,
         IRetrieve<UizaData>,
-        IUpdate<UizaData, BaseParameter>
+        IUpdate<UizaData, BaseParameter>,
+        IDelete<UizaData>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        UizaData StartALiveFeed(string eventId);
+        UizaData StartFeed(string eventId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        UizaData GetViewOfLiveFeed(string eventId);
+        UizaData GetView(string eventId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        UizaData StopALiveFeed(string eventId);
+        UizaData StopFeed(string eventId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="recordId"></param>
         /// <returns></returns>
-        UizaData ConvertIntoVOD(string recordId);
+        UizaData ConvertToVOD(string recordId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        UizaData ListAllRecordedFiles();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="recordId"></param>
-        /// <returns></returns>
-        UizaData DeleteRecordFile(string recordId);
+        UizaData ListRecorded();
     }
 }

@@ -64,7 +64,7 @@ namespace Uiza.Net.Services
         /// <summary>
         /// 
         /// </summary>
-        public static ILiveStreaming LiveStreaming
+        public static ILiveStreaming Live
         {
             get
             {

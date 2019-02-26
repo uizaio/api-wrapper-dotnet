@@ -56,8 +56,8 @@ namespace UizaTest.Services
         [Fact]
         public void CreateCategoryRelationSuccess()
         {
-            mockService.Setup(_ => _.CreateCategoryRelation(It.IsAny<CategoryRelationParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.CreateCategoryRelation(CategoryMockParameter.CreateValidCategoryRelationParameter());
+            mockService.Setup(_ => _.CreateRelation(It.IsAny<CategoryRelationParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.CreateRelation(CategoryMockParameter.CreateValidCategoryRelationParameter());
             Assert.NotNull(result);
         }
 
@@ -66,8 +66,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.CreateCategoryRelation(It.IsAny<CategoryRelationParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.CreateCategoryRelation(CategoryMockParameter.CreateInValidCategoryRelationParameter()));
+                mockService.Setup(_ => _.CreateRelation(It.IsAny<CategoryRelationParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.CreateRelation(CategoryMockParameter.CreateInValidCategoryRelationParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -75,8 +75,8 @@ namespace UizaTest.Services
         [Fact]
         public void DeleteCategoryRelationSuccess()
         {
-            mockService.Setup(_ => _.DeleteCategoryRelation(It.IsAny<CategoryRelationParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.DeleteCategoryRelation(CategoryMockParameter.CreateValidCategoryRelationParameter());
+            mockService.Setup(_ => _.DeleteRelation(It.IsAny<CategoryRelationParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.DeleteRelation(CategoryMockParameter.CreateValidCategoryRelationParameter());
             Assert.NotNull(result);
         }
 
@@ -85,8 +85,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.DeleteCategoryRelation(It.IsAny<CategoryRelationParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.DeleteCategoryRelation(CategoryMockParameter.CreateInValidCategoryRelationParameter()));
+                mockService.Setup(_ => _.DeleteRelation(It.IsAny<CategoryRelationParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.DeleteRelation(CategoryMockParameter.CreateInValidCategoryRelationParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }

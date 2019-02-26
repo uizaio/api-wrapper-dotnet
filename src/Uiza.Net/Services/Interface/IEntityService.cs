@@ -17,24 +17,24 @@ namespace Uiza.Net.Services.Interface
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData PublishEntity(string entityId);
+        UizaData Publish(string entityId);
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData GetEntityStatusPublish(string entityId);
+        UizaData GetStatusPublish(string entityId);
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData GetEntityAWSUploadKey();
+        UizaData GetAWSUploadKey();
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData SearchEntity(string keyWord);
+        UizaData Search(string keyWord);
     }
 }
