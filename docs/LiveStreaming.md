@@ -33,7 +33,7 @@ var createResult = UizaServices.LiveStreaming.Create(new CreateLiveStreamingPara
 	ResourceMode = ResourceModes.Single
 });
 
-Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
+Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", createResult.Data.id));
 
 ```
 
@@ -53,7 +53,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var retrieveResult = UizaServices.LiveStreaming.Retrieve((string)createResult.Data.id);
-Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
+Console.WriteLine(string.Format("Retrieve Live Streaming Success, Id = {0}", retrieveResult.Data.id));
 ```
 
 ## Update a live event
@@ -80,6 +80,9 @@ var resultUpdate = UizaServices.LiveStreaming.Update(new UpdateLiveStreamingPara
 	ResourceMode = ResourceModes.Single
 });
 
+Console.WriteLine(string.Format("Update Live Streaming Id = {0} Success", resultUpdate.Data.id));
+```
+
 ## Start a live feed
 These API use to start a live event that has been create success.
 The Live channel minute start count whenever the event start success
@@ -96,7 +99,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var startLiveFeedResult = UizaServices.LiveStreaming.StartALiveFeed((string)createResult.Data.id);
-Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
+Console.WriteLine(string.Format("Start Live Feed Success", startLiveFeedResult.Data.id));
 ```
 
 ## List all recorded files
