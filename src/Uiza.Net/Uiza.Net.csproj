@@ -25,10 +25,12 @@
     <Product>Uiza</Product>
     <Copyright>Uiza Pte. Ltd.</Copyright>
     <PackageProjectUrl>https://github.com/uizaio/api-wrapper-dotnet</PackageProjectUrl>
-    <PackageIconUrl>https://docs.uiza.io/images/logo.png</PackageIconUrl>
+    <PackageIconUrl>https://static.uiza.io/uiza_logo_128.png</PackageIconUrl>
     <PackageTags>Uiza, API SDK</PackageTags>
-    <PackageReleaseNotes>Public SDK version 1.0
-Wrapper API https://docs.uiza.io</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Public SDK version 1.0
+      Wrapper API https://docs.uiza.io
+    </PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
@@ -39,8 +41,8 @@ Wrapper API https://docs.uiza.io</PackageReleaseNotes>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
-    <None Include="..\..\LICENSE.txt" Pack="true" PackagePath=""/>
-    <None Include="readme.txt" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE.txt" Pack="true" PackagePath="" />
+    <None Include="readme.txt" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,8 +82,4 @@ Wrapper API https://docs.uiza.io</PackageReleaseNotes>
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0">
     </PackageReference>
   </ItemGroup>
-  
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /E /Y &quot;$(ProjectDir)bin\$(ConfigurationName)\net45&quot; /r &quot;$(SolutionDir)PublicNuget\lib\net45&quot;&#xD;&#xA;xcopy /E /Y &quot;$(ProjectDir)bin\$(ConfigurationName)\netstandard1.6&quot; /r &quot;$(SolutionDir)PublicNuget\lib\netstandard1.6&quot;&#xD;&#xA;xcopy /E /Y &quot;$(ProjectDir)bin\$(ConfigurationName)\netstandard2.0&quot; /r &quot;$(SolutionDir)PublicNuget\lib\netstandard2.0&quot;&#xD;&#xA;" />
-  </Target>
 </Project>
