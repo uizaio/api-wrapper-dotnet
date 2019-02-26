@@ -54,7 +54,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var result =  UizaServices.Entity.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
-Console.WriteLine(string.Format("Success Get EntitiesList, total record {0}", result.MetaData.result));
+Console.WriteLine(string.Format("Get Entity List Success, total record {0}", result.MetaData.result));
 ```
 
 ## Update entity
@@ -96,7 +96,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var result = UizaServices.Entity.Delete("Entity Id");
-Console.WriteLine(string.Format("Create New Entity Id = {0} Success", result.Data.id));
+Console.WriteLine(string.Format("Delete Entity Id = {0} Success", result.Data.id));
 ```
 
 ## Search entity
@@ -113,7 +113,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var result = UizaServices.Entity.SearchEntity("Sample");
-  Console.WriteLine(string.Format("Search Success, , total record {0}", result.Data.Count));
+  Console.WriteLine(string.Format("Search Success, total record {0}", result.Data.Count));
 ```
 
 ## Publish entity to CDN
