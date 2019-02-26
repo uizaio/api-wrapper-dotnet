@@ -137,7 +137,7 @@ namespace UizaTest.Services
         [Fact]
         public void GetStatusPublishSuccess()
         {
-            mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Returns(EntityResponse.GetStatusPublishSuccessResponse());
+            mockService.Setup(_ => _.GetEntityStatusPublish(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.GetEntityStatusPublish("2e173ee3-be45-46bd-a355-c9182a2a41ec");
             Assert.NotNull(result);
         }
@@ -156,7 +156,7 @@ namespace UizaTest.Services
         [Fact]
         public void GetAWSUploadKeySuccess()
         {
-            mockService.Setup(_ => _.GetEntityAWSUploadKey()).Returns(EntityResponse.GetAWSUploadKeySuccessResponse());
+            mockService.Setup(_ => _.GetEntityAWSUploadKey()).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.GetEntityAWSUploadKey();
             Assert.NotNull(result);
         }
