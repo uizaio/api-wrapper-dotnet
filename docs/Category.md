@@ -54,7 +54,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 });
 
 var listResult = UizaServices.Category.List(new BaseParameter());
-Console.WriteLine(string.Format("Success Get List Category, total record {0}", listResult.MetaData.result));
+Console.WriteLine(string.Format("Get List Category Success, total record {0}", listResult.MetaData.result));
 ```
 
 ## Update Category
@@ -95,12 +95,12 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 
 var createCategoryRelationResult = UizaServices.Category.CreateCategoryRelation(new CategoryRelationParameter()
 {
-	EntityId = entity.Data.id,
+	EntityId = "Entity id",
 	MetadataIds = listMetadata
 });
-Console.WriteLine(string.Format("Create Success Category Relation, total record {0}", createCategoryRelationResult.MetaData.result));
+Console.WriteLine(string.Format("Create Category Relation Success, total record {0}", createCategoryRelationResult.MetaData.result));
 ```
-
+See Entity details [here](../docs/Entity.md).
 ## Delete category relation
 Delete category relation, use for streaming
 See details [here](https://docs.uiza.io/#delete-category-relation).
@@ -119,7 +119,7 @@ var deleteCategoryRelationResult = UizaServices.Category.DeleteCategoryRelation(
 	EntityId = entity.Data.id,
 	MetadataIds = listMetadata
 });
-Console.WriteLine(string.Format("Delete Success Category Relation, total record {0}", deleteCategoryRelationResult.MetaData.result));
+Console.WriteLine(string.Format("Delete Category Relation Success, total record {0}", deleteCategoryRelationResult.MetaData.result));
 ```
 
 ## Delete Category
