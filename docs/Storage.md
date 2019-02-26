@@ -15,7 +15,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result = UizaServices.Storage.Add(new CreateStorageParameter()
+var createResult = UizaServices.Storage.Add(new CreateStorageParameter()
 {
 	Name = "FTP Uiza",
 	Host = "ftp-example.uiza.io",
@@ -25,7 +25,7 @@ var result = UizaServices.Storage.Add(new CreateStorageParameter()
 	Password = "=59x@LPsd+w7qW",
 	Port = 21
 });
-Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
+Console.WriteLine(string.Format("Add New Storage Id = {0} Success", createResult.Data.id));
 ```
 
 ## Retrieve a storage
@@ -41,7 +41,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result = UizaServices.Storage.Retrieve("Storage Id");
+var result = UizaServices.Storage.Retrieve((string)createResult.Data.id);
 Console.WriteLine(string.Format("Get Storage Id = {0} Success", result.Data.id));
 ```
 
@@ -60,7 +60,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 
 var result =uizaServices.Storage.Update(new UpdateStorageParameter()
 {
-	Id = "Entity Id",
+	Id = (string)createResult.Data.id,
     Name = "FTP Uiza Update",
     Host = "ftp-example.uiza.io",
     Description = "FTP of Uiza, use for transcode Update",
@@ -85,7 +85,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result = UizaServices.Storage.Remove((string)result.Data.id);
+var result = UizaServices.Storage.Remove((string)createResult.Data.id);
 Console.WriteLine(string.Format("Remove Storage Id = {0} Success", result.Data.id));
 ```
 
