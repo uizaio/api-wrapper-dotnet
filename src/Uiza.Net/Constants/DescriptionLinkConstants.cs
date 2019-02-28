@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Uiza.Net
+﻿namespace Uiza.Net
 {
     internal static class DescriptionLinkConstants
     {
         internal const string BASE_DESCRIPTION_LINK = "https://docs.uiza.io/";
         public const string AUTHENTICATION = "authentication";
+
         internal struct ENTITY
         {
             public const string CREATE = "create-entity";
@@ -61,5 +58,12 @@ namespace Uiza.Net
             public const string CONVERT_INTO_VOD = "convert-into-vod";
         }
 
+        internal struct ANALYTIC
+        {
+            public const string ANALYTIC_METRICS = "analytic-metrics";
+            public const string TOTAL_LINE = "total-line";
+            public const string TYPE = "type";
+            public const string LINE = "line";
+        }
     }
 }
