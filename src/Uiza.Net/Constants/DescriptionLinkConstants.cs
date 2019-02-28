@@ -65,5 +65,16 @@
             public const string TYPE = "type";
             public const string LINE = "line";
         }
+
+        internal struct USER
+        {
+            public const string CREATE = "create-an-user";
+            public const string RETRIEVE = "retrieve-an-user";
+            public const string LIST = "list-all-users";
+            public const string UPDATE = "update-an-user";
+            public const string DELETE = "delete-an-user";
+            public const string CHANGE_PASSWORD = "update-password";
+            public const string LOGOUT = "log-out";
+        }
     }
 }

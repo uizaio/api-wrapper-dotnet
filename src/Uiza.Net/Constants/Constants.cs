@@ -26,6 +26,9 @@
             public const string ANALYTIC_TOTAL_LINE = "analytic/entity/video-quality/total-line-v2";
             public const string ANALYTIC_TYPE = "analytic/entity/video-quality/type";
             public const string ANALYTIC_LINE = "analytic/entity/video-quality/line";
+            public const string USER = "admin/user";
+            public const string USER_CHANGE_PASSWORD = "admin/user/changepassword";
+            public const string USER_LOGOUT = "admin/user/logout";
         }
 
         internal struct ErrorMessages
