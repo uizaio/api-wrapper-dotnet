@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Uiza.Net.Configuration;
+using Uiza.Net.Enum;
 using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services;
@@ -10,6 +11,43 @@ namespace Uiza.NetCore.ConsoleTest
 {
     internal class Program
     {
+        private static void TestAnalytic()
+        {
+            LogActivity("Analytic");
+            try
+            {
+                var getTotalLine = UizaServices.Analytic.GetTotalLine(new AnalyticTotalLineParameter()
+                {
+                    StartDate = @"2018-11-01 20:00",
+                    EndDate = @"2018-11-19 20:00",
+                    Metric = MetricType.RebufferCount
+                });
+                Console.WriteLine("Analytic - Get Total Line Success");
+
+                var getType = UizaServices.Analytic.GetType(new AnalyticTypeParameter()
+                {
+                    StartDate = @"2018-11-01 20:00",
+                    EndDate = @"2018-11-19 20:00",
+                    TypeFilter = MetricTypeFilter.Country
+                });
+                Console.WriteLine("Analytic - Get Type  Total Line Success");
+
+                var getLine = UizaServices.Analytic.GetLine(new AnalyticLineParameter()
+                {
+                    StartDate = @"2018-11-01",
+                    EndDate = @"2018-11-19"
+                });
+                Console.WriteLine("Analytic - Get Line Success");
+            }
+            catch (UizaException ex)
+            {
+                var result = ex.UizaInnerException.Error;
+                Console.WriteLine(ex.Message);
+            }
+
+            LogActivity("Call back", true);
+        }
+
         private static void TestCallback()
         {
             LogActivity("Call back");
@@ -37,7 +75,6 @@ namespace Uiza.NetCore.ConsoleTest
 
                 var resultDelete = UizaServices.Callback.Delete((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Delete Callback Id = {0} Success", resultUpdate.Data.id));
-
             }
             catch (UizaException ex)
             {
@@ -290,6 +327,7 @@ namespace Uiza.NetCore.ConsoleTest
                 TestCategory();
                 TestStorage();
                 TestLiveStreaming();
+                TestAnalytic();
                 Console.ReadLine();
             }
             catch (UizaException ex)
