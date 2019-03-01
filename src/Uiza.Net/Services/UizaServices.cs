@@ -86,6 +86,20 @@ namespace Uiza.Net.Services
                 return _analytic;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IUserService User
+        {
+            get
+            {
+                if (_userService == null)
+                    _userService = new UserServices();
+                return _userService;
+            }
+        }
+
         #endregion PUBLIC PROPERTIES
 
         #region PRIVATE PROPERTY
@@ -96,6 +110,7 @@ namespace Uiza.Net.Services
         private static ICallbackService _callback;
         private static ILiveStreaming _liveStreaming;
         private static IAnalyticService _analytic;
+        private static IUserService _userService;
         #endregion PRIVATE PROPERTY
     }
 }

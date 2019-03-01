@@ -223,7 +223,7 @@ namespace Uiza.Net.Utility
 
             var request = new HttpRequestMessage(method, new Uri(url))
             {
-                Content = new StringContent(JsonConvert.SerializeObject(param), Encoding.UTF8, "application/json")
+                Content = new StringContent(serialzeObject, Encoding.UTF8, "application/json")
             };
 
             return request;
