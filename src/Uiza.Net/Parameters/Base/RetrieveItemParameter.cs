@@ -8,7 +8,7 @@ namespace Uiza.Net.Parameters
     public class RetrieveItemParameter : BaseParameter
     {
         /// <summary>
-        ///
+        /// Identifier of the object
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }

@@ -8,7 +8,7 @@ namespace Uiza.Net.Response
     public class UizaData : UizaResponse
     {
         /// <summary>
-        ///
+        /// reponse API result
         /// </summary>
         [JsonProperty("data")]
         public dynamic Data { get; set; }

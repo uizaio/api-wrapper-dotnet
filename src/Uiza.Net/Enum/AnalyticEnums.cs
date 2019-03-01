@@ -94,4 +94,35 @@ namespace Uiza.Net.Enum
         [EnumMember(Value = "max_downscale_percentage")]
         MaxDownscalePercentage,
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum MetricTypeFilter
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "country")]
+        Country,
+
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "device")]
+        Device,
+
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "title")]
+        Title,
+
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "player")]
+        Player
+    }
 }

@@ -34,4 +34,35 @@ namespace Uiza.Net.Enums
         [EnumMember(Value = "ftp")]
         Ftp
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum EntityPublishStatus
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "queue")]
+        Queue,
+
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "not-ready")]
+        NotReady,
+
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "success")]
+        Success,
+
+        /// <summary>
+        ///
+        /// </summary>
+        [EnumMember(Value = "failed")]
+        Failed
+    }
 }
