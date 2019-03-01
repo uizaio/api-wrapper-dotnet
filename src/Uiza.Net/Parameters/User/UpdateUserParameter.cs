@@ -5,7 +5,7 @@ using Uiza.Net.Enums;
 namespace Uiza.Net.Parameters
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class UpdateUserParameter : RetrieveItemParameter
     {

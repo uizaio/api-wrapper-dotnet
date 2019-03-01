@@ -5,7 +5,7 @@ using Uiza.Net.Enums;
 namespace Uiza.Net.Parameters
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class CreateLiveStreamingParameter : BaseParameter
     {
@@ -36,7 +36,7 @@ namespace Uiza.Net.Parameters
         public DvrTypes Drv { get; set; }
 
         /// <summary>
-        /// Description of the live stream	
+        /// Description of the live stream
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -48,19 +48,19 @@ namespace Uiza.Net.Parameters
         public string Thumbnail { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("poster")]
         public string Poster { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("linkStream")]
         public List<string> LinkStream { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("resourceMode")]
         public ResourceModes ResourceMode { get; set; }
@@ -70,16 +70,15 @@ namespace Uiza.Net.Parameters
         /// </summary>
         [JsonProperty("linkPublishSocial")]
         public List<InfoShareSocial> LinkPublishSocial { get; set; }
-
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class InfoShareSocial
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("dropdown")]
         public TypeOfSocials Dropdown { get; set; }
@@ -91,7 +90,7 @@ namespace Uiza.Net.Parameters
         public string Address { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("streamKey")]
         public string StreamKey { get; set; }

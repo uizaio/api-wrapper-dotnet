@@ -10,7 +10,7 @@ using Xunit;
 namespace UizaTest.Services
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class UserServiceTest : UizaTestBase<IUserService>
     {

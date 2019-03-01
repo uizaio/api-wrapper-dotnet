@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using Uiza.Net.Response;
 using Uiza.Net.UizaHandleException;
-using UizaTest.Enums;
 
 namespace UizaTest.MockResponse
 {
@@ -44,6 +43,5 @@ namespace UizaTest.MockResponse
                 MetaData = metaData
             };
         }
-
     }
 }

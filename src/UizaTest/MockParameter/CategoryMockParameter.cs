@@ -58,7 +58,6 @@ namespace UizaTest.MockParameter
         {
             return new CategoryRelationParameter()
             {
-               
             };
         }
     }

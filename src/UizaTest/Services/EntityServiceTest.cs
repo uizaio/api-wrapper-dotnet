@@ -1,9 +1,7 @@
 ﻿using Moq;
 using Uiza.Net.Parameters;
-using Uiza.Net.Services;
 using Uiza.Net.Services.Interface;
 using Uiza.Net.UizaHandleException;
-using UizaTest.Enums;
 using UizaTest.MockData;
 using UizaTest.MockResponse;
 using Xunit;

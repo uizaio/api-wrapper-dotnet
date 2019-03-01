@@ -6,12 +6,11 @@ namespace Uiza.Net.Services.Interface
     /// <summary>
     ///
     /// </summary>
-    public interface ICallbackService : IBaseServices, 
+    public interface ICallbackService : IBaseServices,
         ICreate<UizaData, CreateCallbackParameter>,
         IRetrieve<UizaData>,
         IUpdate<UizaData, UpdateCallbackParameter>,
         IDelete<UizaData>
     {
-
     }
 }
