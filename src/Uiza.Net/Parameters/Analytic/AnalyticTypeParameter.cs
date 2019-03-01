@@ -24,6 +24,6 @@ namespace Uiza.Net.Parameters
         /// Value accept: [ country, device, title, player ]
         /// </summary>
         [JsonProperty("type_filter")]
-        public MetricTypeFilter TypeFilter { get; set; }
+        public TypeFilter TypeFilter { get; set; }
     }
 }

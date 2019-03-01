@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Uiza.Net.Enum;
 
 namespace Uiza.Net.Parameters
 {
@@ -18,5 +19,11 @@ namespace Uiza.Net.Parameters
         /// </summary>
         [JsonProperty("end_date")]
         public string EndDate { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [JsonProperty("type")]
+        public LineType Type { get; set; }
     }
 }

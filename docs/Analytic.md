@@ -17,11 +17,11 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 
 var getTotalLine = UizaServices.Analytic.GetTotalLine(new AnalyticTotalLineParameter()
 {
-    StartDate = @"2018-11-01 20:00",
-    EndDate = @"2018-11-19 20:00",
+    StartDate = @"2019-02-28 20:00",
+    EndDate = @"2019-03-01 20:00",
     Metric = MetricType.RebufferCount
 });
-Console.WriteLine("Get Total Line Success");
+Console.WriteLine(string.Format("Get Total Line Success, total record {0}", getTotalLine.Data.Count));
 ```
 
 ## Get Type
@@ -39,11 +39,11 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 
 var getType = UizaServices.Analytic.GetType(new AnalyticTypeParameter()
 {
-    StartDate = @"2018-11-01 20:00",
-    EndDate = @"2018-11-19 20:00",
-    TypeFilter = MetricTypeFilter.Country
+    StartDate = @"2019-01-01",
+    EndDate = @"2019-03-01",
+    TypeFilter = TypeFilter.Country
 });
-Console.WriteLine("Get Type  Total Line Success");
+Console.WriteLine(string.Format("Get Type Success, total record {0}", getType.Data.Count));
 ```
 
 ## Get Line
@@ -61,9 +61,10 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 
 var getLine = UizaServices.Analytic.GetLine(new AnalyticLineParameter()
 {
-    StartDate = @"2018-11-01",
-    EndDate = @"2018-11-19"
+    StartDate = @"2019-01-01",
+    EndDate = @"2019-03-01",
+    Type = LineType.RebufferCount
 });
-Console.WriteLine("Get Line Success");
+Console.WriteLine(string.Format("Get Line Success, total record {0}", getLine.Data.Count));
 ```
 
