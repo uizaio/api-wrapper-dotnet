@@ -62,7 +62,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ILiveStreaming Live
         {
@@ -75,7 +75,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static IAnalyticService Analytic
         {
@@ -88,7 +88,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static IUserService User
         {
@@ -111,6 +111,7 @@ namespace Uiza.Net.Services
         private static ILiveStreaming _liveStreaming;
         private static IAnalyticService _analytic;
         private static IUserService _userService;
+
         #endregion PRIVATE PROPERTY
     }
 }

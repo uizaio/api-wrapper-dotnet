@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Uiza.Net.Enums
+﻿namespace Uiza.Net.Enums
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum GenderTypes
     {
@@ -21,17 +17,17 @@ namespace Uiza.Net.Enums
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum UserStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DeActive = 0,
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Active
     }

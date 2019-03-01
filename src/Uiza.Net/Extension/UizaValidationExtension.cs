@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Uiza.Net.Extension
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     internal static class UizaValidationExtension
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

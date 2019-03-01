@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Uiza.Net.Parameters;
+﻿using Uiza.Net.Parameters;
 using Uiza.Net.Response;
 
 namespace Uiza.Net.Services.Interface
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public interface ICategoryService : IBaseServices,
         ICreate<UizaData, CreateCategoryParameter>,
@@ -17,14 +14,13 @@ namespace Uiza.Net.Services.Interface
         IRetrieveList<UizaData, BaseParameter>
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         UizaData CreateRelation(CategoryRelationParameter param);
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         UizaData DeleteRelation(CategoryRelationParameter param);

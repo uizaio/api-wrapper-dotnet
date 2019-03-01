@@ -8,7 +8,7 @@ namespace Uiza.Net.Services
     internal class CategoryService : Service, ICategoryService
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -19,7 +19,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>

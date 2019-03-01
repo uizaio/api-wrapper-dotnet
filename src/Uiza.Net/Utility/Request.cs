@@ -1,33 +1,30 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uiza.Net.Configuration;
 using Uiza.Net.Enum;
-using Uiza.Net.Extension;
 using Uiza.Net.Parameters;
-using Uiza.Net.Response;
 using Uiza.Net.UizaHandleException;
 
 namespace Uiza.Net.Utility
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     internal static class Request
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal static HttpClient HttpClient { get; private set; }
+
         /// <summary>
         /// Request Constructor
         /// </summary>
@@ -35,6 +32,7 @@ namespace Uiza.Net.Utility
         {
             HttpClient = new HttpClient();
         }
+
         /// <summary>
         /// Excute POST API with Async
         /// </summary>
@@ -144,6 +142,7 @@ namespace Uiza.Net.Utility
         }
 
         #region Private Method
+
         /// <summary>
         /// Append Parameter To URL
         /// </summary>
@@ -188,8 +187,9 @@ namespace Uiza.Net.Utility
 
             return request;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="method"></param>
         /// <param name="url"></param>
@@ -229,9 +229,8 @@ namespace Uiza.Net.Utility
             return request;
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="requestMessage"></param>
         /// <param name="cancellationToken"></param>
@@ -251,7 +250,7 @@ namespace Uiza.Net.Utility
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="requestMessage"></param>
         /// <param name="descriptionLink"></param>
@@ -270,7 +269,7 @@ namespace Uiza.Net.Utility
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="errorsResponse"></param>
         /// <param name="descriptionLink"></param>
@@ -284,7 +283,7 @@ namespace Uiza.Net.Utility
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="errors"></param>
         /// <param name="descriptionLink"></param>
@@ -302,6 +301,7 @@ namespace Uiza.Net.Utility
                 DescriptionLink = descriptionLink
             });
         }
-        #endregion
+
+        #endregion Private Method
     }
 }

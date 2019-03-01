@@ -1,13 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Uiza.Net.Enums;
 
 namespace Uiza.Net.Parameters
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class UpdateLiveStreamingParameter : RetrieveItemParameter
     {
@@ -38,7 +35,7 @@ namespace Uiza.Net.Parameters
         public EncodeTypes Encode { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("resourceMode")]
         public ResourceModes ResourceMode { get; set; }

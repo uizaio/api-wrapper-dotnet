@@ -1,20 +1,15 @@
 ﻿using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reflection;
 using Uiza.Net.Services;
-using Uiza.Net.UizaHandleException;
 using UizaTest.Enums;
-using UizaTest.MockResponse;
-using Xunit;
 
 namespace UizaTest
 {
     public class UizaTestBase<T> where T : class, IBaseServices
     {
         public Mock<T> mockService;
-        Random r;
+        private Random r;
 
         protected List<int> StatusCodes
         {

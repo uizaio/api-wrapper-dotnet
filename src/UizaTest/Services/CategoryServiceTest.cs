@@ -3,7 +3,6 @@ using System;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services.Interface;
 using Uiza.Net.UizaHandleException;
-using UizaTest.Enums;
 using UizaTest.MockParameter;
 using UizaTest.MockResponse;
 using Xunit;
@@ -11,7 +10,7 @@ using Xunit;
 namespace UizaTest.Services
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class CategoryServiceTest : UizaTestBase<ICategoryService>
     {
@@ -117,7 +116,6 @@ namespace UizaTest.Services
             var result = mockService.Object.List(new BaseParameter());
             Assert.NotNull(result);
         }
-
 
         [Fact]
         public void UpdateCategorySuccess()
