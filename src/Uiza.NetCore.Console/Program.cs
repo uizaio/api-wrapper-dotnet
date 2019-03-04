@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Uiza.Net.Configuration;
-using Uiza.Net.Enum;
 using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services;
