@@ -1,4 +1,4 @@
-﻿using Uiza.Net.Enum;
+﻿using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
 
 namespace UizaTest.MockParameter

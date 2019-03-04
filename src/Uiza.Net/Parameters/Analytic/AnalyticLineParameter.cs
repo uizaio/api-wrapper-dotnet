@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Uiza.Net.Enum;
+using Uiza.Net.Enums;
 
 namespace Uiza.Net.Parameters
 {
