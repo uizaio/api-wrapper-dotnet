@@ -11,19 +11,19 @@ namespace Uiza.Net.Enums
     public enum CallbackMethodTypes
     {
         /// <summary>
-        ///
+        /// Method of callback : GET 
         /// </summary>
         [EnumMember(Value = "GET")]
         Get,
 
         /// <summary>
-        ///
+        /// Method of callback : POST
         /// </summary>
         [EnumMember(Value = "POST")]
         Post,
 
         /// <summary>
-        ///
+        /// Method of callback : PUT
         /// </summary>
         [EnumMember(Value = "PUT")]
         Put
