@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Uiza.Net.Enums
 {
     /// <summary>
-    ///
+    /// Analytic metrics
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum MetricType
@@ -102,7 +102,7 @@ namespace Uiza.Net.Enums
     }
 
     /// <summary>
-    ///
+    /// Type Filter
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TypeFilter
@@ -134,80 +134,80 @@ namespace Uiza.Net.Enums
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "os ")]
+        [EnumMember(Value = "os")]
         Os
     }
 
     /// <summary>
-    ///
+    /// Line Type
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum LineType
     {
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        [EnumMember(Value = "playback_failure_percentage")]//
+        [EnumMember(Value = "playback_failure_percentage")]
         PlaybackFailurePercentage,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "video_startup_time")]//
+        [EnumMember(Value = "video_startup_time")]
         VideoStartupTime,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "aggregate_startup_time")]//
+        [EnumMember(Value = "aggregate_startup_time")]
         AggregateStartupTime,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "exits_before_video_start")]//
+        [EnumMember(Value = "exits_before_video_start")]
         ExitsBeforeVideoStart,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "rebuffer_percentage")]//
+        [EnumMember(Value = "rebuffer_percentage")]
         RebufferPercentage,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "rebuffer_frequency")]//
+        [EnumMember(Value = "rebuffer_frequency")]
         RebufferFrequency,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "rebuffer_duration")]//
+        [EnumMember(Value = "rebuffer_duration")]
         RebufferDuration,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "rebuffer_count")]//
+        [EnumMember(Value = "rebuffer_count")]
         RebufferCount,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "upscale_percentage")]//
+        [EnumMember(Value = "upscale_percentage")]
         UpscalePercentage,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "downscale_percentage")]//
+        [EnumMember(Value = "downscale_percentage")]
         DownscalePercentage,
 
         /// <summary>
         ///
         /// </summary>
-        [EnumMember(Value = "max_upscale_percentage")]//
+        [EnumMember(Value = "max_upscale_percentage")]
         MaxUpscalePercentage,
 
         /// <summary>

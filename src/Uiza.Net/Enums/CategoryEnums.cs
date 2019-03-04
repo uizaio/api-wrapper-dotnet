@@ -11,19 +11,19 @@ namespace Uiza.Net.Enums
     public enum CategoryTypes
     {
         /// <summary>
-        ///
+        /// Types of category : folder
         /// </summary>
         [EnumMember(Value = "folder")]
         Folder,
 
         /// <summary>
-        ///
+        /// Types of category : playlist
         /// </summary>
         [EnumMember(Value = "playlist")]
         PlayList,
 
         /// <summary>
-        ///
+        /// Types of category : tag
         /// </summary>
         [EnumMember(Value = "tag ")]
         Tag
