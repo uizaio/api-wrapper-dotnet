@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Uiza.Net.Enum
+﻿namespace Uiza.Net.Enum
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     internal enum ResponseStatusCode
     {

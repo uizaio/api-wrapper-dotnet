@@ -8,7 +8,7 @@ namespace Uiza.Net.Parameters
     public class SearchEntityParameter : BaseParameter
     {
         /// <summary>
-        ///
+        /// Keyword for search entity
         /// </summary>
         [JsonProperty("keyword")]
         public string Keyword { get; set; }

@@ -5,7 +5,7 @@ using Uiza.Net.Enums;
 namespace Uiza.Net.Parameters
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class CreateLiveStreamingParameter : BaseParameter
     {
@@ -17,6 +17,9 @@ namespace Uiza.Net.Parameters
 
         /// <summary>
         /// Type of event can be pull or push
+        /// Pull: We has supported RTMP, HLS and direct Live Youtube link. 
+        /// Uiza pull feed from pull link and broadcast it using Uiza's SDK. 
+        /// Push: Uiza give you a Publish endpoint, you can push feed into the endpoint and Uiza will broadcast it using Uiza's SDK.
         /// </summary>
         [JsonProperty("mode")]
         public string Mode { get; set; }
@@ -36,7 +39,7 @@ namespace Uiza.Net.Parameters
         public DvrTypes Drv { get; set; }
 
         /// <summary>
-        /// Description of the live stream	
+        /// Description of the live stream
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -48,19 +51,19 @@ namespace Uiza.Net.Parameters
         public string Thumbnail { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("poster")]
         public string Poster { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("linkStream")]
         public List<string> LinkStream { get; set; }
 
         /// <summary>
-        /// 
+        /// Resource mode ( single = only 1 feed and output), redundant = more than 1 feed and output to backup)
         /// </summary>
         [JsonProperty("resourceMode")]
         public ResourceModes ResourceMode { get; set; }
@@ -70,16 +73,15 @@ namespace Uiza.Net.Parameters
         /// </summary>
         [JsonProperty("linkPublishSocial")]
         public List<InfoShareSocial> LinkPublishSocial { get; set; }
-
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class InfoShareSocial
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("dropdown")]
         public TypeOfSocials Dropdown { get; set; }
@@ -91,7 +93,7 @@ namespace Uiza.Net.Parameters
         public string Address { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [JsonProperty("streamKey")]
         public string StreamKey { get; set; }

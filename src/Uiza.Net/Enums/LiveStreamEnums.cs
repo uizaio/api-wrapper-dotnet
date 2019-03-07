@@ -1,14 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace Uiza.Net.Enums
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum DvrTypes
     {
@@ -24,7 +21,7 @@ namespace Uiza.Net.Enums
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ResourceModes
@@ -43,7 +40,7 @@ namespace Uiza.Net.Enums
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum EncodeTypes
     {

@@ -5,33 +5,27 @@ using System.Runtime.Serialization;
 namespace Uiza.Net.Enums
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum EntityInputTypes
+    public enum CallbackMethodTypes
     {
         /// <summary>
-        /// 
+        /// Method of callback : GET 
         /// </summary>
-        [EnumMember(Value = "s3-uiza")]
-        S3Uiza,
+        [EnumMember(Value = "GET")]
+        Get,
 
         /// <summary>
-        /// 
+        /// Method of callback : POST
         /// </summary>
-        [EnumMember(Value = "http")]
-        Http,
+        [EnumMember(Value = "POST")]
+        Post,
 
         /// <summary>
-        /// 
+        /// Method of callback : PUT
         /// </summary>
-        [EnumMember(Value = "s3")]
-        S3,
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [EnumMember(Value = "ftp")]
-        Ftp
+        [EnumMember(Value = "PUT")]
+        Put
     }
 }

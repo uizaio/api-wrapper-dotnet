@@ -8,30 +8,24 @@ namespace Uiza.Net.Enums
     ///
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum EntityPublishStatus
+    public enum CategoryTypes
     {
         /// <summary>
-        ///
+        /// Types of category : folder
         /// </summary>
-        [EnumMember(Value = "queue")]
-        Queue,
+        [EnumMember(Value = "folder")]
+        Folder,
 
         /// <summary>
-        ///
+        /// Types of category : playlist
         /// </summary>
-        [EnumMember(Value = "not-ready")]
-        NotReady,
+        [EnumMember(Value = "playlist")]
+        PlayList,
 
         /// <summary>
-        ///
+        /// Types of category : tag
         /// </summary>
-        [EnumMember(Value = "success")]
-        Success,
-
-        /// <summary>
-        ///
-        /// </summary>
-        [EnumMember(Value = "failed")]
-        Failed
+        [EnumMember(Value = "tag ")]
+        Tag
     }
 }

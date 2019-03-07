@@ -8,7 +8,7 @@ namespace Uiza.Net.Services
     internal class LiveStreamingServices : Service, ILiveStreaming
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -19,7 +19,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public UizaData ListRecorded()
@@ -42,7 +42,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="recordId">Identifier of record (get from list record)</param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="recordId"></param>
         /// <returns></returns>

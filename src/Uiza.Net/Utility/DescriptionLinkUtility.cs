@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Uiza.Net.Utility
+﻿namespace Uiza.Net.Utility
 {
     internal static class DescriptionLinkUtility
     {

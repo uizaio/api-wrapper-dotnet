@@ -9,13 +9,13 @@ namespace Uiza.Net.Parameters
     public class RetrieveListEntitiesParameter : BaseParameter
     {
         /// <summary>
-        ///
+        /// Status of publish task, include [ queue, not-ready, success, failed ]
         /// </summary>
         [JsonProperty("publishToCdn")]
         public EntityPublishStatus publishToCdn { get; set; }
 
         /// <summary>
-        ///
+        /// Get all entity in folder/playlist
         /// </summary>
         [JsonProperty("metadataId")]
         public string MetadataId { get; set; }

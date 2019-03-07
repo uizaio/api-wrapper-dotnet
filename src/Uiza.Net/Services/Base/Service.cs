@@ -1,23 +1,19 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uiza.Net.Parameters;
-using Uiza.Net.Response;
 using Uiza.Net.Utility;
 
 namespace Uiza.Net.Services
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public abstract class Service
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="url"></param>
         /// <param name="options"></param>
@@ -29,7 +25,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -41,7 +37,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="url"></param>
         /// <param name="options"></param>
@@ -53,7 +49,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -65,7 +61,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="url"></param>
         /// <param name="options"></param>
@@ -77,7 +73,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -89,7 +85,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -101,7 +97,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="url"></param>
         /// <param name="options"></param>
@@ -113,7 +109,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="json"></param>
         /// <param name="parentToken"></param>

@@ -6,7 +6,7 @@ namespace Uiza.Net.Services.Interface
     /// <summary>
     ///
     /// </summary>
-    public interface IEntityService : IBaseServices, 
+    public interface IEntityService : IBaseServices,
         ICreate<UizaData, CreateEntityParameter>,
         IRetrieve<UizaData>,
         IUpdate<UizaData, UpdateEntityParameter>,
