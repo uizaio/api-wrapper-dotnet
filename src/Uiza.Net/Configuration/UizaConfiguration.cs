@@ -13,7 +13,7 @@
         /// <summary>
         ///
         /// </summary>
-        private static string apiBase;
+        private static string appId;
 
         /// <summary>
         ///
@@ -28,6 +28,7 @@
         /// <returns></returns>
         internal static string GetApiKey() => apiKey;
 
+
         /// <summary>
         /// Setup new API key
         /// </summary>
@@ -41,15 +42,24 @@
         {
             get
             {
-                return apiBase;
+                return Constants.DEFAULT_DOMAIN;
+            }
+        }
+
+
+        internal static string AppId
+        {
+            get
+            {
+                return appId;
             }
         }
 
         /// <summary>
         /// Setup new Workspace API Domain
         /// </summary>
-        /// <param name="baseUrl"></param>
-        public static void SetApiBase(string baseUrl) => apiBase = baseUrl;
+        /// <param name="newAppId"></param>
+        public static void SetAppId(string newAppId) => appId = newAppId;
 
         /// <summary>
         /// Setup Uiza Enviroment
@@ -58,7 +68,7 @@
         public static void SetupUiza(UizaConfigOptions options)
         {
             apiKey = options.ApiKey;
-            apiBase = options.ApiBase;
+            appId = options.AppId;
         }
     }
 }

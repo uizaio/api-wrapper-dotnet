@@ -378,7 +378,7 @@ namespace Uiza.NetCore.ConsoleTest
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
                     ApiKey = "",
-                    ApiBase = ""
+                    AppId = ""
                 });
                 TestEntity();
                 TestCategory();
