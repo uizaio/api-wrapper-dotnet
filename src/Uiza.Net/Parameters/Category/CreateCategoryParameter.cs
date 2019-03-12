@@ -15,16 +15,22 @@ namespace Uiza.Net.Parameters
         public string Name { get; set; }
 
         /// <summary>
-        /// Has 3 types of category [ folder, playlist, tag ]
-        /// </summary>
-        [JsonProperty("type")]
-        public CategoryTypes Type { get; set; }
-
-        /// <summary>
         /// Description for category
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        /// <summary>
+        /// Slug for category
+        /// </summary>
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+
+        /// <summary>
+        /// types of category [ folder, playlist, tag, category ]
+        /// </summary>
+        [JsonProperty("type")]
+        public CategoryTypes Type { get; set; }
 
         /// <summary>
         /// Order number for category, lower number is higher order
@@ -37,5 +43,11 @@ namespace Uiza.Net.Parameters
         /// </summary>
         [JsonProperty("icon")]
         public string Icon { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("status")]
+        public int Status { get; set; }
     }
 }

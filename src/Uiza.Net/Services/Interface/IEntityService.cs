@@ -8,7 +8,7 @@ namespace Uiza.Net.Services.Interface
     /// </summary>
     public interface IEntityService : IBaseServices,
         ICreate<UizaData, CreateEntityParameter>,
-        IRetrieve<UizaData>,
+        IRetrieve<UizaData, string>,
         IUpdate<UizaData, UpdateEntityParameter>,
         IDelete<UizaData>
     {
