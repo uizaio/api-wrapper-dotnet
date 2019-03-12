@@ -8,7 +8,7 @@ namespace Uiza.Net.Services.Interface
     /// </summary>
     public interface IStorageService : IBaseServices,
         IAdd<UizaData, AddStorageParameter>,
-        IRetrieve<UizaData>,
+        IRetrieve<UizaData, string>,
         IUpdate<UizaData, UpdateStorageParameter>,
         IRemove<UizaData>
     {
