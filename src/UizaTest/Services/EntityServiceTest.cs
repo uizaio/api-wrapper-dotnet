@@ -51,8 +51,8 @@ namespace UizaTest.Services
         [Fact]
         public void ListEntitiesSuccess()
         {
-            mockService.Setup(_ => _.List(It.IsAny<RetrieveListEntitiesParameter>())).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.List(EntityMockParameter.ListValidEntityParameter());
+            mockService.Setup(_ => _.List()).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.List();
             Assert.NotNull(result);
         }
 

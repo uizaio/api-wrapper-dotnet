@@ -231,7 +231,7 @@ namespace Uiza.NetCore.ConsoleTest
                 var getResultRetrieveCategory = UizaServices.Entity.Retrieve((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Entity Id = {0} Success", getResultRetrieveCategory.Data.id));
 
-                var getResultRetrieveCategoryList = UizaServices.Entity.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
+                var getResultRetrieveCategoryList = UizaServices.Entity.List();
                 Console.WriteLine(string.Format("Success Get EntitiesList, total record {0}", getResultRetrieveCategoryList.MetaData.result));
 
                 var resultUpdateCategory = UizaServices.Entity.Update(new UpdateEntityParameter()

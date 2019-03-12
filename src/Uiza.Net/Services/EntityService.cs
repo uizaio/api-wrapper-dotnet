@@ -60,12 +60,13 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="param"></param>
         /// <returns></returns>
-        public virtual UizaData List(BaseParameter param)
+        public virtual UizaData List()
         {
-            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.LIST);
-            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, new BaseParameter()
+            {
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.LIST)
+            });
         }
 
         /// <summary>
