@@ -27,6 +27,18 @@ namespace Uiza.Net.Parameters
         public string ShortDescription { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("masterTaskId")]
+        public string MasterTaskId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("standardTaskId")]
+        public string StandardTaskId { get; set; }
+
+        /// <summary>
         /// Poster of entity
         /// </summary>
         [JsonProperty("poster")]
@@ -37,13 +49,5 @@ namespace Uiza.Net.Parameters
         /// </summary>
         [JsonProperty("thumbnail")]
         public string Thumbnail { get; set; }
-
-        /// <summary>
-        /// Additional information of entity
-        /// You can input additional information of entity by using [ key : value ] format. 
-        /// All information will show in entity detail.
-        /// </summary>
-        [JsonProperty("extendMetadata")]
-        public Dictionary<string, object> ExtendMetadata { get; set; }
     }
 }

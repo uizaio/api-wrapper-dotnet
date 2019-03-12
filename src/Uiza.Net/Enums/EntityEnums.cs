@@ -39,6 +39,25 @@ namespace Uiza.Net.Enums
     ///
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
+    public enum EntityTypes
+    {
+        /// <summary>
+        /// Type of Entity : vod
+        /// </summary>
+        [EnumMember(Value = "vod")]
+        VOD,
+
+        /// <summary>
+        /// Type of Entity : aod
+        /// </summary>
+        [EnumMember(Value = "aod")]
+        AOD
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum EntityPublishStatus
     {
         /// <summary>

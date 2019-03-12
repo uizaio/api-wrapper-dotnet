@@ -224,14 +224,14 @@ namespace Uiza.NetCore.ConsoleTest
                 {
                     Name = Guid.NewGuid().ToString(),
                     InputType = EntityInputTypes.S3Uiza,
-                    URL = ""
+                    URL = "https://www.youtube.com/watch?v=FjHGZj2IjBk"
                 });
-                Console.WriteLine(string.Format("Create New Entity Id = {0} Success", result.Data.id));
+                Console.WriteLine(string.Format("Create New Entity Success", result.Data.id));
 
                 var getResultRetrieveCategory = UizaServices.Entity.Retrieve((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Entity Id = {0} Success", getResultRetrieveCategory.Data.id));
 
-                var getResultRetrieveCategoryList = UizaServices.Entity.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
+                var getResultRetrieveCategoryList = UizaServices.Entity.List();
                 Console.WriteLine(string.Format("Success Get EntitiesList, total record {0}", getResultRetrieveCategoryList.MetaData.result));
 
                 var resultUpdateCategory = UizaServices.Entity.Update(new UpdateEntityParameter()
@@ -252,9 +252,6 @@ namespace Uiza.NetCore.ConsoleTest
 
                 var getStatusPublish = UizaServices.Entity.GetStatusPublish((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
-
-                var searchEntity = UizaServices.Entity.Search("Sample");
-                Console.WriteLine(string.Format("Search Success, total record {0}", searchEntity.Data.Count));
 
                 var deleteEntity = UizaServices.Entity.Delete((string)result.Data.id);
                 Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
@@ -378,7 +375,7 @@ namespace Uiza.NetCore.ConsoleTest
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
                     ApiKey = "",
-                    ApiBase = ""
+                    AppId = ""
                 });
                 TestEntity();
                 TestCategory();

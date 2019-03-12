@@ -10,8 +10,7 @@ namespace Uiza.Net.Services.Interface
         ICreate<UizaData, CreateEntityParameter>,
         IRetrieve<UizaData>,
         IUpdate<UizaData, UpdateEntityParameter>,
-        IDelete<UizaData>,
-        IRetrieveList<UizaData, BaseParameter>
+        IDelete<UizaData>
     {
         /// <summary>
         ///
@@ -32,9 +31,9 @@ namespace Uiza.Net.Services.Interface
         UizaData GetAWSUploadKey();
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
         /// <returns></returns>
-        UizaData Search(string keyWord);
+        UizaData List();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using Uiza.Net.Configuration;
 
 namespace Uiza.Net.Parameters
 {
@@ -26,6 +27,18 @@ namespace Uiza.Net.Parameters
 
         [JsonIgnore]
         internal string DescriptionLink { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("appId")]
+        public string AppId
+        {
+            get
+            {
+                return UizaConfiguration.AppId;
+            }
+        }
 
         /// <summary>
         ///

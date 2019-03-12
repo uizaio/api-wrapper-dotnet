@@ -17,11 +17,6 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Create(CreateEntityParameter param)
         {
-            if (string.IsNullOrWhiteSpace(param.URL))
-            {
-                param.URL = string.Empty;
-                param.InputType = Enums.EntityInputTypes.S3Uiza;
-            }
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.CREATE);
             return this.PostRequest<UizaData>(Constants.ApiAction.ENTITY, param);
         }
@@ -65,12 +60,13 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="param"></param>
         /// <returns></returns>
-        public virtual UizaData List(BaseParameter param)
+        public virtual UizaData List()
         {
-            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.LIST);
-            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, new BaseParameter()
+            {
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.LIST)
+            });
         }
 
         /// <summary>
@@ -97,20 +93,6 @@ namespace Uiza.Net.Services
             {
                 Id = entityId,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.RETRIEVE)
-            });
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public virtual UizaData Search(string keyWord)
-        {
-            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY_SEARCH, new SearchEntityParameter()
-            {
-                Keyword = keyWord,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.SEARCH)
             });
         }
 
