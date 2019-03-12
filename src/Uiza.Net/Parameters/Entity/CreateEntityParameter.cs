@@ -18,6 +18,18 @@ namespace Uiza.Net.Parameters
         public string Name { get; set; }
 
         /// <summary>
+        /// Full description for entity (without max-length)
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Short description of entity (250 characters)
+        /// </summary>
+        [JsonProperty("shortDescription")]
+        public string ShortDescription { get; set; }
+
+        /// <summary>
         /// Full URL of media file (direct public HTTP/HTTPS, FTP, AWS S3 acceptable). 
         /// Send empty string in case of integration using SDK upload to AWS
         /// </summary>
@@ -32,22 +44,46 @@ namespace Uiza.Net.Parameters
         public EntityInputTypes InputType { get; set; }
 
         /// <summary>
-        /// Full description for entity (without max-length)
+        /// 
         /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("masterTaskId")]
+        public string MasterTaskId { get; set; }
 
         /// <summary>
-        /// Add relation between entity and folder/playlist	
+        /// 
         /// </summary>
-        [JsonProperty("metadataId")]
-        public string MetadataId { get; set; }
+        [JsonProperty("standardTaskId")]
+        public string StandardTaskId { get; set; }
 
         /// <summary>
-        /// Short description of entity (250 characters)
+        /// 
         /// </summary>
-        [JsonProperty("shortDescription")]
-        public string ShortDescription { get; set; }
+        [JsonProperty("scheduledStartDate")]
+        public string ScheduledStartDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("scheduledEndDate")]
+        public string ScheduledEndDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("geoFiltering")]
+        public string GeoFiltering { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("geoFilteringValue")]
+        public string GeoFilteringValue { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("social")]
+        public string Social { get; set; }
 
         /// <summary>
         /// Poster of entity
@@ -62,24 +98,21 @@ namespace Uiza.Net.Parameters
         public string Thumbnail { get; set; }
 
         /// <summary>
-        /// List of category will be attached with entity
+        /// 
         /// </summary>
-        [JsonProperty("metadataIds")]
-        public List<string> MetadataIds { get; set; }
+        [JsonProperty("type")]
+        public EntityTypes Type { get; set; }
 
         /// <summary>
-        /// See EmbedMetadata for more information
-        /// https://docs.uiza.io/#embed-metadata
+        /// 
         /// </summary>
         [JsonProperty("embedMetadata")]
         public EmbedData EmbedMetadata { get; set; }
 
         /// <summary>
-        /// Additional information of entity 
-        /// You can input additional information of entity by using [ key : value ] format. 
-        /// All information will show in entity detail.
+        /// 
         /// </summary>
-        [JsonProperty("extendMetadata")]
-        public Dictionary<string, object> ExtendMetadata { get; set; }
+        [JsonProperty("extendMetadataId")]
+        public string ExtendMetadataId { get; set; }
     }
 }

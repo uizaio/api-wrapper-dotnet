@@ -2,20 +2,19 @@
 {
     internal static class DescriptionLinkConstants
     {
-        internal const string BASE_DESCRIPTION_LINK = "https://docs.uiza.io/";
+        internal const string BASE_DESCRIPTION_LINK = "http://dev-ap-southeast-1-api.uizadev.io/docs/";
         public const string AUTHENTICATION = "authentication";
 
         internal struct ENTITY
         {
-            public const string CREATE = "create-entity";
-            public const string RETRIEVE = "retrieve-an-entity";
+            public const string CREATE = "api-Media-create_entity";
+            public const string RETRIEVE = "api-Media-get_entity";
             public const string LIST = "list-all-entities";
-            public const string UPDATE = "update-an-entity";
-            public const string DELETE = "delete-an-entity";
-            public const string SEARCH = "search-entity";
-            public const string PUBLISH_ENTITY_TO_CDN = "publish-entity-to-cdn";
-            public const string GET_STATUS_PUBLISH = "get-status-publish";
-            public const string GET_AWS_UPLOAD_KEY = "get-aws-upload-key";
+            public const string UPDATE = "api-Media-update_entity";
+            public const string DELETE = "api-Media-delete_entity";
+            public const string PUBLISH_ENTITY_TO_CDN = "api-Media-post_transcode_standard";
+            public const string GET_STATUS_PUBLISH = "api-Media-get_publish_cdn_status";
+            public const string GET_AWS_UPLOAD_KEY = "api-App-get_aws_key";
         }
 
         internal struct CATEGORY
