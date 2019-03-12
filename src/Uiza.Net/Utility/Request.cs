@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uiza.Net.Configuration;
-using Uiza.Net.Enum;
+using Uiza.Net.Enums;
 using Uiza.Net.Extension;
 using Uiza.Net.Parameters;
 using Uiza.Net.UizaHandleException;
