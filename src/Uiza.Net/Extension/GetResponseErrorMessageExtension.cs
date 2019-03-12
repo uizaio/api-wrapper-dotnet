@@ -1,4 +1,4 @@
-﻿using Uiza.Net.Enum;
+﻿using Uiza.Net.Enums;
 using static Uiza.Net.Constants;
 
 namespace Uiza.Net.Extension
