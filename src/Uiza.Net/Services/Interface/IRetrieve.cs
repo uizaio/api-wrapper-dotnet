@@ -1,4 +1,5 @@
-﻿using Uiza.Net.Response;
+﻿using Uiza.Net.Parameters;
+using Uiza.Net.Response;
 
 namespace Uiza.Net.Services
 {
@@ -6,14 +7,15 @@ namespace Uiza.Net.Services
     ///
     /// </summary>
     /// <typeparam name="R"></typeparam>
-    public interface IRetrieve<R>
+    ///  /// <typeparam name="P"></typeparam>
+    public interface IRetrieve<R, P>
          where R : IUizaResponse
     {
         /// <summary>
         ///
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        R Retrieve(string id);
+        R Retrieve(P param);
     }
 }

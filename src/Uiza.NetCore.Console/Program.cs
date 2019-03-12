@@ -167,7 +167,10 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 
-                var retrieveResult = UizaServices.Category.Retrieve((string)createResult.Data.id);
+                var retrieveResult = UizaServices.Category.Retrieve(new RetriveCategoryParameter()
+                {
+                    Id = (string)createResult.Data.id,
+                });
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
                 var listResult = UizaServices.Category.List(new BaseParameter());
@@ -374,15 +377,15 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "",
-                    AppId = ""
+                    ApiKey = "uap-d6342a7b4a6c40d2b851a54a4442ea83-f3c977b7",
+                    AppId = "d6342a7b4a6c40d2b851a54a4442ea83"
                 });
                 TestEntity();
-                TestCategory();
-                TestStorage();
-                TestLiveStreaming();
-                TestAnalytic();
-                TestUser();
+                //TestCategory();
+                //TestStorage();
+                //TestLiveStreaming();
+                //TestAnalytic();
+                //TestUser();
                 Console.ReadLine();
             }
             catch (UizaException ex)

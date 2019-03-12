@@ -19,13 +19,13 @@
 
         internal struct CATEGORY
         {
-            public const string CREATE = "create-category";
-            public const string RETRIEVE = "retrieve-category";
-            public const string LIST = "retrieve-category-list";
-            public const string UPDATE = "update-category";
-            public const string DELETE = "delete-category";
-            public const string CREATE_CATEGORY_RELATION = "create-category-relation";
-            public const string DELETE_CATEGORY_RELATION = "delete-category-relation";
+            public const string CREATE = "api-Media_Metadata-create_metadata";
+            public const string RETRIEVE = "api-Media_Metadata-get_metadata";
+            public const string LIST = "api-Media_Metadata-get_metadata";
+            public const string UPDATE = "api-Media_Metadata-update_metadata";
+            public const string DELETE = "api-Media_Metadata-delete_metadata";
+            public const string CREATE_CATEGORY_RELATION = "api-Media_Metadata-create_n_metadata_for_one_entiy";
+            public const string DELETE_CATEGORY_RELATION = "api-Media_Metadata-delete_n_metadata_for_one_entiy";
         }
 
         internal struct STORAGE
