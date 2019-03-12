@@ -8,7 +8,7 @@ namespace Uiza.Net.Services.Interface
     /// </summary>
     public interface ICategoryService : IBaseServices,
         ICreate<UizaData, CreateCategoryParameter>,
-        IRetrieve<UizaData, string>,
+        IRetrieve<UizaData, RetriveCategoryParameter>,
         IUpdate<UizaData, UpdateCategoryParameter>,
         IDelete<UizaData>,
         IRetrieveList<UizaData, BaseParameter>
