@@ -8,7 +8,7 @@ namespace Uiza.Net.Services.Interface
     /// </summary>
     public interface ICallbackService : IBaseServices,
         ICreate<UizaData, CreateCallbackParameter>,
-        IRetrieve<UizaData>,
+        IRetrieve<UizaData, string>,
         IUpdate<UizaData, UpdateCallbackParameter>,
         IDelete<UizaData>
     {
