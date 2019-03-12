@@ -9,7 +9,7 @@
         {
             public const string CREATE = "api-Media-create_entity";
             public const string RETRIEVE = "api-Media-get_entity";
-            public const string LIST = "list-all-entities";
+            public const string LIST = "api-Media-get_entity";
             public const string UPDATE = "api-Media-update_entity";
             public const string DELETE = "api-Media-delete_entity";
             public const string PUBLISH_ENTITY_TO_CDN = "api-Media-post_transcode_standard";
