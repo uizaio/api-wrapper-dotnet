@@ -18,6 +18,6 @@ namespace Uiza.Net.Parameters
         /// types of category [ folder, playlist, tag, category ]
         /// </summary>
         [JsonProperty("type")]
-        public CategoryTypes Type { get; set; }
+        public CategoryTypes? Type { get; set; }
     }
 }

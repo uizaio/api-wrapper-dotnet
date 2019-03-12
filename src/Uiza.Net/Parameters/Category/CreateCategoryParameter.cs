@@ -30,7 +30,7 @@ namespace Uiza.Net.Parameters
         /// types of category [ folder, playlist, tag, category ]
         /// </summary>
         [JsonProperty("type")]
-        public CategoryTypes Type { get; set; }
+        public CategoryTypes? Type { get; set; }
 
         /// <summary>
         /// Order number for category, lower number is higher order
