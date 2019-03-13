@@ -10,44 +10,6 @@ namespace Uiza.NetCore.ConsoleTest
 {
     internal class Program
     {
-        private static void TestAnalytic()
-        {
-            LogActivity("Analytic");
-            try
-            {
-                var getTotalLine = UizaServices.Analytic.GetTotalLine(new AnalyticTotalLineParameter()
-                {
-                    StartDate = @"2019-02-28 20:00",
-                    EndDate = @"2019-03-01 20:00",
-                    Metric = MetricType.RebufferCount
-                });
-                Console.WriteLine(string.Format("Get Total Line Success, total record {0}", getTotalLine.Data.Count));
-
-                var getType = UizaServices.Analytic.GetType(new AnalyticTypeParameter()
-                {
-                    StartDate = @"2019-01-01",
-                    EndDate = @"2019-03-01",
-                    TypeFilter = TypeFilter.Country
-                });
-                Console.WriteLine(string.Format("Get Type Success, total record {0}", getType.Data.Count));
-
-                var getLine = UizaServices.Analytic.GetLine(new AnalyticLineParameter()
-                {
-                    StartDate = @"2019-01-01",
-                    EndDate = @"2019-03-01",
-                    Type = LineType.RebufferCount
-                });
-                Console.WriteLine(string.Format("Get Line Success, total record {0}", getLine.Data.Count));
-            }
-            catch (UizaException ex)
-            {
-                var result = ex.UizaInnerException.Error;
-                Console.WriteLine(ex.Message);
-            }
-
-            LogActivity("Analytic", true);
-        }
-
         private static void TestCallback()
         {
             LogActivity("Call back");
@@ -391,7 +353,7 @@ namespace Uiza.NetCore.ConsoleTest
                 TestCategory();
                 TestStorage();
                 TestLiveStreaming();
-                //TestAnalytic();
+                TestCallback();
                 //TestUser();
                 Console.ReadLine();
             }
