@@ -5,7 +5,7 @@ using Uiza.Net.Utility;
 
 namespace Uiza.Net.Services
 {
-    internal class LiveStreamingServices : Service, ILiveStreaming
+    internal class LiveServices : Service, ILiveStreaming
     {
         /// <summary>
         ///
@@ -44,15 +44,12 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="eventId"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Retrieve(string eventId)
+        public UizaData Retrieve(GetLiveParameter param)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, new RetrieveItemParameter()
-            {
-                Id = eventId,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.RETRIEVE)
-            });
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.RETRIEVE);
+            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, param);
         }
 
         /// <summary>

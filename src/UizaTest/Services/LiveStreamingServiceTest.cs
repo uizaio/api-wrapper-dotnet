@@ -36,8 +36,8 @@ namespace UizaTest.Services
         [Fact]
         public void RetrieveSuccess()
         {
-            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Retrieve(Guid.NewGuid().ToString());
+            mockService.Setup(_ => _.Retrieve(It.IsAny<GetLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Retrieve(new GetLiveParameter());
             Assert.NotNull(result);
         }
 
@@ -46,8 +46,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(Guid.NewGuid().ToString()));
+                mockService.Setup(_ => _.Retrieve(It.IsAny<GetLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(new GetLiveParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }

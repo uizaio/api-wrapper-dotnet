@@ -116,7 +116,11 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 
-                var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
+                var retrieveResult = UizaServices.Live.Retrieve(new GetLiveParameter()
+                {
+                    Id = (string)createResult.Data.id
+                }
+                );
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
                 var listResult = UizaServices.Live.ListRecorded();
