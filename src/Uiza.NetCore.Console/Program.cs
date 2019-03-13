@@ -95,7 +95,7 @@ namespace Uiza.NetCore.ConsoleTest
                     Name = Guid.NewGuid().ToString(),
                     Mode = "push",
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     LinkStream = new List<string>() { "https://playlist.m3u8" },
                     Poster = "//image1.jpeg",
                     Thumbnail = "//image1.jpeg",
@@ -110,7 +110,7 @@ namespace Uiza.NetCore.ConsoleTest
                     Name = Guid.NewGuid().ToString(),
                     Mode = "pull",
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     ResourceMode = ResourceModes.Single
                 });
 

@@ -14,7 +14,7 @@ namespace UizaTest.MockParameter
                 Name = Guid.NewGuid().ToString(),
                 Mode = "push",
                 Encode = EncodeTypes.Encode,
-                Drv = DvrTypes.NoRecord,
+                Dvr = DvrTypes.NoRecord,
                 LinkStream = new List<string>() { "https://playlist.m3u8" },
                 ResourceMode = ResourceModes.Single
             };
@@ -26,7 +26,7 @@ namespace UizaTest.MockParameter
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = Guid.NewGuid().ToString(),
-                Drv = DvrTypes.NoRecord,
+                Dvr = DvrTypes.NoRecord,
                 Mode = "push",
                 Encode = EncodeTypes.Encode,
                 ResourceMode = ResourceModes.Single

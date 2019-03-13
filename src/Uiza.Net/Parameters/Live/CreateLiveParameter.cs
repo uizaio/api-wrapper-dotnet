@@ -31,24 +31,30 @@ namespace Uiza.Net.Parameters
         public string Mode { get; set; }
 
         /// <summary>
+        /// Resource mode ( single = only 1 feed and output), redundant = more than 1 feed and output to backup)
+        /// </summary>
+        [JsonProperty("resourceMode")]
+        public ResourceModes ResourceMode { get; set; }
+
+        /// <summary>
         /// Mode of live stream (0 = no encode, 1 = encode)
         /// </summary>
         [JsonProperty("encode")]
         public EncodeTypes? Encode { get; set; }
 
         /// <summary>
-        /// Feed after streamed will be recorded as a mp4 file
-        /// 0: No record
-        /// 1: Active Feature record
-        /// </summary>
-        [JsonProperty("drv")]
-        public DvrTypes? Drv { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         [JsonProperty("drm")]
         public int? Drm { get; set; }
+
+        /// <summary>
+        /// Feed after streamed will be recorded as a mp4 file
+        /// 0: No record
+        /// 1: Active Feature record
+        /// </summary>
+        [JsonProperty("dvr")]
+        public DvrTypes? Dvr { get; set; }
 
         /// <summary>
         /// 
@@ -63,16 +69,16 @@ namespace Uiza.Net.Parameters
         public string LastFeedId { get; set; }
 
         /// <summary>
-        /// thumbnail
-        /// </summary>
-        [JsonProperty("thumbnail")]
-        public string Thumbnail { get; set; }
-
-        /// <summary>
         ///
         /// </summary>
         [JsonProperty("poster")]
         public string Poster { get; set; }
+
+        /// <summary>
+        /// thumbnail
+        /// </summary>
+        [JsonProperty("thumbnail")]
+        public string Thumbnail { get; set; }
 
         /// <summary>
         /// Info to share live into social
@@ -86,11 +92,6 @@ namespace Uiza.Net.Parameters
         [JsonProperty("linkStream")]
         public List<string> LinkStream { get; set; }
 
-        /// <summary>
-        /// Resource mode ( single = only 1 feed and output), redundant = more than 1 feed and output to backup)
-        /// </summary>
-        [JsonProperty("resourceMode")]
-        public ResourceModes ResourceMode { get; set; }
 
         //missing lastPullInfo property
 
