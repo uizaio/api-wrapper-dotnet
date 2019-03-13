@@ -38,15 +38,12 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="storageId"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        public virtual UizaData Retrieve(string storageId)
+        public virtual UizaData Retrieve(RetriveStorageParameter param)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.STORAGE, new RetrieveItemParameter()
-            {
-                Id = storageId,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.STORAGE.RETRIEVE)
-            });
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.STORAGE.RETRIEVE);
+            return this.GetRequest<UizaData>(Constants.ApiAction.STORAGE, param);
         }
 
         /// <summary>
