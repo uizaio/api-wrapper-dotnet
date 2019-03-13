@@ -10,7 +10,7 @@ namespace Uiza.Net.Services.Interface
         IBaseServices,
         ICreate<UizaData, CreateLiveParameter>,
         IRetrieve<UizaData, GetLiveParameter>,
-        IUpdate<UizaData, BaseParameter>,
+        IUpdate<UizaData, UpdateLiveParameter>,
         IDelete<UizaData>
     {
         /// <summary>
@@ -18,7 +18,7 @@ namespace Uiza.Net.Services.Interface
         /// </summary>
         /// <param name="eventId"></param>
         /// <returns></returns>
-        UizaData StartFeed(string eventId);
+        UizaData StartFeed(StartFeedParameter eventId);
 
         /// <summary>
         ///

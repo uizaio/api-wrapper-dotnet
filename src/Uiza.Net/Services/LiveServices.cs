@@ -23,7 +23,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Update(BaseParameter param)
+        public UizaData Update(UpdateLiveParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.UPDATE);
             return this.PutRequest<UizaData>(Constants.ApiAction.LIVE, param);
@@ -83,15 +83,12 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="eventId"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData StartFeed(string eventId)
+        public UizaData StartFeed(StartFeedParameter param)
         {
-            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_FEED, new RetrieveItemParameter()
-            {
-                Id = eventId,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.START_A_LIVE_FEED)
-            });
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.START_A_LIVE_FEED);
+            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_FEED, param);
         }
 
         /// <summary>

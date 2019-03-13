@@ -126,7 +126,7 @@ namespace Uiza.NetCore.ConsoleTest
                 var listResult = UizaServices.Live.ListRecorded();
                 Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
 
-                var startLiveFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
+                var startLiveFeedResult = UizaServices.Live.StartFeed(new StartFeedParameter() { Id = (string)createResult.Data.id });
                 Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
 
                 var getViewOfLiveFeedResult = UizaServices.Live.GetView((string)createResult.Data.id);

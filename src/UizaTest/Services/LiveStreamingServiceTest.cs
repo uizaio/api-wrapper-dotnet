@@ -74,8 +74,8 @@ namespace UizaTest.Services
         [Fact]
         public void StartSuccess()
         {
-            mockService.Setup(_ => _.StartFeed(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.StartFeed(Guid.NewGuid().ToString());
+            mockService.Setup(_ => _.StartFeed(It.IsAny<StartFeedParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.StartFeed(new StartFeedParameter());
             Assert.NotNull(result);
         }
 
@@ -84,8 +84,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.StartFeed(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.StartFeed(Guid.NewGuid().ToString()));
+                mockService.Setup(_ => _.StartFeed(It.IsAny<StartFeedParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.StartFeed(new StartFeedParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
