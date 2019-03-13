@@ -16,10 +16,10 @@ namespace Uiza.Net.Parameters
         public string Url { get; set; }
 
         /// <summary>
-        /// Method of callback (get-post-put..)
+        /// Add parameter to headers
         /// </summary>
-        [JsonProperty("method")]
-        public CallbackMethodTypes Method { get; set; }
+        [JsonProperty("headersData")]
+        public Dictionary<string, object> HeadersData { get; set; }
 
         /// <summary>
         /// Extra data you want to attach in callback response
@@ -28,9 +28,9 @@ namespace Uiza.Net.Parameters
         public Dictionary<string, object> JsonData { get; set; }
 
         /// <summary>
-        /// Add parameter to headers
+        /// Method of callback (get-post-put..)
         /// </summary>
-        [JsonProperty("headersData")]
-        public Dictionary<string, object> HeadersData { get; set; }
+        [JsonProperty("method")]
+        public CallbackMethodTypes Method { get; set; }
     }
 }
