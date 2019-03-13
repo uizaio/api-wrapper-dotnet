@@ -40,13 +40,13 @@ namespace Uiza.Net.Parameters
         /// Mode of live stream (0 = no encode, 1 = encode)
         /// </summary>
         [JsonProperty("encode")]
-        public EncodeTypes? Encode { get; set; }
+        public EncodeTypes Encode { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [JsonProperty("drm")]
-        public int? Drm { get; set; }
+        public int Drm { get; set; }
 
         /// <summary>
         /// Feed after streamed will be recorded as a mp4 file
@@ -54,7 +54,7 @@ namespace Uiza.Net.Parameters
         /// 1: Active Feature record
         /// </summary>
         [JsonProperty("dvr")]
-        public DvrTypes? Dvr { get; set; }
+        public DvrTypes Dvr { get; set; }
 
         /// <summary>
         /// 

@@ -30,50 +30,50 @@
 
         internal struct STORAGE
         {
-            public const string ADD = "add-a-storage";
-            public const string RETRIEVE = "retrieve-a-storage";
-            public const string UPDATE = "update-storage";
-            public const string REMOVE = "remove-storage";
+            public const string ADD = "api-Media_Storage-create_storage";
+            public const string RETRIEVE = "api-Media_Storage-list_storage";
+            public const string UPDATE = "api-Media_Storage-update_storage";
+            public const string REMOVE = "api-Media_Storage-delete_storage";
         }
 
         internal struct CALLBACK
         {
-            public const string CREATE = "create-a-callback";
-            public const string RETRIEVE = "retrieve-a-callback";
-            public const string UPDATE = "update-a-callback";
-            public const string DELETE = "delete-a-callback";
+            public const string CREATE = "";
+            public const string RETRIEVE = "";
+            public const string UPDATE = "";
+            public const string DELETE = "";
         }
 
         internal struct LIVE_STREAMING
         {
-            public const string CREATE = "create-a-live-event";
-            public const string RETRIEVE = "retrieve-a-live-event";
-            public const string UPDATE = "update-a-live-event";
-            public const string START_A_LIVE_FEED = "start-a-live-feed";
-            public const string GET_VIEW = "get-view-of-live-feed";
-            public const string STOP_A_LIVE_FEED = "stop-a-live-feed";
-            public const string LIST_ALL_RECORDED_FILES = "list-all-recorded-files";
-            public const string DELETE_A_RECORD_FILE = "delete-a-record-file";
-            public const string CONVERT_INTO_VOD = "convert-into-vod";
+            public const string CREATE = "api-Live-post_live_entity";
+            public const string RETRIEVE = "api-Live-get_live_entity";
+            public const string UPDATE = "api-Live-put_live_entity";
+            public const string START_A_LIVE_FEED = "api-Live_Feed-post_live_feed_start";
+            public const string GET_VIEW = "api-Live_Tracking-get_live_currentview";
+            public const string STOP_A_LIVE_FEED = "api-Live_Feed-put_live_feed_stop";
+            public const string LIST_ALL_RECORDED_FILES = "api-Live-get_live_entity_dvr";
+            public const string DELETE_A_RECORD_FILE = "api-Live-delete_live_entity_dvr";
+            public const string CONVERT_INTO_VOD = "api-Live-post_convert_to_vod";
         }
 
         internal struct ANALYTIC
         {
-            public const string ANALYTIC_METRICS = "analytic-metrics";
-            public const string TOTAL_LINE = "total-line";
-            public const string TYPE = "type";
-            public const string LINE = "line";
+            public const string ANALYTIC_METRICS = "";
+            public const string TOTAL_LINE = "";
+            public const string TYPE = "";
+            public const string LINE = "";
         }
 
         internal struct USER
         {
-            public const string CREATE = "create-an-user";
-            public const string RETRIEVE = "retrieve-an-user";
-            public const string LIST = "list-all-users";
-            public const string UPDATE = "update-an-user";
-            public const string DELETE = "delete-an-user";
-            public const string CHANGE_PASSWORD = "update-password";
-            public const string LOGOUT = "log-out";
+            public const string CREATE = "";
+            public const string RETRIEVE = "";
+            public const string LIST = "";
+            public const string UPDATE = "";
+            public const string DELETE = "";
+            public const string CHANGE_PASSWORD = "";
+            public const string LOGOUT = "";
         }
     }
 }

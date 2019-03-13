@@ -94,8 +94,9 @@ namespace Uiza.NetCore.ConsoleTest
                 {
                     Name = Guid.NewGuid().ToString(),
                     Mode = "push",
+                    Description = Guid.NewGuid().ToString(),
                     Encode = EncodeTypes.Encode,
-                    Dvr = DvrTypes.ActiveFeatureRecord,
+                   // Dvr = DvrTypes.ActiveFeatureRecord,
                     LinkStream = new List<string>() { "https://playlist.m3u8" },
                     Poster = "//image1.jpeg",
                     Thumbnail = "//image1.jpeg",
@@ -123,7 +124,7 @@ namespace Uiza.NetCore.ConsoleTest
                 );
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.Live.ListRecorded();
+                var listResult = UizaServices.Live.ListRecorded((string)retrieveResult.Data.id);
                 Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
 
                 var startLiveFeedResult = UizaServices.Live.StartFeed(new StartFeedParameter() { Id = (string)createResult.Data.id });
@@ -383,13 +384,13 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "uap-d6342a7b4a6c40d2b851a54a4442ea83-f3c977b7",
-                    AppId = "d6342a7b4a6c40d2b851a54a4442ea83"
+                    ApiKey = "",
+                    AppId = ""
                 });
-                //TestEntity();
-                //TestCategory();
+                TestEntity();
+                TestCategory();
                 TestStorage();
-                //TestLiveStreaming();
+                TestLiveStreaming();
                 //TestAnalytic();
                 //TestUser();
                 Console.ReadLine();

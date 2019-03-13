@@ -131,8 +131,8 @@ namespace UizaTest.Services
         [Fact]
         public void ListSuccess()
         {
-            mockService.Setup(_ => _.ListRecorded()).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.ListRecorded();
+            mockService.Setup(_ => _.ListRecorded(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.ListRecorded(Guid.NewGuid().ToString());
             Assert.NotNull(result);
         }
 
@@ -141,8 +141,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.ListRecorded()).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.ListRecorded());
+                mockService.Setup(_ => _.ListRecorded(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.ListRecorded(Guid.NewGuid().ToString()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
