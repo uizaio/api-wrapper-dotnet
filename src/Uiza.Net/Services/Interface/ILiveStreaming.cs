@@ -16,9 +16,9 @@ namespace Uiza.Net.Services.Interface
         /// <summary>
         ///
         /// </summary>
-        /// <param name="eventId"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        UizaData StartFeed(StartFeedParameter eventId);
+        UizaData StartFeed(StartFeedParameter param);
 
         /// <summary>
         ///
@@ -45,6 +45,6 @@ namespace Uiza.Net.Services.Interface
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData ListRecorded();
+        UizaData ListRecorded(string eventId);
     }
 }

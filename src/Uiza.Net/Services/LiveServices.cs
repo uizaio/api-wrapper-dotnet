@@ -33,10 +33,11 @@ namespace Uiza.Net.Services
         ///
         /// </summary>
         /// <returns></returns>
-        public UizaData ListRecorded()
+        public UizaData ListRecorded(string eventId)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_DVR, new BaseParameter()
+            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_DVR, new RetrieveItemParameter()
             {
+                Id = eventId,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.LIST_ALL_RECORDED_FILES)
             });
         }
