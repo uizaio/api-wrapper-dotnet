@@ -5,17 +5,17 @@ using Uiza.Net.Utility;
 
 namespace Uiza.Net.Services
 {
-    internal class LiveStreamingServices : Service, ILiveStreaming
+    internal class LiveServices : Service, ILiveStreaming
     {
         /// <summary>
         ///
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Create(CreateLiveStreamingParameter param)
+        public UizaData Create(CreateLiveParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.CREATE);
-            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, param);
+            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE, param);
         }
 
         /// <summary>
@@ -23,20 +23,21 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Update(BaseParameter param)
+        public UizaData Update(UpdateLiveParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.UPDATE);
-            return this.PutRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, param);
+            return this.PutRequest<UizaData>(Constants.ApiAction.LIVE, param);
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        public UizaData ListRecorded()
+        public UizaData ListRecorded(string eventId)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_RECORDED, new BaseParameter()
+            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_DVR, new RetrieveItemParameter()
             {
+                Id = eventId,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.LIST_ALL_RECORDED_FILES)
             });
         }
@@ -44,15 +45,12 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="eventId"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Retrieve(string eventId)
+        public UizaData Retrieve(GetLiveParameter param)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, new RetrieveItemParameter()
-            {
-                Id = eventId,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.RETRIEVE)
-            });
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.RETRIEVE);
+            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE, param);
         }
 
         /// <summary>
@@ -62,7 +60,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData Delete(string recordId)
         {
-            return this.DeleteRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_RECORDED, new RetrieveItemParameter()
+            return this.DeleteRequest<UizaData>(Constants.ApiAction.LIVE_DVR, new RetrieveItemParameter()
             {
                 Id = recordId,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.DELETE_A_RECORD_FILE)
@@ -76,7 +74,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData GetView(string eventId)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, new RetrieveItemParameter()
+            return this.GetRequest<UizaData>(Constants.ApiAction.LIVE, new RetrieveItemParameter()
             {
                 Id = eventId,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.RETRIEVE)
@@ -86,15 +84,12 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="eventId"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData StartFeed(string eventId)
+        public UizaData StartFeed(StartFeedParameter param)
         {
-            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_FEED, new RetrieveItemParameter()
-            {
-                Id = eventId,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.START_A_LIVE_FEED)
-            });
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.START_A_LIVE_FEED);
+            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_FEED, param);
         }
 
         /// <summary>
@@ -104,7 +99,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData StopFeed(string eventId)
         {
-            return this.PutRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_FEED, new RetrieveItemParameter()
+            return this.PutRequest<UizaData>(Constants.ApiAction.LIVE_FEED, new RetrieveItemParameter()
             {
                 Id = eventId,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.STOP_A_LIVE_FEED)
@@ -118,7 +113,7 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public UizaData ConvertToVOD(string recordId)
         {
-            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING_CONVERT_VOD, new RetrieveItemParameter()
+            return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_VOD, new RetrieveItemParameter()
             {
                 Id = recordId,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.STOP_A_LIVE_FEED)

@@ -90,12 +90,13 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Live Streaming");
             try
             {
-                var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+                var createResult = UizaServices.Live.Create(new CreateLiveParameter()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Mode = "push",
+                    Description = Guid.NewGuid().ToString(),
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                   // Dvr = DvrTypes.ActiveFeatureRecord,
                     LinkStream = new List<string>() { "https://playlist.m3u8" },
                     Poster = "//image1.jpeg",
                     Thumbnail = "//image1.jpeg",
@@ -104,25 +105,29 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
 
-                var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
+                var resultUpdate = UizaServices.Live.Update(new UpdateLiveParameter()
                 {
                     Id = createResult.Data.id,
                     Name = Guid.NewGuid().ToString(),
                     Mode = "pull",
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     ResourceMode = ResourceModes.Single
                 });
 
                 Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 
-                var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
+                var retrieveResult = UizaServices.Live.Retrieve(new GetLiveParameter()
+                {
+                    Id = (string)createResult.Data.id
+                }
+                );
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.Live.ListRecorded();
+                var listResult = UizaServices.Live.ListRecorded((string)retrieveResult.Data.id);
                 Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
 
-                var startLiveFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
+                var startLiveFeedResult = UizaServices.Live.StartFeed(new StartFeedParameter() { Id = (string)createResult.Data.id });
                 Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
 
                 var getViewOfLiveFeedResult = UizaServices.Live.GetView((string)createResult.Data.id);
@@ -379,13 +384,13 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "uap-d6342a7b4a6c40d2b851a54a4442ea83-f3c977b7",
-                    AppId = "d6342a7b4a6c40d2b851a54a4442ea83"
+                    ApiKey = "",
+                    AppId = ""
                 });
-                //TestEntity();
-                //TestCategory();
+                TestEntity();
+                TestCategory();
                 TestStorage();
-                //TestLiveStreaming();
+                TestLiveStreaming();
                 //TestAnalytic();
                 //TestUser();
                 Console.ReadLine();

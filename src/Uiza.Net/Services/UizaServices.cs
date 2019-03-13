@@ -69,7 +69,7 @@ namespace Uiza.Net.Services
             get
             {
                 if (_liveStreaming == null)
-                    _liveStreaming = new LiveStreamingServices();
+                    _liveStreaming = new LiveServices();
                 return _liveStreaming;
             }
         }

@@ -8,17 +8,17 @@ namespace Uiza.Net.Services.Interface
     /// </summary>
     public interface ILiveStreaming :
         IBaseServices,
-        ICreate<UizaData, CreateLiveStreamingParameter>,
-        IRetrieve<UizaData, string>,
-        IUpdate<UizaData, BaseParameter>,
+        ICreate<UizaData, CreateLiveParameter>,
+        IRetrieve<UizaData, GetLiveParameter>,
+        IUpdate<UizaData, UpdateLiveParameter>,
         IDelete<UizaData>
     {
         /// <summary>
         ///
         /// </summary>
-        /// <param name="eventId"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
-        UizaData StartFeed(string eventId);
+        UizaData StartFeed(StartFeedParameter param);
 
         /// <summary>
         ///
@@ -45,6 +45,6 @@ namespace Uiza.Net.Services.Interface
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData ListRecorded();
+        UizaData ListRecorded(string eventId);
     }
 }
