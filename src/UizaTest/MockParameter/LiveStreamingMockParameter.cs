@@ -7,9 +7,9 @@ namespace UizaTest.MockParameter
 {
     public static class LiveStreamingMockParameter
     {
-        public static CreateLiveStreamingParameter CreateLiveStreamingParameter()
+        public static CreateLiveParameter CreateLiveStreamingParameter()
         {
-            return new CreateLiveStreamingParameter()
+            return new CreateLiveParameter()
             {
                 Name = Guid.NewGuid().ToString(),
                 Mode = "push",
@@ -20,9 +20,9 @@ namespace UizaTest.MockParameter
             };
         }
 
-        public static UpdateLiveStreamingParameter UpdateLiveStreamingParameter()
+        public static UpdateLiveParameter UpdateLiveStreamingParameter()
         {
-            return new UpdateLiveStreamingParameter()
+            return new UpdateLiveParameter()
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = Guid.NewGuid().ToString(),

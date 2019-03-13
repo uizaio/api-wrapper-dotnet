@@ -90,7 +90,7 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Live Streaming");
             try
             {
-                var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+                var createResult = UizaServices.Live.Create(new CreateLiveParameter()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Mode = "push",
@@ -104,7 +104,7 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
 
-                var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
+                var resultUpdate = UizaServices.Live.Update(new UpdateLiveParameter()
                 {
                     Id = createResult.Data.id,
                     Name = Guid.NewGuid().ToString(),

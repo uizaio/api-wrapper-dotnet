@@ -6,7 +6,7 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class UpdateLiveStreamingParameter : RetrieveItemParameter
+    public class UpdateLiveParameter : RetrieveItemParameter
     {
         /// <summary>
         /// The event name (limit 100 characters)

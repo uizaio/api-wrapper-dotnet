@@ -17,7 +17,7 @@ namespace UizaTest.Services
         [Fact]
         public void CreatSuccess()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateLiveStreamingParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            mockService.Setup(_ => _.Create(It.IsAny<CreateLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.Create(LiveStreamingMockParameter.CreateLiveStreamingParameter());
             Assert.NotNull(result);
         }
@@ -27,7 +27,7 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Create(It.IsAny<CreateLiveStreamingParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                mockService.Setup(_ => _.Create(It.IsAny<CreateLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
                 var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(LiveStreamingMockParameter.CreateLiveStreamingParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
@@ -55,7 +55,7 @@ namespace UizaTest.Services
         [Fact]
         public void UpdateSuccess()
         {
-            mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveStreamingParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.Update(LiveStreamingMockParameter.UpdateLiveStreamingParameter());
             Assert.NotNull(result);
         }
@@ -65,7 +65,7 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveStreamingParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
                 var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(LiveStreamingMockParameter.UpdateLiveStreamingParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }

@@ -12,7 +12,7 @@ namespace Uiza.Net.Services
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData Create(CreateLiveStreamingParameter param)
+        public UizaData Create(CreateLiveParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.LIVE_STREAMING.CREATE);
             return this.PostRequest<UizaData>(Constants.ApiAction.LIVE_STREAMING, param);
