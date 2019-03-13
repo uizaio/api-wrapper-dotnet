@@ -285,7 +285,11 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
 
-                var getResultRetrieveStorage = UizaServices.Storage.Retrieve((string)result.Data.id);
+                var getResultRetrieveStorage = UizaServices.Storage.Retrieve(new RetriveStorageParameter()
+                {
+                    Id = (string)result.Data.id
+                });
+
                 Console.WriteLine(string.Format("Get Storage Id = {0} Success", getResultRetrieveStorage.Data.id));
 
                 var resultUpdateStorage = UizaServices.Storage.Update(new UpdateStorageParameter()
@@ -297,8 +301,6 @@ namespace Uiza.NetCore.ConsoleTest
                     StorageType = StorageInputTypes.S3,
                     UserName = "uizaUpdate",
                     Password = "=59x@LPsd+w7qW",
-                    AwsAccessKey = "ASIAV*******GPHO2DTZ",
-                    AwsSecretKey = "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc",
                     Port = 22
                 });
                 Console.WriteLine(string.Format("Update Storage Id = {0} Success", resultUpdateStorage.Data.id));
@@ -380,9 +382,9 @@ namespace Uiza.NetCore.ConsoleTest
                     ApiKey = "uap-d6342a7b4a6c40d2b851a54a4442ea83-f3c977b7",
                     AppId = "d6342a7b4a6c40d2b851a54a4442ea83"
                 });
-                TestEntity();
+                //TestEntity();
                 //TestCategory();
-                //TestStorage();
+                TestStorage();
                 //TestLiveStreaming();
                 //TestAnalytic();
                 //TestUser();

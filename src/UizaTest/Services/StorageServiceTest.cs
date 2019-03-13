@@ -35,8 +35,8 @@ namespace UizaTest.Services
         [Fact]
         public void RetrieveStorageSuccess()
         {
-            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Retrieve("2e173ee3-be45-46bd-a355-c9182a2a41ec");
+            mockService.Setup(_ => _.Retrieve(It.IsAny<RetriveStorageParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Retrieve(new RetriveStorageParameter());
             Assert.NotNull(result);
         }
 
@@ -45,8 +45,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(""));
+                mockService.Setup(_ => _.Retrieve(It.IsAny<RetriveStorageParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(new RetriveStorageParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
