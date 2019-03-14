@@ -15,6 +15,7 @@
             public const string PUBLISH_ENTITY_TO_CDN = "api-Media-post_transcode_standard";
             public const string GET_STATUS_PUBLISH = "api-Media-get_publish_cdn_status";
             public const string GET_AWS_UPLOAD_KEY = "api-App-get_aws_key";
+            public const string SEARCH = "search-entity";
         }
 
         internal struct CATEGORY

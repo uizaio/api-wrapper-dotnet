@@ -106,5 +106,19 @@ namespace Uiza.Net.Services
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.UPDATE);
             return this.PutRequest<UizaData>(Constants.ApiAction.ENTITY, param);
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        public virtual UizaData Search(string keyWord)
+        {
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY_SEARCH, new SearchEntityParameter()
+            {
+                Keyword = keyWord,
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.SEARCH)
+            });
+        }
     }
 }
