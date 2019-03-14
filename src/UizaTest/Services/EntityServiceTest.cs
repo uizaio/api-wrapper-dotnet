@@ -139,5 +139,25 @@ namespace UizaTest.Services
             var result = mockService.Object.GetAWSUploadKey();
             Assert.NotNull(result);
         }
+
+
+        [Fact]
+        public void SearchSuccess()
+        {
+            mockService.Setup(_ => _.Search(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.Search("Sample");
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void SearchFailWithAPIResponse()
+        {
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Search(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Search(""));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
+        }
     }
 }

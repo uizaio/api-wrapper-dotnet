@@ -35,5 +35,11 @@ namespace Uiza.Net.Services.Interface
         /// </summary>
         /// <returns></returns>
         UizaData List();
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        UizaData Search(string keyWord);
     }
 }
