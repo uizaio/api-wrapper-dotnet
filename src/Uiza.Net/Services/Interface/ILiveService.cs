@@ -6,7 +6,7 @@ namespace Uiza.Net.Services.Interface
     /// <summary>
     ///
     /// </summary>
-    public interface ILiveStreaming :
+    public interface ILiveService :
         IBaseServices,
         ICreate<UizaData, CreateLiveParameter>,
         IRetrieve<UizaData, GetLiveParameter>,

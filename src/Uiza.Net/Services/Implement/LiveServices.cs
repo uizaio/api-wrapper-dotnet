@@ -5,7 +5,7 @@ using Uiza.Net.Utility;
 
 namespace Uiza.Net.Services
 {
-    internal class LiveServices : Service, ILiveStreaming
+    internal class LiveServices : Service, ILiveService
     {
         /// <summary>
         ///
