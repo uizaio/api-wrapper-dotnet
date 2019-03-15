@@ -5,9 +5,9 @@ namespace UizaTest.MockParameter
 {
     public static class AnalyticMockParameter
     {
-        public static AnalyticTotalLineParameter GetTotalLineSuccessParameter()
+        public static TotalLineParameter GetTotalLineSuccessParameter()
         {
-            return new AnalyticTotalLineParameter()
+            return new TotalLineParameter()
             {
                 StartDate = @"2018-11-01 20:00",
                 EndDate = @"2018-11-19 20:00",
@@ -15,18 +15,18 @@ namespace UizaTest.MockParameter
             };
         }
 
-        public static AnalyticTotalLineParameter GetTotalLineFailParameter()
+        public static TotalLineParameter GetTotalLineFailParameter()
         {
-            return new AnalyticTotalLineParameter()
+            return new TotalLineParameter()
             {
                 StartDate = @"2018-11-01 20:00",
                 Metric = MetricType.RebufferCount
             };
         }
 
-        public static AnalyticLineParameter GetLineSuccessParameter()
+        public static LineParameter GetLineSuccessParameter()
         {
-            return new AnalyticLineParameter()
+            return new LineParameter()
             {
                 StartDate = @"2018-11-01 20:00",
                 EndDate = @"2018-11-19 20:00",
@@ -34,18 +34,18 @@ namespace UizaTest.MockParameter
             };
         }
 
-        public static AnalyticLineParameter GetLineFailParameter()
+        public static LineParameter GetLineFailParameter()
         {
-            return new AnalyticLineParameter()
+            return new LineParameter()
             {
                 StartDate = @"2018-11-01 20:00",
                 EndDate = @"2018-11-19 20:00"
             };
         }
 
-        public static AnalyticTypeParameter GetTypeSuccessParameter()
+        public static TypeParameter GetTypeSuccessParameter()
         {
-            return new AnalyticTypeParameter()
+            return new TypeParameter()
             {
                 StartDate = @"2018-11-01 20:00",
                 EndDate = @"2018-11-19 20:00",
@@ -53,9 +53,9 @@ namespace UizaTest.MockParameter
             };
         }
 
-        public static AnalyticTypeParameter GetTypeFailParameter()
+        public static TypeParameter GetTypeFailParameter()
         {
-            return new AnalyticTypeParameter()
+            return new TypeParameter()
             {
                 StartDate = @"2018-11-01 20:00",
                 EndDate = @"2018-11-19 20:00"

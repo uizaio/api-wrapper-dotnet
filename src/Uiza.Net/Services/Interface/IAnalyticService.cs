@@ -12,18 +12,18 @@ namespace Uiza.Net.Services.Interface
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData GetTotalLine(AnalyticTotalLineParameter param);
+        UizaData GetTotalLine(TotalLineParameter param);
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData GetType(AnalyticTypeParameter param);
+        UizaData GetType(TypeParameter param);
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        UizaData GetLine(AnalyticLineParameter param);
+        UizaData GetLine(LineParameter param);
     }
 }

@@ -208,15 +208,14 @@ namespace Uiza.Net.Utility
             //if (errors.Any())
             //    throw HandleUizaValidationException(errors);
 
-            var serialzeObject = JsonConvert.SerializeObject(param);
+            var serialzeObject = JsonConvert.SerializeObject(param, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             if (method != HttpMethod.Post && method != HttpMethod.Put && method != HttpMethod.Delete)
             {
                 var listParam = JsonConvert.DeserializeObject<Dictionary<string, string>>(serialzeObject);
                 foreach (var item in listParam)
                 {
-                    if (!string.IsNullOrWhiteSpace(item.Value))
-                        ApplyParameterToRequestString(ref url, item.Key, item.Value);
+                    ApplyParameterToRequestString(ref url, item.Key, item.Value);
                 }
 
                 foreach (var item in param.ExtraParams)

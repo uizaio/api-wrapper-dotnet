@@ -6,29 +6,29 @@ namespace Uiza.Net.Extension
     /// <summary>
     ///
     /// </summary>
-    internal static class GetResponseErrorMessageExtension
+    internal static class ErrorMessageExtension
     {
-        internal static string GetErrorMessage(this int errorCode)
+        internal static string GetByStatusCode(this int statusCode)
         {
-            switch (errorCode)
+            switch (statusCode)
             {
                 case (int)ResponseStatusCode.BadRequest:
-                    return ResponseStatusMessages.BAD_REQUEST;
+                    return ResponseStatusErrors.BAD_REQUEST;
 
                 case (int)ResponseStatusCode.InternalServerError:
-                    return ResponseStatusMessages.INTERNAL_SERVER;
+                    return ResponseStatusErrors.INTERNAL_SERVER;
 
                 case (int)ResponseStatusCode.NotFound:
-                    return ResponseStatusMessages.NOT_FOUND;
+                    return ResponseStatusErrors.NOT_FOUND;
 
                 case (int)ResponseStatusCode.ServiceUnavailable:
-                    return ResponseStatusMessages.SERVICE_UNAVAILABLE;
+                    return ResponseStatusErrors.SERVICE_UNAVAILABLE;
 
                 case (int)ResponseStatusCode.Unauthorized:
-                    return ResponseStatusMessages.UNAUTHORIZED;
+                    return ResponseStatusErrors.UNAUTHORIZED;
 
                 case (int)ResponseStatusCode.Unprocessable:
-                    return ResponseStatusMessages.UNPROCESSABLE;
+                    return ResponseStatusErrors.UNPROCESSABLE;
 
                 default:
                     return string.Empty;

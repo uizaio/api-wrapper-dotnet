@@ -5,28 +5,28 @@ using Uiza.Net.Parameters;
 
 namespace UizaTest.MockParameter
 {
-    public static class LiveStreamingMockParameter
+    public static class LiveMockParameter
     {
-        public static CreateLiveStreamingParameter CreateLiveStreamingParameter()
+        public static CreateLiveParameter CreateLiveStreamingParameter()
         {
-            return new CreateLiveStreamingParameter()
+            return new CreateLiveParameter()
             {
                 Name = Guid.NewGuid().ToString(),
                 Mode = "push",
                 Encode = EncodeTypes.Encode,
-                Drv = DvrTypes.NoRecord,
+                Dvr = DvrTypes.NoRecord,
                 LinkStream = new List<string>() { "https://playlist.m3u8" },
                 ResourceMode = ResourceModes.Single
             };
         }
 
-        public static UpdateLiveStreamingParameter UpdateLiveStreamingParameter()
+        public static UpdateLiveParameter UpdateLiveStreamingParameter()
         {
-            return new UpdateLiveStreamingParameter()
+            return new UpdateLiveParameter()
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = Guid.NewGuid().ToString(),
-                Drv = DvrTypes.NoRecord,
+                Dvr = DvrTypes.NoRecord,
                 Mode = "push",
                 Encode = EncodeTypes.Encode,
                 ResourceMode = ResourceModes.Single

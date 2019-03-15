@@ -12,7 +12,7 @@ namespace Uiza.Net.Parameters
         /// Status of publish task, include [ queue, not-ready, success, failed ]
         /// </summary>
         [JsonProperty("publishToCdn")]
-        public EntityPublishStatus publishToCdn { get; set; }
+        public EntityPublishStatus? publishToCdn { get; set; }
 
         /// <summary>
         /// Get all entity in folder/playlist
