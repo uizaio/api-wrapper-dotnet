@@ -4,7 +4,7 @@ See details [here](https://docs.uiza.io/#category).
 
 ## Create Category
 Create Category using full URL. Direct HTTP, FTP or AWS S3 link are acceptable.
-See details [here](https://docs.uiza.io/#create-category.
+See details [here](https://docs.uiza.io/#create-category.)
 
 ```Cshard
 using Uiza.Net.Services;
@@ -12,7 +12,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var category = UizaServices.Category.Create(new CreateCategoryParameter()
@@ -34,7 +34,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var retrieveResult = UizaServices.Category.Retrieve(new RetriveCategoryParameter()
@@ -56,7 +56,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var listResult = UizaServices.Category.List();
@@ -73,7 +73,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var resultUpdate = UizaServices.Category.Update(new UpdateCategoryParameter()
@@ -97,7 +97,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var listMetadata = new List<string>()
@@ -134,7 +134,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var deleteCategoryRelationResult = UizaServices.Category.DeleteRelation(new CategoryRelationParameter()
@@ -157,7 +157,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var category = UizaServices.Category.Create(new CreateCategoryParameter()

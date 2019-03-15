@@ -18,7 +18,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var createResult = UizaServices.Live.Create(new CreateLiveParameter()
@@ -50,7 +50,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var retrieveResult = UizaServices.Live.Retrieve(new GetLiveParameter()
@@ -72,7 +72,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var resultUpdate = UizaServices.Live.Update(new UpdateLiveParameter()
@@ -100,7 +100,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var startLiveFeedResult = UizaServices.Live.StartFeed(new StartFeedParameter() { Id = (string)createResult.Data.id });
@@ -118,7 +118,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var listResult = UizaServices.Live.ListRecorded((string)retrieveResult.Data.id);
@@ -137,7 +137,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var getViewResult = UizaServices.Live.GetView((string)createResult.Data.id);
@@ -154,7 +154,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var stopFeedResult = UizaServices.Live.StopFeed((string)createResult.Data.id);
@@ -172,7 +172,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var convertIntoVODResult = UizaServices.Live.ConvertToVOD((string)createResult.Data.id);
@@ -189,7 +189,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions	
 {	
 	ApiKey = "your-ApiKey",	
-	ApiBase = "your-workspace-api-domain.uiza.co"	
+	AppId = "Your AppId"	
 });	
 var deleteRecordFileResult = UizaServices.LiveStreaming.Delete((string)createResult.Data.id);	
 Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));

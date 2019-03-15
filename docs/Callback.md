@@ -8,11 +8,16 @@ See details [here](https://docs.uiza.io/#create-a-callback).
 
 ```Cshard
 using Uiza.Net.Services;
+UizaConfiguration.SetupUiza(new UizaConfigOptions
+{
+	ApiKey = "your-ApiKey",
+	AppId = "Your AppId"
+});
 
 var createResult = UizaServices.Callback.Create(new CreateCallbackParameter()
 {
     Url = "https://callback-url.uiza.co",
-    Method = CallbackMethodTypes.Post,
+    Method = CallbackMethodTypes.Post
 });
 
 Console.WriteLine(string.Format("Create New Callback Id = {0} Success", createResult.Data.id));
@@ -28,7 +33,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var retrieveResult = UizaServices.Callback.Retrieve((string)createResult.Data.id);
@@ -45,7 +50,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var resultUpdate = UizaServices.Callback.Update(new UpdateCallbackParameter()
@@ -68,7 +73,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 var resultDelete = UizaServices.Callback.Delete((string)createResult.Data.id);
 Console.WriteLine(string.Format("Delete Callback Id = {0} Success", resultUpdate.Data.id));

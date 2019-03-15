@@ -38,7 +38,7 @@ In your application initialization, set your API key (only once once during star
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "Your api key here",
-	ApiBase = "Work Space"
+	AppId = "Your AppId"
 });
 ```
 
@@ -335,7 +335,7 @@ var result = UizaServices.Storage.Add(new AddStorageParameter()
 Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
 ```
 
-## Live Streaming
+## Live
 These APIs used to create and manage live streaming event.
 * When a Live is not start : it's named as `Event`.
 * When have an `Event` , you can start it : it's named as `Feed`.
@@ -363,7 +363,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", result.Data.id));
 ```
 
-See details [here](docs/LiveStreaming.md).
+See details [here](docs/Live.md).
 
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .

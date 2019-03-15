@@ -12,7 +12,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UizaServices.Storage.Add(new AddStorageParameter()
@@ -38,7 +38,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UizaServices.Storage.Retrieve((string)createResult.Data.id);
@@ -55,7 +55,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var resultUpdateStorage = UizaServices.Storage.Update(new UpdateStorageParameter()
@@ -82,7 +82,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UizaServices.Storage.Remove((string)createResult.Data.id);

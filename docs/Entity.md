@@ -12,7 +12,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UizaServices.Entity.Create(new CreateEntityParameter()
@@ -34,7 +34,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UizaServices.Entity.Retrieve("Entity Id");
@@ -50,7 +50,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result =  UizaServices.Entity.List();
@@ -67,7 +67,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result =uizaServices.Entity.Update(new UpdateEntityParameter()
@@ -92,7 +92,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UizaServices.Entity.Delete("Entity Id");
@@ -109,7 +109,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UizaServices.Entity.Search("Sample");
@@ -126,7 +126,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result = UUizaServices.Entity.Publish("Entity Id");
@@ -143,7 +143,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result =  UizaServices.Entity.GetStatusPublish("Entity Id");
@@ -160,7 +160,7 @@ using Uiza.Net.Services;
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
+	AppId = "Your AppId"
 });
 
 var result =  UizaServices.Entity.GetAWSUploadKey();
