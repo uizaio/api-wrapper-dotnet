@@ -15,7 +15,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createResult = UizaServices.Storage.Add(new AddStorageParameter()
+var result = UizaServices.Storage.Add(new AddStorageParameter()
 {
 	Name = "FTP Uiza",
 	Host = "ftp-example.uiza.io",
@@ -58,16 +58,16 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result =uizaServices.Storage.Update(new UpdateStorageParameter()
+var resultUpdateStorage = UizaServices.Storage.Update(new UpdateStorageParameter()
 {
-	Id = (string)createResult.Data.id,
-    Name = "FTP Uiza Update",
-    Host = "ftp-example.uiza.io",
-    Description = "FTP of Uiza, use for transcode Update",
-    StorageType = StorageInputTypes.S3,
-    AwsAccessKey = "ASIAV*******GPHO2DTZ",
-    AwsSecretKey = "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc",
-    Port = 22
+	Id = result.Data.id,
+	Name = "FTP Uiza Update",
+	Host = "ftp-example.uiza.io",
+	Description = "FTP of Uiza, use for transcode Update",
+	StorageType = StorageInputTypes.S3,
+	UserName = "uizaUpdate",
+	Password = "=59x@LPsd+w7qW",
+	Port = 22
 });
 Console.WriteLine(string.Format("Update Storage Id = {0} Success", result.Data.id));
 ```

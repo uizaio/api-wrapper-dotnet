@@ -349,19 +349,18 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+ var result = UizaServices.Storage.Add(new AddStorageParameter()
 {
-	Name = Guid.NewGuid().ToString(),
-	Mode = "push",
-	Encode = EncodeTypes.Encode,
-	Drv = DvrTypes.ActiveFeatureRecord,
-	LinkStream = new List<string>() { "https://playlist.m3u8" },
-	Poster = "//image1.jpeg",
-	Thumbnail = "//image1.jpeg",
-	ResourceMode = ResourceModes.Single
+	Name = "FTP Uiza",
+	Host = "ftp-example.uiza.io",
+	Description = "FTP of Uiza, use for transcode",
+	StorageType = StorageInputTypes.Ftp,
+	UserName = "uiza",
+	Password = "=59x@LPsd+w7qW",
+	Port = 21
 });
 
-Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", createResult.Data.id));
+Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", result.Data.id));
 ```
 
 See details [here](docs/LiveStreaming.md).
@@ -378,8 +377,13 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var retrieveResult = UizaServices.Callback.Retrieve((string)createResult.Data.id);
-Console.WriteLine(string.Format("Get Callback Id = {0} Success", retrieveResult.Data.id));
+var createResult = UizaServices.Callback.Create(new CreateCallbackParameter()
+{
+	Url = "https://callback-url.uiza.co",
+	Method = CallbackMethodTypes.Post,
+});
+
+Console.WriteLine(string.Format("Create New Callback Id = {0} Success", createResult.Data.id));
 ```
 
 See details [here](docs/Callback.md).

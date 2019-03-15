@@ -53,7 +53,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result =  UizaServices.Entity.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
+var result =  UizaServices.Entity.List();
 Console.WriteLine(string.Format("Get Entity List Success, total record {0}", result.MetaData.result));
 ```
 

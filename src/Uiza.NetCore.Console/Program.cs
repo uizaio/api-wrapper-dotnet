@@ -60,7 +60,7 @@ namespace Uiza.NetCore.ConsoleTest
                     Mode = "push",
                     Description = Guid.NewGuid().ToString(),
                     Encode = EncodeTypes.Encode,
-                    // Dvr = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     LinkStream = new List<string>() { "https://playlist.m3u8" },
                     Poster = "//image1.jpeg",
                     Thumbnail = "//image1.jpeg",
@@ -142,15 +142,15 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.Category.List(new BaseParameter());
+                var listResult = UizaServices.Category.List();
                 Console.WriteLine(string.Format("Success Get List Category, total record {0}", listResult.MetaData.result));
 
                 var listMetadata = new List<string>()
-                    {
-                        Guid.NewGuid().ToString(),
-                        Guid.NewGuid().ToString(),
-                        Guid.NewGuid().ToString(),
-                    };
+                {
+                    Guid.NewGuid().ToString(),
+                    Guid.NewGuid().ToString(),
+                    Guid.NewGuid().ToString(),
+                };
 
                 var entity = UizaServices.Entity.Create(new CreateEntityParameter()
                 {
@@ -206,7 +206,7 @@ namespace Uiza.NetCore.ConsoleTest
                 var getResultRetrieveCategoryList = UizaServices.Entity.List();
                 Console.WriteLine(string.Format("Success Get EntitiesList, total record {0}", getResultRetrieveCategoryList.MetaData.result));
 
-                var resultUpdateCategory = UizaServices.Entity.Update(new UpdateEntityParameter()
+                var resultUpdate = UizaServices.Entity.Update(new UpdateEntityParameter()
                 {
                     Id = result.Data.id,
                     Name = "Sample update",
@@ -215,6 +215,8 @@ namespace Uiza.NetCore.ConsoleTest
                     Poster = "/example.com/updatePoster",
                     Thumbnail = "/example.com/updateThumbnail"
                 });
+
+                Console.WriteLine(string.Format("Update Entity Success", resultUpdate.Data.id));
 
                 var getAwsUploadKey = UizaServices.Entity.GetAWSUploadKey();
                 Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", getAwsUploadKey.Data.temp_access_id));

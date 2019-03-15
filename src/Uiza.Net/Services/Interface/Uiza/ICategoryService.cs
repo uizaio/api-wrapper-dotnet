@@ -10,8 +10,7 @@ namespace Uiza.Net.Services.Interface
         ICreate<UizaData, CreateCategoryParameter>,
         IRetrieve<UizaData, RetriveCategoryParameter>,
         IUpdate<UizaData, UpdateCategoryParameter>,
-        IDelete<UizaData>,
-        IRetrieveList<UizaData, BaseParameter>
+        IDelete<UizaData>
     {
         /// <summary>
         ///
@@ -24,5 +23,11 @@ namespace Uiza.Net.Services.Interface
         /// </summary>
         /// <returns></returns>
         UizaData DeleteRelation(CategoryRelationParameter param);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        UizaData List();
     }
 }

@@ -15,13 +15,13 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
- var createResult = UizaServices.Category.Create(new CreateCategoryParameter()
+var category = UizaServices.Category.Create(new CreateCategoryParameter()
 {
 	Name = string.Format("Category name {0}", Guid.NewGuid().ToString()),
 	Type = CategoryTypes.Folder
 });
 
-Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
+Console.WriteLine(string.Format("Create New Category Id = {0} Success", category.Data.id));
 ```
 
 ## Retrieve Category
@@ -37,8 +37,14 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var result = UizaServices.Category.Retrieve("Category Id");
-Console.WriteLine(string.Format("Get Category Id = {0} Success", result.Data.id));
+var retrieveResult = UizaServices.Category.Retrieve(new RetriveCategoryParameter()
+{
+	//see at Create Category
+	Id = (string)category.Data.id,
+	EntityId = Guid.NewGuid().ToString(),
+	Type = CategoryTypes.Tag
+});
+Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 ```
 ## List all Categories
 Get list of Categories including all detail.
@@ -53,8 +59,8 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var listResult = UizaServices.Category.List(new BaseParameter());
-Console.WriteLine(string.Format("Get List Category Success, total record {0}", listResult.MetaData.result));
+var listResult = UizaServices.Category.List();
+Console.WriteLine(string.Format("Success Get List Category, total record {0}", listResult.MetaData.result));
 ```
 
 ## Update Category
@@ -72,6 +78,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 
 var resultUpdate = UizaServices.Category.Update(new UpdateCategoryParameter()
 {
+	//see at Create Category
 	Id = createResult.Data.id,
 	Name = string.Format("Category name {0}", Guid.NewGuid().ToString()),
 	Type = CategoryTypes.PlayList
@@ -93,14 +100,30 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
+var listMetadata = new List<string>()
+{
+	Guid.NewGuid().ToString(),
+	Guid.NewGuid().ToString(),
+	Guid.NewGuid().ToString(),
+};
+
+var entity = UizaServices.Entity.Create(new CreateEntityParameter()
+{
+	Name = "Sample Video",
+	InputType = EntityInputTypes.S3Uiza,
+	URL = ""
+});
+
 var createCategoryRelationResult = UizaServices.Category.CreateRelation(new CategoryRelationParameter()
 {
-	EntityId = "Entity id",
+	EntityId = entity.Data.id,
 	MetadataIds = listMetadata
 });
-Console.WriteLine(string.Format("Create Category Relation Success, total record {0}", createCategoryRelationResult.MetaData.result));
+Console.WriteLine(string.Format("Create Success Category Relation, total record {0}", createCategoryRelationResult.MetaData.result));
 ```
-See Entity details [here](../docs/Entity.md).
+
+More Entity Infomation [here](../docs/Entity.md).
+
 ## Delete category relation
 Delete category relation, use for streaming
 See details [here](https://docs.uiza.io/#delete-category-relation).
@@ -122,6 +145,8 @@ var deleteCategoryRelationResult = UizaServices.Category.DeleteRelation(new Cate
 Console.WriteLine(string.Format("Delete Category Relation Success, total record {0}", deleteCategoryRelationResult.MetaData.result));
 ```
 
+More Entity Infomation [here](../docs/Entity.md).
+
 ## Delete Category
 Delete Category.
 See details [here](https://docs.uiza.io/#delete-an-Category).
@@ -135,6 +160,12 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var resultDelete = UizaServices.Category.Delete((string)createResult.Data.id);
-Console.WriteLine(string.Format("Delete Category Id = {0} Success", resultUpdate.Data.id));
+var category = UizaServices.Category.Create(new CreateCategoryParameter()
+{
+	Name = string.Format("Category name {0}", Guid.NewGuid().ToString()),
+	Type = CategoryTypes.Folder
+});
+
+var resultDelete = UizaServices.Category.Delete((string)category.Data.id);
+Console.WriteLine(string.Format("Delete Category Id = {0} Success", category.Data.id));
 ```
