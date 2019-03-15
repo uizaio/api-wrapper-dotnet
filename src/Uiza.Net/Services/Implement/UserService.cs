@@ -5,7 +5,7 @@ using Uiza.Net.Utility;
 
 namespace Uiza.Net.Services
 {
-    internal class UserServices : Service, IUserService
+    internal class UserService : Service, IUserService
     {
         public UizaData Create(CreatUserParameter param)
         {

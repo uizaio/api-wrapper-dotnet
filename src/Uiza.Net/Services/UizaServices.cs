@@ -64,13 +64,13 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        public static ILiveStreaming Live
+        public static ILiveService Live
         {
             get
             {
-                if (_liveStreaming == null)
-                    _liveStreaming = new LiveStreamingServices();
-                return _liveStreaming;
+                if (_live == null)
+                    _live = new LiveService();
+                return _live;
             }
         }
 
@@ -95,7 +95,7 @@ namespace Uiza.Net.Services
             get
             {
                 if (_userService == null)
-                    _userService = new UserServices();
+                    _userService = new UserService();
                 return _userService;
             }
         }
@@ -108,7 +108,7 @@ namespace Uiza.Net.Services
         private static ICategoryService _category;
         private static IStorageService _storage;
         private static ICallbackService _callback;
-        private static ILiveStreaming _liveStreaming;
+        private static ILiveService _live;
         private static IAnalyticService _analytic;
         private static IUserService _userService;
 

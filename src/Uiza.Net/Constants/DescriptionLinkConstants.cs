@@ -45,7 +45,7 @@
             public const string DELETE = "delete-a-callback";
         }
 
-        internal struct LIVE_STREAMING
+        internal struct LIVE
         {
             public const string CREATE = "create-a-live-event";
             public const string RETRIEVE = "retrieve-a-live-event";

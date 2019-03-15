@@ -6,7 +6,7 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class AnalyticTypeParameter : BaseParameter
+    public class TypeParameter : BaseParameter
     {
         /// <summary>
         /// Start date (UTC+0) with format: YYYY-MM-DD

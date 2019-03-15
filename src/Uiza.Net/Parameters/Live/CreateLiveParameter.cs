@@ -7,7 +7,7 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class CreateLiveStreamingParameter : BaseParameter
+    public class CreateLiveParameter : BaseParameter
     {
         /// <summary>
         /// The event name (limit 100 characters)
@@ -35,8 +35,8 @@ namespace Uiza.Net.Parameters
         /// 0: No record
         /// 1: Active Feature record
         /// </summary>
-        [JsonProperty("drv")]
-        public DvrTypes Drv { get; set; }
+        [JsonProperty("dvr")]
+        public DvrTypes Dvr { get; set; }
 
         /// <summary>
         /// Description of the live stream

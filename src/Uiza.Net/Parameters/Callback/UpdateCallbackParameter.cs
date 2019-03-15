@@ -19,7 +19,7 @@ namespace Uiza.Net.Parameters
         /// Method of callback (get-post-put..)
         /// </summary>
         [JsonProperty("method")]
-        public CallbackMethodTypes Method { get; set; }
+        public CallbackMethodTypes? Method { get; set; }
 
         /// <summary>
         /// Extra data you want to attach in callback response	

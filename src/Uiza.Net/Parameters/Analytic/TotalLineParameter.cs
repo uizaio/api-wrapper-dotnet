@@ -6,7 +6,7 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class AnalyticTotalLineParameter : BaseParameter
+    public class TotalLineParameter : BaseParameter
     {
         /// <summary>
         /// Start date (UTC+0) with format: YYYY-MM-DD hh:mm (24-hour clock)
