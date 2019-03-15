@@ -174,7 +174,7 @@ namespace Uiza.Net.Utility
 
             var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DEFAULT_API_ROUTE}/{url}".FormatUrl();
 
-             var request = RenderRequest(method, apiUrl, param);
+            var request = RenderRequest(method, apiUrl, param);
             request.Headers.Add("Authorization", UizaConfiguration.GetApiKey());
 
             return request;
@@ -205,9 +205,6 @@ namespace Uiza.Net.Utility
         private static HttpRequestMessage RenderRequest(HttpMethod method, string url, BaseParameter param)
         {
             param = param ?? new BaseParameter();
-            //var errors = param.GetValidationErrors();
-            //if (errors.Any())
-            //    throw HandleUizaValidationException(errors);
 
             var serialzeObject = JsonConvert.SerializeObject(param);
 
@@ -216,8 +213,7 @@ namespace Uiza.Net.Utility
                 var listParam = JsonConvert.DeserializeObject<Dictionary<string, string>>(serialzeObject);
                 foreach (var item in listParam)
                 {
-                    if (!string.IsNullOrWhiteSpace(item.Value))
-                        ApplyParameterToRequestString(ref url, item.Key, item.Value);
+                    ApplyParameterToRequestString(ref url, item.Key, item.Value);
                 }
 
                 foreach (var item in param.ExtraParams)
