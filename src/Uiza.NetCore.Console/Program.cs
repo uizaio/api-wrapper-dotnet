@@ -49,7 +49,7 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Call back", true);
         }
 
-        private static void TestLiveStreaming()
+        private static void TestLive()
         {
             LogActivity("Live Streaming");
             try
@@ -88,9 +88,6 @@ namespace Uiza.NetCore.ConsoleTest
                 );
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.Live.ListRecorded((string)retrieveResult.Data.id);
-                Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
-
                 var startLiveFeedResult = UizaServices.Live.StartFeed(new StartFeedParameter() { Id = (string)createResult.Data.id });
                 Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
 
@@ -105,6 +102,9 @@ namespace Uiza.NetCore.ConsoleTest
 
                 var deleteRecordFileResult = UizaServices.Live.Delete((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));
+
+                var listResult = UizaServices.Live.ListRecorded((string)retrieveResult.Data.id);
+                Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
             }
             catch (UizaException ex)
             {
@@ -296,11 +296,11 @@ namespace Uiza.NetCore.ConsoleTest
                     ApiKey = "",
                     AppId = ""
                 });
-                //TestEntity();
-                //TestCategory();
-                //TestStorage();
-                //TestLiveStreaming();
+                TestEntity();
+                TestCategory();
+                TestStorage();
                 TestCallback();
+                TestLive();
                 Console.ReadLine();
             }
             catch (UizaException ex)

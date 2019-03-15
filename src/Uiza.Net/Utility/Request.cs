@@ -206,7 +206,7 @@ namespace Uiza.Net.Utility
         {
             param = param ?? new BaseParameter();
 
-            var serialzeObject = JsonConvert.SerializeObject(param);
+            var serialzeObject = JsonConvert.SerializeObject(param, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             if (method != HttpMethod.Post && method != HttpMethod.Put && method != HttpMethod.Delete)
             {

@@ -5,9 +5,9 @@ using Uiza.Net.Parameters;
 
 namespace UizaTest.MockParameter
 {
-    public static class LiveStreamingMockParameter
+    public static class LiveMockParameter
     {
-        public static CreateLiveParameter CreateLiveStreamingParameter()
+        public static CreateLiveParameter CreateLiveParameter()
         {
             return new CreateLiveParameter()
             {
@@ -20,7 +20,7 @@ namespace UizaTest.MockParameter
             };
         }
 
-        public static UpdateLiveParameter UpdateLiveStreamingParameter()
+        public static UpdateLiveParameter UpdateLiveParameter()
         {
             return new UpdateLiveParameter()
             {
