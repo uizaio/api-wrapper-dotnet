@@ -112,8 +112,8 @@ namespace UizaTest.Services
         [Fact]
         public void ListCategorySuccess()
         {
-            mockService.Setup(_ => _.List(It.IsAny<BaseParameter>())).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.List(new BaseParameter());
+            mockService.Setup(_ => _.List()).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.List();
             Assert.NotNull(result);
         }
 

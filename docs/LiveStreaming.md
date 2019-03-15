@@ -21,12 +21,13 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+var createResult = UizaServices.Live.Create(new CreateLiveParameter()
 {
 	Name = Guid.NewGuid().ToString(),
 	Mode = "push",
+	Description = Guid.NewGuid().ToString(),
 	Encode = EncodeTypes.Encode,
-	Drv = DvrTypes.ActiveFeatureRecord,
+	Dvr = DvrTypes.ActiveFeatureRecord,
 	LinkStream = new List<string>() { "https://playlist.m3u8" },
 	Poster = "//image1.jpeg",
 	Thumbnail = "//image1.jpeg",
@@ -52,8 +53,12 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
-Console.WriteLine(string.Format("Retrieve Live Streaming Success, Id = {0}", retrieveResult.Data.id));
+var retrieveResult = UizaServices.Live.Retrieve(new GetLiveParameter()
+{
+	Id = (string)createResult.Data.id
+}
+);
+Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 ```
 
 ## Update a live event
@@ -70,17 +75,17 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
+var resultUpdate = UizaServices.Live.Update(new UpdateLiveParameter()
 {
 	Id = createResult.Data.id,
 	Name = Guid.NewGuid().ToString(),
 	Mode = "pull",
 	Encode = EncodeTypes.Encode,
-	Drv = DvrTypes.ActiveFeatureRecord,
+	Dvr = DvrTypes.ActiveFeatureRecord,
 	ResourceMode = ResourceModes.Single
 });
 
-Console.WriteLine(string.Format("Update Live Streaming Id = {0} Success", resultUpdate.Data.id));
+Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 ```
 
 ## Start a live feed
@@ -98,8 +103,8 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var startFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
-Console.WriteLine(string.Format("Start Live Feed Success", startFeedResult.Data.id));
+var startLiveFeedResult = UizaServices.Live.StartFeed(new StartFeedParameter() { Id = (string)createResult.Data.id });
+Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
 ```
 
 ## List all recorded files
@@ -116,7 +121,7 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var listResult = UizaServices.Live.ListRecorded();
+var listResult = UizaServices.Live.ListRecorded((string)retrieveResult.Data.id);
 Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
 ```
 API will return a blank array if don't have any Recorded Files and MetaData will be null.
