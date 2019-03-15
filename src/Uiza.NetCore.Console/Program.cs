@@ -5,6 +5,8 @@ using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 using Uiza.Net.UizaHandleException;
+using System.Linq;
+using System.Globalization;
 
 namespace Uiza.NetCore.ConsoleTest
 {
@@ -58,7 +60,7 @@ namespace Uiza.NetCore.ConsoleTest
                     Mode = "push",
                     Description = Guid.NewGuid().ToString(),
                     Encode = EncodeTypes.Encode,
-                   // Dvr = DvrTypes.ActiveFeatureRecord,
+                    // Dvr = DvrTypes.ActiveFeatureRecord,
                     LinkStream = new List<string>() { "https://playlist.m3u8" },
                     Poster = "//image1.jpeg",
                     Thumbnail = "//image1.jpeg",
@@ -283,63 +285,6 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Storage", true);
         }
 
-        private static void TestUser()
-        {
-            LogActivity("User");
-            try
-            {
-                var curentPW = Guid.NewGuid().ToString();
-                var result = UizaServices.User.Create(new CreatUserParameter()
-                {
-                    Status = UserStatus.Active,
-                    UserName = Guid.NewGuid().ToString(),
-                    Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-                    PassWord = curentPW,
-                    FullName = Guid.NewGuid().ToString(),
-                    Avatar = "https://static.uiza.io/uiza_logo_128.png"
-                });
-                Console.WriteLine(string.Format("Create New User Id = {0} Success", result.Data.id));
-
-                var retrieveResult = UizaServices.User.Retrieve((string)result.Data.id);
-                Console.WriteLine(string.Format("Get User Id = {0} Success", retrieveResult.Data.id));
-
-                var listResult = UizaServices.User.List();
-                Console.WriteLine(string.Format("List User Success, total record {0}", listResult.Data.Count));
-
-                var updateResult = UizaServices.User.Update(new UpdateUserParameter()
-                {
-                    Id = (string)result.Data.id,
-                    Status = UserStatus.Active,
-                    UserName = Guid.NewGuid().ToString(),
-                    Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-                    PassWord = Guid.NewGuid().ToString()
-                });
-
-                Console.WriteLine(string.Format("Update User Id = {0} Success", updateResult.Data.id));
-
-                var changePWResult = UizaServices.User.ChangePassword(new ChangePasswordParameter()
-                {
-                    Id = (string)result.Data.id,
-                    NewPassword = Guid.NewGuid().ToString(),
-                    OldPassWord = curentPW,
-                });
-
-                Console.WriteLine(string.Format("Change Password User Id = {0} Success", result.Data.id));
-
-                var deleteResult = UizaServices.User.Delete((string)result.Data.id);
-                Console.WriteLine(string.Format("Delete User Id = {0} Success", result.Data.id));
-
-                var logOutResult = UizaServices.User.Logout();
-                Console.WriteLine("Logout Success");
-            }
-            catch (UizaException ex)
-            {
-                var result = ex.UizaInnerException.Error;
-                Console.WriteLine(ex.Message);
-            }
-            LogActivity("User", true);
-        }
-
         private static void Main(string[] args)
         {
             try
@@ -349,12 +294,11 @@ namespace Uiza.NetCore.ConsoleTest
                     ApiKey = "",
                     AppId = ""
                 });
-                TestEntity();
-                TestCategory();
-                TestStorage();
-                TestLiveStreaming();
+                //TestEntity();
+                //TestCategory();
+                //TestStorage();
+                //TestLiveStreaming();
                 TestCallback();
-                //TestUser();
                 Console.ReadLine();
             }
             catch (UizaException ex)

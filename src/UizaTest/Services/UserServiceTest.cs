@@ -15,25 +15,6 @@ namespace UizaTest.Services
     public class UserServiceTest : UizaTestBase<IUserService>
     {
         [Fact]
-        public void CreateSuccess()
-        {
-            mockService.Setup(_ => _.Create(It.IsAny<CreatUserParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Create(UserMockParamter.CreateUserParameter());
-            Assert.NotNull(result);
-        }
-
-        [Fact]
-        public void CreateFailWithAPIResponse()
-        {
-            foreach (var statusCode in this.StatusCodes)
-            {
-                mockService.Setup(_ => _.Create(It.IsAny<CreatUserParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(UserMockParamter.CreateUserParameter()));
-                Assert.Equal(statusCode, ex.UizaInnerException.Code);
-            }
-        }
-
-        [Fact]
         public void RetriveSuccess()
         {
             mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
@@ -86,25 +67,6 @@ namespace UizaTest.Services
             {
                 mockService.Setup(_ => _.Update(It.IsAny<UpdateUserParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
                 var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(UserMockParamter.UpdateUserParameter()));
-                Assert.Equal(statusCode, ex.UizaInnerException.Code);
-            }
-        }
-
-        [Fact]
-        public void DeleteSuccess()
-        {
-            mockService.Setup(_ => _.Delete(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Delete(Guid.NewGuid().ToString());
-            Assert.NotNull(result);
-        }
-
-        [Fact]
-        public void DeleteFailWithAPIResponse()
-        {
-            foreach (var statusCode in this.StatusCodes)
-            {
-                mockService.Setup(_ => _.Delete(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Delete(Guid.NewGuid().ToString()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }

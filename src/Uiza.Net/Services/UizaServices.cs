@@ -74,18 +74,6 @@ namespace Uiza.Net.Services
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public static IUserService User
-        {
-            get
-            {
-                if (_userService == null)
-                    _userService = new UserServices();
-                return _userService;
-            }
-        }
 
         #endregion PUBLIC PROPERTIES
 
@@ -96,7 +84,6 @@ namespace Uiza.Net.Services
         private static IStorageService _storage;
         private static ICallbackService _callback;
         private static ILiveStreaming _liveStreaming;
-        private static IUserService _userService;
 
         #endregion PRIVATE PROPERTY
     }
