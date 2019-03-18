@@ -377,8 +377,8 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "uap-a2aaa7b2aea746ec89e67ad2f8f9ebbf-fdf5bdca",
-                    ApiBase = "https://apiwrapper.uiza.co/"
+                    ApiKey = "",
+                    ApiBase = ""
                 });
                 //TestEntity();
                 TestCategory();
