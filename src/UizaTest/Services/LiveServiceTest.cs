@@ -12,13 +12,13 @@ namespace UizaTest.Services
     /// <summary>
     ///
     /// </summary>
-    public class LiveStreamingServiceTest : UizaTestBase<ILiveStreaming>
+    public class LiveServiceTest : UizaTestBase<ILiveService>
     {
         [Fact]
         public void CreatSuccess()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateLiveStreamingParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Create(LiveStreamingMockParameter.CreateLiveStreamingParameter());
+            mockService.Setup(_ => _.Create(It.IsAny<CreateLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Create(LiveMockParameter.CreateLiveStreamingParameter());
             Assert.NotNull(result);
         }
 
@@ -27,8 +27,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Create(It.IsAny<CreateLiveStreamingParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(LiveStreamingMockParameter.CreateLiveStreamingParameter()));
+                mockService.Setup(_ => _.Create(It.IsAny<CreateLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(LiveMockParameter.CreateLiveStreamingParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -55,8 +55,8 @@ namespace UizaTest.Services
         [Fact]
         public void UpdateSuccess()
         {
-            mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveStreamingParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Update(LiveStreamingMockParameter.UpdateLiveStreamingParameter());
+            mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Update(LiveMockParameter.UpdateLiveStreamingParameter());
             Assert.NotNull(result);
         }
 
@@ -65,8 +65,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveStreamingParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(LiveStreamingMockParameter.UpdateLiveStreamingParameter()));
+                mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(LiveMockParameter.UpdateLiveStreamingParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }

@@ -15,7 +15,7 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Analytic");
             try
             {
-                var getTotalLine = UizaServices.Analytic.GetTotalLine(new AnalyticTotalLineParameter()
+                var getTotalLine = UizaServices.Analytic.GetTotalLine(new TotalLineParameter()
                 {
                     StartDate = @"2019-02-28 20:00",
                     EndDate = @"2019-03-01 20:00",
@@ -23,7 +23,7 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 Console.WriteLine(string.Format("Get Total Line Success, total record {0}", getTotalLine.Data.Count));
 
-                var getType = UizaServices.Analytic.GetType(new AnalyticTypeParameter()
+                var getType = UizaServices.Analytic.GetType(new TypeParameter()
                 {
                     StartDate = @"2019-01-01",
                     EndDate = @"2019-03-01",
@@ -31,7 +31,7 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 Console.WriteLine(string.Format("Get Type Success, total record {0}", getType.Data.Count));
 
-                var getLine = UizaServices.Analytic.GetLine(new AnalyticLineParameter()
+                var getLine = UizaServices.Analytic.GetLine(new LineParameter()
                 {
                     StartDate = @"2019-01-01",
                     EndDate = @"2019-03-01",
@@ -85,17 +85,17 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Call back", true);
         }
 
-        private static void TestLiveStreaming()
+        private static void TestLive()
         {
             LogActivity("Live Streaming");
             try
             {
-                var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+                var createResult = UizaServices.Live.Create(new CreateLiveParameter()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Mode = "push",
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     LinkStream = new List<string>() { "https://playlist.m3u8" },
                     Poster = "//image1.jpeg",
                     Thumbnail = "//image1.jpeg",
@@ -104,13 +104,13 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
 
-                var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
+                var resultUpdate = UizaServices.Live.Update(new UpdateLiveParameter()
                 {
                     Id = createResult.Data.id,
                     Name = Guid.NewGuid().ToString(),
                     Mode = "pull",
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     ResourceMode = ResourceModes.Single
                 });
 
@@ -380,12 +380,13 @@ namespace Uiza.NetCore.ConsoleTest
                     ApiKey = "",
                     ApiBase = ""
                 });
-                TestEntity();
+                //TestEntity();
                 TestCategory();
-                TestStorage();
-                TestLiveStreaming();
-                TestAnalytic();
-                TestUser();
+                //TestStorage();
+                //TestLive();
+                //TestAnalytic();
+                //TestUser();
+                //TestCallback();
                 Console.ReadLine();
             }
             catch (UizaException ex)

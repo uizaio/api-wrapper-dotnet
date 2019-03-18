@@ -30,7 +30,7 @@ namespace Uiza.Net.Parameters
         /// Order number for category, lower number is higher order
         /// </summary>
         [JsonProperty("orderNumber")]
-        public int OrderNumber { get; set; }
+        public int? OrderNumber { get; set; }
 
         /// <summary>
         /// Small icon for each category

@@ -10,19 +10,19 @@ namespace Uiza.Net.Services
     /// </summary>
     internal class AnalyticService : Service, IAnalyticService
     {
-        public UizaData GetLine(AnalyticLineParameter param)
+        public UizaData GetLine(LineParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ANALYTIC.LINE);
             return this.GetRequest<UizaData>(Constants.ApiAction.ANALYTIC_LINE, param);
         }
 
-        public UizaData GetTotalLine(AnalyticTotalLineParameter param)
+        public UizaData GetTotalLine(TotalLineParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ANALYTIC.TOTAL_LINE);
             return this.GetRequest<UizaData>(Constants.ApiAction.ANALYTIC_TOTAL_LINE, param);
         }
 
-        public UizaData GetType(AnalyticTypeParameter param)
+        public UizaData GetType(TypeParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ANALYTIC.TYPE);
             return this.GetRequest<UizaData>(Constants.ApiAction.ANALYTIC_TYPE, param);
