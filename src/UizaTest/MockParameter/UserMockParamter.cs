@@ -34,7 +34,7 @@ namespace UizaTest.MockParameter
             {
                 NewPassword = Guid.NewGuid().ToString(),
                 OldPassWord = Guid.NewGuid().ToString(),
-                Id = Guid.NewGuid().ToString(),
+                UserId = Guid.NewGuid().ToString(),
             };
         }
     }

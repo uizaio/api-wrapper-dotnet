@@ -5,8 +5,14 @@ namespace Uiza.Net.Parameters
     /// <summary>
     ///
     /// </summary>
-    public class ChangePasswordParameter : RetrieveItemParameter
+    public class ChangePasswordParameter : BaseParameter
     {
+        /// <summary>
+        /// UserId
+        /// </summary>
+        [JsonProperty("userId")]
+        public string UserId { get; set; }
+
         /// <summary>
         /// Current password
         /// </summary>

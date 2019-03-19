@@ -69,8 +69,21 @@ namespace Uiza.Net.Services
             get
             {
                 if (_live == null)
-                    _live = new LiveServices();
+                    _live = new LiveService();
                 return _live;
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static IUserService User
+        {
+            get
+            {
+                if (_user == null)
+                    _user = new UserService();
+                return _user;
             }
         }
 
@@ -84,6 +97,7 @@ namespace Uiza.Net.Services
         private static IStorageService _storage;
         private static ICallbackService _callback;
         private static ILiveService _live;
+        private static IUserService _user;
 
         #endregion PRIVATE PROPERTY
     }
