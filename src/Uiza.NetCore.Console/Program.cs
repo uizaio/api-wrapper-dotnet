@@ -287,6 +287,53 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Storage", true);
         }
 
+        private static void TestUser()
+        {
+            LogActivity("User");
+            try
+            {
+                var listResult = UizaServices.User.List();
+                Console.WriteLine(string.Format("List User Success, total record {0}", listResult.Data.Count));
+
+                if (listResult.Data.Count > 0)
+                {
+                    var user = listResult.Data[0];
+                    var retrieveResult = UizaServices.User.Retrieve((string)user.id);
+                    Console.WriteLine(string.Format("Get User Id = {0} Success", retrieveResult.Data.id));
+
+                    var updateResult = UizaServices.User.Update(new UpdateUserParameter()
+                    {
+                        Id = (string)user.id,
+                        Status = UserStatus.Active,
+                        UserName = Guid.NewGuid().ToString(),
+                        DOB = DateTime.Now,
+                        Avatar = "https://example.avatar.com/user_test.png"
+                    });
+
+                    Console.WriteLine(string.Format("Update User Id = {0} Success", updateResult.Data.id));
+                }
+
+                var changePWResult = UizaServices.User.ChangePassword(new ChangePasswordParameter()
+                {
+                    UserId = "5167cf93-6fcd-454d-80a7-92f1b2d81fd4",
+                    NewPassword = "Huulockfc1",
+                    OldPassWord = "Huulockfc1",
+                });
+
+                Console.WriteLine(string.Format("Change Password User Success"));
+
+                var logOutResult = UizaServices.User.Logout();
+                Console.WriteLine("Logout Success");
+
+            }
+            catch (UizaException ex)
+            {
+                var result = ex.UizaInnerException.Error;
+                Console.WriteLine(ex.Message);
+            }
+            LogActivity("User", true);
+        }
+
         private static void Main(string[] args)
         {
             try
@@ -296,11 +343,12 @@ namespace Uiza.NetCore.ConsoleTest
                     ApiKey = "",
                     AppId = ""
                 });
-                TestEntity();
-                TestCategory();
-                TestStorage();
-                TestCallback();
-                TestLive();
+                //TestEntity();
+                //TestCategory();
+                //TestStorage();
+                //TestCallback();
+                // TestLive();
+                TestUser();
                 Console.ReadLine();
             }
             catch (UizaException ex)
