@@ -13,27 +13,46 @@ Live Channel Minutes counts when the event starts.
 See details [here](https://docs.uiza.io/#create-a-live-event).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
-{
-	Name = Guid.NewGuid().ToString(),
-	Mode = "push",
-	Encode = EncodeTypes.Encode,
-	Drv = DvrTypes.ActiveFeatureRecord,
-	LinkStream = new List<string>() { "https://playlist.m3u8" },
-	Poster = "//image1.jpeg",
-	Thumbnail = "//image1.jpeg",
-	ResourceMode = ResourceModes.Single
-});
+			var result = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+			{
+				Name = Guid.NewGuid().ToString(),
+				Mode = "push",
+				Encode = EncodeTypes.Encode,
+				Drv = DvrTypes.ActiveFeatureRecord,
+				LinkStream = new List<string>() { "https://playlist.m3u8" },
+				Poster = "//image1.jpeg",
+				Thumbnail = "//image1.jpeg",
+				ResourceMode = ResourceModes.Single
+			});
 
-Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", createResult.Data.id));
+			Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 
 ```
 
@@ -44,16 +63,36 @@ You need only provide the unique identifier of event that was returned upon Live
 See details [here](https://docs.uiza.io/#retrieve-a-live-event).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
-Console.WriteLine(string.Format("Retrieve Live Streaming Success, Id = {0}", retrieveResult.Data.id));
+			var result = UizaServices.Live.Retrieve("Live Id");
+			
+			Console.WriteLine(string.Format("Retrieve Live Streaming Success, Id = {0}", retrieveResult.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Update a live event
@@ -62,25 +101,44 @@ Update the specific Live event by edit values of parameters.
 See details [here](https://docs.uiza.io/#update-a-live-event).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
-{
-	Id = createResult.Data.id,
-	Name = Guid.NewGuid().ToString(),
-	Mode = "pull",
-	Encode = EncodeTypes.Encode,
-	Drv = DvrTypes.ActiveFeatureRecord,
-	ResourceMode = ResourceModes.Single
-});
+			var result = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
+			{
+				Id = "Live Id",
+				Name = Guid.NewGuid().ToString(),
+				Mode = "pull",
+				Encode = EncodeTypes.Encode,
+				Drv = DvrTypes.ActiveFeatureRecord,
+				ResourceMode = ResourceModes.Single
+			});
 
-Console.WriteLine(string.Format("Update Live Streaming Id = {0} Success", resultUpdate.Data.id));
+			Console.WriteLine(string.Format("Update Live Streaming Id = {0} Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Start a live feed
@@ -90,16 +148,35 @@ The Live channel minute start count whenever the event start success
 See details [here](https://docs.uiza.io/#start-a-live-feed).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var startFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
-Console.WriteLine(string.Format("Start Live Feed Success", startFeedResult.Data.id));
+			var result = UizaServices.Live.StartFeed("Live Id");
+			Console.WriteLine(string.Format("Start Live Feed Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## List all recorded files
@@ -108,16 +185,35 @@ Retrieves list of recorded file after streamed (only available when your live ev
 See details [here](https://docs.uiza.io/#list-all-recorded-files).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var listResult = UizaServices.Live.ListRecorded();
-Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
+			var result = UizaServices.Live.ListRecorded();
+			Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", result.MetaData != null ? result.MetaData.total : 0));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 API will return a blank array if don't have any Recorded Files and MetaData will be null.
 
@@ -127,16 +223,36 @@ This API use to get a live view status . This view only show when event has been
 See details [here](https://docs.uiza.io/#get-view-of-live-feed).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var getViewResult = UizaServices.Live.GetView((string)createResult.Data.id);
-Console.WriteLine(string.Format("Get View Live Feed Success", getViewResult.Data.id));
+			var result = UizaServices.Live.GetView("Live Id");
+			
+			Console.WriteLine(string.Format("Get View Live Feed Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Stop a live feed
@@ -144,16 +260,36 @@ Stop live event.
 See details [here](https://docs.uiza.io/#stop-a-live-feed).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var stopFeedResult = UizaServices.Live.StopFeed((string)createResult.Data.id);
-Console.WriteLine(string.Format("Stop A Live Feed Success", stopFeedResult.Data.entityId));
+			var result = UizaServices.Live.StopFeed("Live Id");
+			
+			Console.WriteLine(string.Format("Stop A Live Feed Success", result.Data.entityId));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 
@@ -170,8 +306,36 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var convertIntoVODResult = UizaServices.Live.ConvertToVOD((string)createResult.Data.id);
-Console.WriteLine(string.Format("Convert VOD Success", convertIntoVODResult.Data.id));
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
+using Uiza.Net.Services;
+
+class Program
+{
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
+
+			var result = UizaServices.Live.ConvertToVOD("Live Id");
+			
+			Console.WriteLine(string.Format("Convert VOD Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 
@@ -179,13 +343,34 @@ Console.WriteLine(string.Format("Convert VOD Success", convertIntoVODResult.Data
 Delete a recorded file.
 See details [here](https://docs.uiza.io/#delete-a-record-file).
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions	
-{	
-	ApiKey = "your-ApiKey",	
-	ApiBase = "your-workspace-api-domain.uiza.co"	
-});	
-var deleteRecordFileResult = UizaServices.LiveStreaming.Delete((string)createResult.Data.id);	
-Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));
+class Program
+{
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
+
+			var result = UizaServices.LiveStreaming.Delete("Live Id");	
+			
+			Console.WriteLine(string.Format("Delete Live Feed Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```

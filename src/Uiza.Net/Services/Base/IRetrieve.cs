@@ -3,7 +3,7 @@
 namespace Uiza.Net.Services
 {
     /// <summary>
-    ///
+    /// Retrieve Service Interface
     /// </summary>
     /// <typeparam name="R"></typeparam>
     ///  /// <typeparam name="P"></typeparam>
@@ -11,7 +11,7 @@ namespace Uiza.Net.Services
          where R : IUizaResponse
     {
         /// <summary>
-        ///
+        /// Retrieve
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
