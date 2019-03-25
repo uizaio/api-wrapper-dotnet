@@ -6,7 +6,7 @@ using Uiza.Net.Utility;
 namespace Uiza.Net.Services
 {
     /// <summary>
-    ///
+    /// Analytic Service
     /// </summary>
     internal class AnalyticService : Service, IAnalyticService
     {
@@ -15,7 +15,7 @@ namespace Uiza.Net.Services
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ANALYTIC.LINE);
             return this.GetRequest<UizaData>(Constants.ApiAction.ANALYTIC_LINE, param);
         }
-
+       
         public UizaData GetTotalLine(TotalLineParameter param)
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ANALYTIC.TOTAL_LINE);

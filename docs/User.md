@@ -12,24 +12,43 @@ Create an user account for workspace
 See details [here](https://docs.uiza.io/?#create-an-user).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var result = UizaServices.User.Create(new CreatUserParameter()
-{
-	Status = UserStatus.Active,
-	UserName = Guid.NewGuid().ToString(),
-	Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-	PassWord = curentPW,
-	FullName = Guid.NewGuid().ToString(),
-	Avatar = "https://static.uiza.io/uiza_logo_128.png"
-});
-Console.WriteLine(string.Format("Create New User Id = {0} Success", result.Data.id));
+			var result = UizaServices.User.Create(new CreatUserParameter()
+			{
+				Status = UserStatus.Active,
+				UserName = Guid.NewGuid().ToString(),
+				Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
+				PassWord = curentPW,
+				FullName = Guid.NewGuid().ToString(),
+				Avatar = "https://static.uiza.io/uiza_logo_128.png"
+			});
+			Console.WriteLine(string.Format("Create New User Id = {0} Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Retrieve an user
@@ -37,26 +56,36 @@ Retrieves the details of an existing user. You need only supply the unique userI
 See details [here](https://docs.uiza.io/?#retrieve-an-user).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var result = UizaServices.User.Create(new CreatUserParameter()
-{
-	Status = UserStatus.Active,
-	UserName = Guid.NewGuid().ToString(),
-	Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-	PassWord = Guid.NewGuid().ToString();,
-	FullName = Guid.NewGuid().ToString(),
-	Avatar = "https://static.uiza.io/uiza_logo_128.png"
-});
-
-var retrieveResult = UizaServices.User.Retrieve((string)result.Data.id);
-Console.WriteLine(string.Format("Get User Id = {0} Success", retrieveResult.Data.id));
+			var result = UizaServices.User.Retrieve("User Id");
+			
+			Console.WriteLine(string.Format("Get User Id = {0} Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## List all users
@@ -66,16 +95,35 @@ If you use Admin token, you will get all the user. If you use User token, you ca
 See details [here](https://docs.uiza.io/?#list-all-users).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var listResult = UizaServices.User.List();
-Console.WriteLine(string.Format("List User Success, total record {0}", listResult.Data.Count));
+			var result = UizaServices.User.List();
+			Console.WriteLine(string.Format("List User Success, total record {0}", result.Data.Count));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Update an user
@@ -83,34 +131,43 @@ Updates the specified user by setting the values of the parameters passed. Any p
 See details [here](https://docs.uiza.io/?#update-an-user).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var result = UizaServices.User.Create(new CreatUserParameter()
-{
-	Status = UserStatus.Active,
-	UserName = Guid.NewGuid().ToString(),
-	Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-	PassWord = Guid.NewGuid().ToString();,
-	FullName = Guid.NewGuid().ToString(),
-	Avatar = "https://static.uiza.io/uiza_logo_128.png"
-});
+			var result = UizaServices.User.Update(new UpdateUserParameter()
+			{
+				Id = "User Id",
+				Status = UserStatus.Active,
+				UserName = Guid.NewGuid().ToString(),
+				Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
+				PassWord = Guid.NewGuid().ToString()
+			});
 
-var updateResult = UizaServices.User.Update(new UpdateUserParameter()
-{
-	Id = (string)result.Data.id,
-	Status = UserStatus.Active,
-	UserName = Guid.NewGuid().ToString(),
-	Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-	PassWord = Guid.NewGuid().ToString()
-});
-
-Console.WriteLine(string.Format("Update User Id = {0} Success", updateResult.Data.id));
+			Console.WriteLine(string.Format("Update User Id = {0} Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Delete an user
@@ -118,60 +175,78 @@ Permanently deletes an user. It cannot be undone. Also immediately cancels all t
 See details [here](https://docs.uiza.io/?#delete-an-user).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var result = UizaServices.User.Create(new CreatUserParameter()
-{
-	Status = UserStatus.Active,
-	UserName = Guid.NewGuid().ToString(),
-	Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-	PassWord = Guid.NewGuid().ToString();,
-	FullName = Guid.NewGuid().ToString(),
-	Avatar = "https://static.uiza.io/uiza_logo_128.png"
-});
-
-var deleteResult = UizaServices.User.Delete((string)result.Data.id);
-Console.WriteLine(string.Format("Delete User Id = {0} Success", deleteResult.Data.id));
+			var result = UizaServices.User.Delete("User Id");
+			
+			Console.WriteLine(string.Format("Delete User Id = {0} Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
-## Update password
-Update password allows Admin or User update their current password.
+## Change password
+Change password allows Admin or User update their current password.
 See details [here](https://docs.uiza.io/?#update-password).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var curentPW = Guid.NewGuid().ToString();
-var result = UizaServices.User.Create(new CreatUserParameter()
-{
-	Status = UserStatus.Active,
-	UserName = Guid.NewGuid().ToString(),
-	Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-	PassWord = curentPW,
-	FullName = Guid.NewGuid().ToString(),
-	Avatar = "https://static.uiza.io/uiza_logo_128.png"
-});
+			var result = UizaServices.User.ChangePassword(new ChangePasswordParameter()
+			{
+				Id = "User Id",
+				NewPassword = Guid.NewGuid().ToString(),
+				OldPassWord = "curent password",
+			});
 
-var changePWResult = UizaServices.User.ChangePassword(new ChangePasswordParameter()
-{
-	Id = (string)result.Data.id,
-	NewPassword = Guid.NewGuid().ToString(),
-	OldPassWord = curentPW,
-});
-
-Console.WriteLine(string.Format("Change Password User Id = {0} Success", changePWResult.Data.id));
+			Console.WriteLine(string.Format("Change Password User Id = {0} Success", result.Data.id));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Log Out
@@ -179,14 +254,33 @@ This API use to log out an user. After logged out, token will be removed.
 See details [here](https://docs.uiza.io/?#update-password).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var logOutResult = UizaServices.User.Logout();
-Console.WriteLine("Logout Success");
+			var result = UizaServices.User.Logout();
+			Console.WriteLine("Logout Success");
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
