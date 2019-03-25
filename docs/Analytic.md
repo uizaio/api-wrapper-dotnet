@@ -7,21 +7,40 @@ Get data grouped by hour (data refresh every 5 minutes). Track video playback on
 See details [here](https://docs.uiza.io/#total-line).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var getTotalLine = UizaServices.Analytic.GetTotalLine(new AnalyticTotalLineParameter()
-{
-    StartDate = @"2019-02-28 20:00",
-    EndDate = @"2019-03-01 20:00",
-    Metric = MetricType.RebufferCount
-});
-Console.WriteLine(string.Format("Get Total Line Success, total record {0}", getTotalLine.Data.Count));
+			var getTotalLine = UizaServices.Analytic.GetTotalLine(new AnalyticTotalLineParameter()
+			{
+				StartDate = @"2019-02-28 20:00",
+				EndDate = @"2019-03-01 20:00",
+				Metric = MetricType.RebufferCount
+			});
+			Console.WriteLine(string.Format("Get Total Line Success, total record {0}", getTotalLine.Data.Count));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Get Type
@@ -29,21 +48,40 @@ Get data base on 4 type of filter: country, device, title, player
 See details [here](https://docs.uiza.io/#type).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var getType = UizaServices.Analytic.GetType(new AnalyticTypeParameter()
-{
-    StartDate = @"2019-01-01",
-    EndDate = @"2019-03-01",
-    TypeFilter = TypeFilter.Country
-});
-Console.WriteLine(string.Format("Get Type Success, total record {0}", getType.Data.Count));
+			var getType = UizaServices.Analytic.GetType(new AnalyticTypeParameter()
+			{
+				StartDate = @"2019-01-01",
+				EndDate = @"2019-03-01",
+				TypeFilter = TypeFilter.Country
+			});
+			Console.WriteLine(string.Format("Get Type Success, total record {0}", getType.Data.Count));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 
 ## Get Line
@@ -51,20 +89,39 @@ Get data grouped by hour. Get total view in time range. This help you to draw a 
 See details [here](https://docs.uiza.io/#line).
 
 ```Cshard
+using System;
+using Uiza.Net.Configuration;
+using Uiza.Net.Enums;
+using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 
-UizaConfiguration.SetupUiza(new UizaConfigOptions
+class Program
 {
-	ApiKey = "your-ApiKey",
-	ApiBase = "your-workspace-api-domain.uiza.co"
-});
+	static void Main(string[] args)
+	{
+		try
+		{
+			UizaConfiguration.SetupUiza(new UizaConfigOptions
+			{
+				Authorization = "your-ApiKey",
+				WorkspaceApiDomain = "your-workspace-api-domain.uiza.co"
+			});
 
-var getLine = UizaServices.Analytic.GetLine(new AnalyticLineParameter()
-{
-    StartDate = @"2019-01-01",
-    EndDate = @"2019-03-01",
-    Type = LineType.RebufferCount
-});
-Console.WriteLine(string.Format("Get Line Success, total record {0}", getLine.Data.Count));
+			var getLine = UizaServices.Analytic.GetLine(new AnalyticLineParameter()
+			{
+				StartDate = @"2019-01-01",
+				EndDate = @"2019-03-01",
+				Type = LineType.RebufferCount
+			});
+			Console.WriteLine(string.Format("Get Line Success, total record {0}", getLine.Data.Count));
+			Console.ReadLine();
+		}
+		catch (UizaException ex)
+		{              
+			Console.WriteLine(ex.Message);
+			Console.ReadLine();
+		}
+	}
+}
 ```
 

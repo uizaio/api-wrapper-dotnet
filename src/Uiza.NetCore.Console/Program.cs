@@ -102,7 +102,7 @@ namespace Uiza.NetCore.ConsoleTest
                     ResourceMode = ResourceModes.Single
                 });
 
-                Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
+                Console.WriteLine(string.Format("Create New Live Id = {0} Success", createResult.Data.id));
 
                 var resultUpdate = UizaServices.Live.Update(new UpdateLiveParameter()
                 {
@@ -114,10 +114,10 @@ namespace Uiza.NetCore.ConsoleTest
                     ResourceMode = ResourceModes.Single
                 });
 
-                Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
+                Console.WriteLine(string.Format("Update Live Id = {0} Success", resultUpdate.Data.id));
 
                 var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
-                Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
+                Console.WriteLine(string.Format("Get Live Id = {0} Success", retrieveResult.Data.id));
 
                 var listResult = UizaServices.Live.ListRecorded();
                 Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
@@ -170,7 +170,7 @@ namespace Uiza.NetCore.ConsoleTest
                 var retrieveResult = UizaServices.Category.Retrieve((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.Category.List(new BaseParameter());
+                var listResult = UizaServices.Category.List();
                 Console.WriteLine(string.Format("Success Get List Category, total record {0}", listResult.MetaData.result));
 
                 var listMetadata = new List<string>()
@@ -377,16 +377,16 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "",
-                    ApiBase = ""
+                    Authorization = "",
+                    WorkspaceApiDomain = ""
                 });
-                //TestEntity();
+                TestEntity();
                 TestCategory();
-                //TestStorage();
-                //TestLive();
-                //TestAnalytic();
-                //TestUser();
-                //TestCallback();
+                TestStorage();
+                TestLive();
+                TestAnalytic();
+                TestUser();
+                TestCallback();
                 Console.ReadLine();
             }
             catch (UizaException ex)

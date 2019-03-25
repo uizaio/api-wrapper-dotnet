@@ -168,13 +168,13 @@ namespace Uiza.Net.Utility
 #if NET45
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 #endif
-            var apiKey = UizaConfiguration.GetApiKey();
-            if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(UizaConfiguration.ApiBase))
+            var apiKey = UizaConfiguration.GetAuthorization();
+            if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(UizaConfiguration.WorkspaceApiDomain))
                 ThrowConfigurationError();
 
-            var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DEFAULT_API_ROUTE}/{url}".FormatUrl();
+            var apiUrl = $"{UizaConfiguration.WorkspaceApiDomain}/{Constants.DEFAULT_API_ROUTE}/{url}".FormatUrl();
             var request = RenderRequest(method, apiUrl, param);
-            request.Headers.Add("Authorization", UizaConfiguration.GetApiKey());
+            request.Headers.Add("Authorization", UizaConfiguration.GetAuthorization());
 
             return request;
         }

@@ -4,7 +4,7 @@ using Uiza.Net.Response;
 namespace Uiza.Net.Services.Interface
 {
     /// <summary>
-    ///
+    /// Add Service Interface
     /// </summary>
     /// <typeparam name="R"></typeparam>
     /// <typeparam name="P"></typeparam>

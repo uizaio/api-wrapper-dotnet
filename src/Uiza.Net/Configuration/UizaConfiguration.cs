@@ -8,12 +8,12 @@
         /// <summary>
         ///
         /// </summary>
-        private static string apiKey;
+        private static string authorization;
 
         /// <summary>
         ///
         /// </summary>
-        private static string apiBase;
+        private static string workspaceApiDomain;
 
         /// <summary>
         ///
@@ -26,30 +26,30 @@
         /// Get Configuration Api Key
         /// </summary>
         /// <returns></returns>
-        internal static string GetApiKey() => apiKey;
+        internal static string GetAuthorization() => authorization;
 
         /// <summary>
         /// Setup new API key
         /// </summary>
         /// <param name="newApiKey"></param>
-        public static void SetApiKey(string newApiKey) => apiKey = newApiKey;
+        public static void SetAuthorization(string newApiKey) => authorization = newApiKey;
 
         /// <summary>
         ///
         /// </summary>
-        internal static string ApiBase
+        internal static string WorkspaceApiDomain
         {
             get
             {
-                return apiBase;
+                return workspaceApiDomain;
             }
         }
 
         /// <summary>
         /// Setup new Workspace API Domain
         /// </summary>
-        /// <param name="baseUrl"></param>
-        public static void SetApiBase(string baseUrl) => apiBase = baseUrl;
+        /// <param name="workspaceApiDomain"></param>
+        public static void SetWorkspaceApiDomain(string workspaceApiDomain) => UizaConfiguration.workspaceApiDomain = workspaceApiDomain;
 
         /// <summary>
         /// Setup Uiza Enviroment
@@ -57,8 +57,8 @@
         /// <param name="options"></param>
         public static void SetupUiza(UizaConfigOptions options)
         {
-            apiKey = options.ApiKey;
-            apiBase = options.ApiBase;
+            authorization = options.Authorization;
+            workspaceApiDomain = options.WorkspaceApiDomain;
         }
     }
 }

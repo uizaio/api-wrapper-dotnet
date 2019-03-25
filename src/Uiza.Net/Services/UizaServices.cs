@@ -3,14 +3,14 @@
 namespace Uiza.Net.Services
 {
     /// <summary>
-    ///
+    /// Uiza Services
     /// </summary>
     public static class UizaServices
     {
         #region PUBLIC PROPERTIES
 
         /// <summary>
-        ///
+        /// Entity Service
         /// </summary>
         public static IEntityService Entity
         {
@@ -23,7 +23,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        ///
+        /// Category Service
         /// </summary>
         public static ICategoryService Category
         {
@@ -36,7 +36,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        ///
+        /// Storage Service
         /// </summary>
         public static IStorageService Storage
         {
@@ -49,20 +49,20 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        ///
+        /// Callback Service
         /// </summary>
         public static ICallbackService Callback
         {
             get
             {
-                if (_storage == null)
+                if (_callback == null)
                     _callback = new CallbackService();
                 return _callback;
             }
         }
 
         /// <summary>
-        ///
+        /// Live Service
         /// </summary>
         public static ILiveService Live
         {
@@ -75,7 +75,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        ///
+        /// Analytic Service
         /// </summary>
         public static IAnalyticService Analytic
         {
@@ -88,7 +88,7 @@ namespace Uiza.Net.Services
         }
 
         /// <summary>
-        ///
+        /// User Service
         /// </summary>
         public static IUserService User
         {

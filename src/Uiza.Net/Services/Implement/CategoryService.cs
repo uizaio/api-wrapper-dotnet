@@ -57,12 +57,13 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData List(BaseParameter param)
+        public UizaData List()
         {
-            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.LIST);
-            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, new BaseParameter()
+            {
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.LIST)
+            });
         }
 
         /// <summary>
