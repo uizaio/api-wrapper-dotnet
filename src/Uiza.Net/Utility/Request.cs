@@ -168,14 +168,14 @@ namespace Uiza.Net.Utility
 #if NET45
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 #endif
-            var apiKey = UizaConfiguration.GetApiKey();
-            if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(UizaConfiguration.ApiBase))
+            var authorization = UizaConfiguration.GetAuthorization();
+            if (string.IsNullOrWhiteSpace(authorization))
                 ThrowConfigurationError();
 
             var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DEFAULT_API_ROUTE}/{url}".FormatUrl();
 
             var request = RenderRequest(method, apiUrl, param);
-            request.Headers.Add("Authorization", UizaConfiguration.GetApiKey());
+            request.Headers.Add("Authorization", UizaConfiguration.GetAuthorization());
 
             return request;
         }

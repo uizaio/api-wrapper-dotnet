@@ -340,14 +340,14 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "",
-                    AppId = ""
+                    Authorization = "uap-b2a3e6307dcf421a8a455825c01de914-3ada3aa3",
+                    AppId = "b2a3e6307dcf421a8a455825c01de914"
                 });
                 //TestEntity();
                 //TestCategory();
                 //TestStorage();
                 //TestCallback();
-                // TestLive();
+                //TestLive();
                 TestUser();
                 Console.ReadLine();
             }

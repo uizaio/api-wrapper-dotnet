@@ -8,7 +8,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public string ApiKey { get; set; }
+        public string Authorization { get; set; }
 
         /// <summary>
         /// 
