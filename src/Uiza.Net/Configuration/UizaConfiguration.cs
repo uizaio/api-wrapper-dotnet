@@ -8,7 +8,7 @@
         /// <summary>
         ///
         /// </summary>
-        private static string apiKey;
+        private static string authorization;
 
         /// <summary>
         ///
@@ -26,14 +26,14 @@
         /// Get Configuration Api Key
         /// </summary>
         /// <returns></returns>
-        internal static string GetApiKey() => apiKey;
+        internal static string GetAuthorization() => authorization;
 
 
         /// <summary>
         /// Setup new API key
         /// </summary>
-        /// <param name="newApiKey"></param>
-        public static void SetApiKey(string newApiKey) => apiKey = newApiKey;
+        /// <param name="newAuthorization"></param>
+        public static void SetAuthorization(string newAuthorization) => authorization = newAuthorization;
 
         /// <summary>
         ///
@@ -45,7 +45,6 @@
                 return Constants.DEFAULT_DOMAIN;
             }
         }
-
 
         internal static string AppId
         {
@@ -67,7 +66,7 @@
         /// <param name="options"></param>
         public static void SetupUiza(UizaConfigOptions options)
         {
-            apiKey = options.ApiKey;
+            authorization = options.Authorization;
             appId = options.AppId;
         }
     }
