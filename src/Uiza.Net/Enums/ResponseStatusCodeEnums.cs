@@ -1,4 +1,4 @@
-﻿namespace Uiza.Net.Enum
+﻿namespace Uiza.Net.Enums
 {
     /// <summary>
     ///

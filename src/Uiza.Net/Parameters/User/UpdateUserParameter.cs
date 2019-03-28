@@ -18,32 +18,8 @@ namespace Uiza.Net.Parameters
         /// <summary>
         /// Username of account (used for login instead of email)
         /// </summary>
-        [JsonProperty("userName")]
+        [JsonProperty("name")]
         public string UserName { get; set; }
-
-        /// <summary>
-        /// Email (used for login instead of username)
-        /// </summary>
-        [JsonProperty("email")]
-        public string Email { get; set; }
-
-        /// <summary>
-        /// Password (from A to x , 6 to 25 characters)
-        /// </summary>
-        [JsonProperty("password")]
-        public string PassWord { get; set; }
-
-        /// <summary>
-        /// Link of avatar ( suggest 300x300)
-        /// </summary>
-        [JsonProperty("avatar")]
-        public string Avatar { get; set; }
-
-        /// <summary>
-        /// Full name of user
-        /// </summary>
-        [JsonProperty("fullName")]
-        public string FullName { get; set; }
 
         /// <summary>
         /// Date of birth (MM/DD/YYYY)
@@ -52,15 +28,11 @@ namespace Uiza.Net.Parameters
         public DateTime DOB { get; set; }
 
         /// <summary>
-        /// Gender ( 0 = Male, 1 = Female)
+        /// Link of avatar ( suggest 300x300)
         /// </summary>
-        [JsonProperty("gender")]
-        public GenderTypes Gender { get; set; }
+        [JsonProperty("avatar")]
+        public string Avatar { get; set; }
 
-        /// <summary>
-        /// Set this account isAdmin or not (0 = Yes, 1 = No)
-        /// </summary>
-        [JsonProperty("isAdmin")]
-        public int IsAdmin { get; set; }
+      
     }
 }

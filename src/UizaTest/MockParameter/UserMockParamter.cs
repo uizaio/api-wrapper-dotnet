@@ -25,8 +25,6 @@ namespace UizaTest.MockParameter
             {
                 Status = UserStatus.Active,
                 UserName = Guid.NewGuid().ToString(),
-                Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-                PassWord = Guid.NewGuid().ToString()
             };
         }
 
@@ -36,7 +34,7 @@ namespace UizaTest.MockParameter
             {
                 NewPassword = Guid.NewGuid().ToString(),
                 OldPassWord = Guid.NewGuid().ToString(),
-                Id = Guid.NewGuid().ToString(),
+                UserId = Guid.NewGuid().ToString(),
             };
         }
     }

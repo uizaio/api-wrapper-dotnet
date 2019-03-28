@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uiza.Net.Configuration;
-using Uiza.Net.Enum;
+using Uiza.Net.Enums;
+using Uiza.Net.Extension;
 using Uiza.Net.Parameters;
 using Uiza.Net.UizaHandleException;
 
@@ -167,25 +168,31 @@ namespace Uiza.Net.Utility
 #if NET45
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 #endif
-            var apiKey = UizaConfiguration.GetApiKey();
-            if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(UizaConfiguration.ApiBase))
-                throw new UizaException("Validation Errors", new UizaExceptionResponse()
-                {
-                    Code = (int)ResponseStatusCode.Unauthorized,
-                    Data = new ErrorData()
-                    {
-                        Field = "Configuration",
-                        Message = "Please Setup Uiza Configuration",
-                        Type = "Configuration"
-                    },
-                    DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.AUTHENTICATION)
-                });
+            var authorization = UizaConfiguration.GetAuthorization();
+            if (string.IsNullOrWhiteSpace(authorization))
+                ThrowConfigurationError();
 
-            var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DEFAULT_API_ROUTE}/{url}";
+            var apiUrl = $"{UizaConfiguration.ApiBase}/{Constants.DEFAULT_API_ROUTE}/{url}".FormatUrl();
+
             var request = RenderRequest(method, apiUrl, param);
-            request.Headers.Add("Authorization", UizaConfiguration.GetApiKey());
+            request.Headers.Add("Authorization", UizaConfiguration.GetAuthorization());
 
             return request;
+        }
+
+        private static void ThrowConfigurationError()
+        {
+            throw new UizaException("Validation Errors", new UizaExceptionResponse()
+            {
+                Code = (int)ResponseStatusCode.Unauthorized,
+                Data = new ErrorData()
+                {
+                    Field = "Configuration",
+                    Message = "Please Setup Uiza Configuration",
+                    Type = "Configuration"
+                },
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.AUTHENTICATION)
+            });
         }
 
         /// <summary>
@@ -198,19 +205,15 @@ namespace Uiza.Net.Utility
         private static HttpRequestMessage RenderRequest(HttpMethod method, string url, BaseParameter param)
         {
             param = param ?? new BaseParameter();
-            //var errors = param.GetValidationErrors();
-            //if (errors.Any())
-            //    throw HandleUizaValidationException(errors);
 
-            var serialzeObject = JsonConvert.SerializeObject(param);
+            var serialzeObject = JsonConvert.SerializeObject(param, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateFormatString = "yyyy-MM-dd" });
 
             if (method != HttpMethod.Post && method != HttpMethod.Put && method != HttpMethod.Delete)
             {
                 var listParam = JsonConvert.DeserializeObject<Dictionary<string, string>>(serialzeObject);
                 foreach (var item in listParam)
                 {
-                    if (!string.IsNullOrWhiteSpace(item.Value))
-                        ApplyParameterToRequestString(ref url, item.Key, item.Value);
+                    ApplyParameterToRequestString(ref url, item.Key, item.Value);
                 }
 
                 foreach (var item in param.ExtraParams)

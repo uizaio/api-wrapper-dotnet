@@ -12,13 +12,13 @@ namespace UizaTest.Services
     /// <summary>
     ///
     /// </summary>
-    public class LiveStreamingServiceTest : UizaTestBase<ILiveStreaming>
+    public class LiveServiceTest : UizaTestBase<ILiveService>
     {
         [Fact]
         public void CreatSuccess()
         {
-            mockService.Setup(_ => _.Create(It.IsAny<CreateLiveStreamingParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Create(LiveStreamingMockParameter.CreateLiveStreamingParameter());
+            mockService.Setup(_ => _.Create(It.IsAny<CreateLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Create(LiveMockParameter.CreateLiveParameter());
             Assert.NotNull(result);
         }
 
@@ -27,8 +27,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Create(It.IsAny<CreateLiveStreamingParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(LiveStreamingMockParameter.CreateLiveStreamingParameter()));
+                mockService.Setup(_ => _.Create(It.IsAny<CreateLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Create(LiveMockParameter.CreateLiveParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -36,8 +36,8 @@ namespace UizaTest.Services
         [Fact]
         public void RetrieveSuccess()
         {
-            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Retrieve(Guid.NewGuid().ToString());
+            mockService.Setup(_ => _.Retrieve(It.IsAny<GetLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Retrieve(new GetLiveParameter());
             Assert.NotNull(result);
         }
 
@@ -46,8 +46,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(Guid.NewGuid().ToString()));
+                mockService.Setup(_ => _.Retrieve(It.IsAny<GetLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(new GetLiveParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -55,8 +55,8 @@ namespace UizaTest.Services
         [Fact]
         public void UpdateSuccess()
         {
-            mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveStreamingParameter>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Update(LiveStreamingMockParameter.UpdateLiveStreamingParameter());
+            mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Update(LiveMockParameter.UpdateLiveParameter());
             Assert.NotNull(result);
         }
 
@@ -65,8 +65,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveStreamingParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(LiveStreamingMockParameter.UpdateLiveStreamingParameter()));
+                mockService.Setup(_ => _.Update(It.IsAny<UpdateLiveParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Update(LiveMockParameter.UpdateLiveParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -74,8 +74,8 @@ namespace UizaTest.Services
         [Fact]
         public void StartSuccess()
         {
-            mockService.Setup(_ => _.StartFeed(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.StartFeed(Guid.NewGuid().ToString());
+            mockService.Setup(_ => _.StartFeed(It.IsAny<StartFeedParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.StartFeed(new StartFeedParameter());
             Assert.NotNull(result);
         }
 
@@ -84,8 +84,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.StartFeed(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.StartFeed(Guid.NewGuid().ToString()));
+                mockService.Setup(_ => _.StartFeed(It.IsAny<StartFeedParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.StartFeed(new StartFeedParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -131,8 +131,8 @@ namespace UizaTest.Services
         [Fact]
         public void ListSuccess()
         {
-            mockService.Setup(_ => _.ListRecorded()).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.ListRecorded();
+            mockService.Setup(_ => _.ListRecorded(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.ListRecorded(Guid.NewGuid().ToString());
             Assert.NotNull(result);
         }
 
@@ -141,8 +141,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.ListRecorded()).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.ListRecorded());
+                mockService.Setup(_ => _.ListRecorded(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.ListRecorded(Guid.NewGuid().ToString()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }

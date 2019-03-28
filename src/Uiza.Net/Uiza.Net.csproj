@@ -3,8 +3,8 @@
   <PropertyGroup>
     <Description>Wrapper API SDK</Description>
     <AssemblyTitle>Uiza.net</AssemblyTitle>
-    <VersionPrefix>1.1.0</VersionPrefix>
-    <Version>1.1.0</Version>
+    <VersionPrefix>1.2.0</VersionPrefix>
+    <Version>1.2.0</Version>
     <Authors>Uiza</Authors>
     <TargetFrameworks>netstandard1.6;netstandard2.0;net45</TargetFrameworks>
     <AssemblyName>Uiza.net</AssemblyName>

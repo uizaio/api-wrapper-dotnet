@@ -38,7 +38,7 @@ In your application initialization, set your API key (only once once during star
 UizaConfiguration.SetupUiza(new UizaConfigOptions
 {
 	ApiKey = "Your api key here",
-	ApiBase = "Work Space"
+	AppId = "Your AppId"
 });
 ```
 
@@ -335,7 +335,7 @@ var result = UizaServices.Storage.Add(new AddStorageParameter()
 Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
 ```
 
-## Live Streaming
+## Live
 These APIs used to create and manage live streaming event.
 * When a Live is not start : it's named as `Event`.
 * When have an `Event` , you can start it : it's named as `Feed`.
@@ -349,22 +349,21 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+ var result = UizaServices.Storage.Add(new AddStorageParameter()
 {
-	Name = Guid.NewGuid().ToString(),
-	Mode = "push",
-	Encode = EncodeTypes.Encode,
-	Drv = DvrTypes.ActiveFeatureRecord,
-	LinkStream = new List<string>() { "https://playlist.m3u8" },
-	Poster = "//image1.jpeg",
-	Thumbnail = "//image1.jpeg",
-	ResourceMode = ResourceModes.Single
+	Name = "FTP Uiza",
+	Host = "ftp-example.uiza.io",
+	Description = "FTP of Uiza, use for transcode",
+	StorageType = StorageInputTypes.Ftp,
+	UserName = "uiza",
+	Password = "=59x@LPsd+w7qW",
+	Port = 21
 });
 
-Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", createResult.Data.id));
+Console.WriteLine(string.Format("Create Live Streaming Success New Id = {0}", result.Data.id));
 ```
 
-See details [here](docs/LiveStreaming.md).
+See details [here](docs/Live.md).
 
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
@@ -378,8 +377,13 @@ UizaConfiguration.SetupUiza(new UizaConfigOptions
 	ApiBase = "your-workspace-api-domain.uiza.co"
 });
 
-var retrieveResult = UizaServices.Callback.Retrieve((string)createResult.Data.id);
-Console.WriteLine(string.Format("Get Callback Id = {0} Success", retrieveResult.Data.id));
+var createResult = UizaServices.Callback.Create(new CreateCallbackParameter()
+{
+	Url = "https://callback-url.uiza.co",
+	Method = CallbackMethodTypes.Post,
+});
+
+Console.WriteLine(string.Format("Create New Callback Id = {0} Success", createResult.Data.id));
 ```
 
 See details [here](docs/Callback.md).

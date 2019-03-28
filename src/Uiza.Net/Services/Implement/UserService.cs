@@ -5,14 +5,8 @@ using Uiza.Net.Utility;
 
 namespace Uiza.Net.Services
 {
-    internal class UserServices : Service, IUserService
+    internal class UserService : Service, IUserService
     {
-        public UizaData Create(CreatUserParameter param)
-        {
-            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.USER.CREATE);
-            return this.PostRequest<UizaData>(Constants.ApiAction.USER, param);
-        }
-
         public UizaData Retrieve(string userId)
         {
             return this.GetRequest<UizaData>(Constants.ApiAction.USER, new RetrieveItemParameter()
@@ -26,6 +20,7 @@ namespace Uiza.Net.Services
         {
             return this.GetRequest<UizaData>(Constants.ApiAction.USER, new RetrieveItemParameter()
             {
+                Id = "",
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.USER.RETRIEVE)
             });
         }
@@ -34,15 +29,6 @@ namespace Uiza.Net.Services
         {
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.USER.UPDATE);
             return this.PutRequest<UizaData>(Constants.ApiAction.USER, param);
-        }
-
-        public UizaData Delete(string userId)
-        {
-            return this.DeleteRequest<UizaData>(Constants.ApiAction.USER, new RetrieveItemParameter()
-            {
-                Id = userId,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.USER.DELETE)
-            });
         }
 
         public UizaData ChangePassword(ChangePasswordParameter param)

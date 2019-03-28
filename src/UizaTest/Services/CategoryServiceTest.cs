@@ -36,8 +36,8 @@ namespace UizaTest.Services
         [Fact]
         public void RetrieveCategorySuccess()
         {
-            mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Returns(BaseMockResponse.SuccessResponse());
-            var result = mockService.Object.Retrieve(Guid.NewGuid().ToString());
+            mockService.Setup(_ => _.Retrieve(It.IsAny<RetriveCategoryParameter>())).Returns(BaseMockResponse.SuccessResponse());
+            var result = mockService.Object.Retrieve(new RetriveCategoryParameter());
             Assert.NotNull(result);
         }
 
@@ -46,8 +46,8 @@ namespace UizaTest.Services
         {
             foreach (var statusCode in this.StatusCodes)
             {
-                mockService.Setup(_ => _.Retrieve(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(""));
+                mockService.Setup(_ => _.Retrieve(It.IsAny<RetriveCategoryParameter>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Retrieve(new RetriveCategoryParameter()));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -112,8 +112,8 @@ namespace UizaTest.Services
         [Fact]
         public void ListCategorySuccess()
         {
-            mockService.Setup(_ => _.List(It.IsAny<BaseParameter>())).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.List(new BaseParameter());
+            mockService.Setup(_ => _.List()).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.List();
             Assert.NotNull(result);
         }
 

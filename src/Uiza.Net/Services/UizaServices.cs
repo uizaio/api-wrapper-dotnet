@@ -55,7 +55,7 @@ namespace Uiza.Net.Services
         {
             get
             {
-                if (_storage == null)
+                if (_callback == null)
                     _callback = new CallbackService();
                 return _callback;
             }
@@ -64,26 +64,13 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        public static ILiveStreaming Live
+        public static ILiveService Live
         {
             get
             {
-                if (_liveStreaming == null)
-                    _liveStreaming = new LiveStreamingServices();
-                return _liveStreaming;
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static IAnalyticService Analytic
-        {
-            get
-            {
-                if (_analytic == null)
-                    _analytic = new AnalyticService();
-                return _analytic;
+                if (_live == null)
+                    _live = new LiveService();
+                return _live;
             }
         }
 
@@ -94,11 +81,12 @@ namespace Uiza.Net.Services
         {
             get
             {
-                if (_userService == null)
-                    _userService = new UserServices();
-                return _userService;
+                if (_user == null)
+                    _user = new UserService();
+                return _user;
             }
         }
+
 
         #endregion PUBLIC PROPERTIES
 
@@ -108,9 +96,8 @@ namespace Uiza.Net.Services
         private static ICategoryService _category;
         private static IStorageService _storage;
         private static ICallbackService _callback;
-        private static ILiveStreaming _liveStreaming;
-        private static IAnalyticService _analytic;
-        private static IUserService _userService;
+        private static ILiveService _live;
+        private static IUserService _user;
 
         #endregion PRIVATE PROPERTY
     }

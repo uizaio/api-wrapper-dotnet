@@ -73,4 +73,47 @@ namespace Uiza.Net.Enums
         [EnumMember(Value = "facebook")]
         FaceBook,
     }
+
+    /// <summary>
+    /// type of social (youtube/facebook).
+    /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum LiveStatus
+    {
+        /// <summary>
+        ///  type of social youtube
+        /// </summary>
+        [EnumMember(Value = "init")]
+        Init,
+
+        /// <summary>
+        ///  type of social youtube
+        /// </summary>
+        [EnumMember(Value = "start")]
+        Start,
+
+        /// <summary>
+        ///  type of social youtube
+        /// </summary>
+        [EnumMember(Value = "stop")]
+        Stop,
+
+        /// <summary>
+        ///  type of social youtube
+        /// </summary>
+        [EnumMember(Value = "error")]
+        Error,
+
+        /// <summary>
+        ///  type of social youtube
+        /// </summary>
+        [EnumMember(Value = "in-process")]
+        InProcess,
+
+        /// <summary>
+        ///  type of social youtube
+        /// </summary>
+        [EnumMember(Value = "not-streaming")]
+        NotStreaming,
+    }
 }

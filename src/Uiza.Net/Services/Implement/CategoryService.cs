@@ -57,26 +57,23 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="param"></param>
         /// <returns></returns>
-        public UizaData List(BaseParameter param)
+        public UizaData List()
         {
-            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.LIST);
-            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, new BaseParameter() {
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.LIST)
+            });
         }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="categoryId"></param>
+        /// <param name="parameter"></param>
         /// <returns></returns>
-        public UizaData Retrieve(string categoryId)
+        public UizaData Retrieve(RetriveCategoryParameter parameter)
         {
-            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, new RetrieveItemParameter()
-            {
-                Id = categoryId,
-                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.RETRIEVE)
-            });
+            parameter.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.CATEGORY.RETRIEVE);
+            return this.GetRequest<UizaData>(Constants.ApiAction.CATEGORY, parameter);
         }
 
         /// <summary>

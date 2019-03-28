@@ -5,49 +5,13 @@ using Uiza.Net.Enums;
 using Uiza.Net.Parameters;
 using Uiza.Net.Services;
 using Uiza.Net.UizaHandleException;
+using System.Linq;
+using System.Globalization;
 
 namespace Uiza.NetCore.ConsoleTest
 {
     internal class Program
     {
-        private static void TestAnalytic()
-        {
-            LogActivity("Analytic");
-            try
-            {
-                var getTotalLine = UizaServices.Analytic.GetTotalLine(new AnalyticTotalLineParameter()
-                {
-                    StartDate = @"2019-02-28 20:00",
-                    EndDate = @"2019-03-01 20:00",
-                    Metric = MetricType.RebufferCount
-                });
-                Console.WriteLine(string.Format("Get Total Line Success, total record {0}", getTotalLine.Data.Count));
-
-                var getType = UizaServices.Analytic.GetType(new AnalyticTypeParameter()
-                {
-                    StartDate = @"2019-01-01",
-                    EndDate = @"2019-03-01",
-                    TypeFilter = TypeFilter.Country
-                });
-                Console.WriteLine(string.Format("Get Type Success, total record {0}", getType.Data.Count));
-
-                var getLine = UizaServices.Analytic.GetLine(new AnalyticLineParameter()
-                {
-                    StartDate = @"2019-01-01",
-                    EndDate = @"2019-03-01",
-                    Type = LineType.RebufferCount
-                });
-                Console.WriteLine(string.Format("Get Line Success, total record {0}", getLine.Data.Count));
-            }
-            catch (UizaException ex)
-            {
-                var result = ex.UizaInnerException.Error;
-                Console.WriteLine(ex.Message);
-            }
-
-            LogActivity("Analytic", true);
-        }
-
         private static void TestCallback()
         {
             LogActivity("Call back");
@@ -85,17 +49,18 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("Call back", true);
         }
 
-        private static void TestLiveStreaming()
+        private static void TestLive()
         {
             LogActivity("Live Streaming");
             try
             {
-                var createResult = UizaServices.Live.Create(new CreateLiveStreamingParameter()
+                var createResult = UizaServices.Live.Create(new CreateLiveParameter()
                 {
                     Name = Guid.NewGuid().ToString(),
                     Mode = "push",
+                    Description = Guid.NewGuid().ToString(),
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     LinkStream = new List<string>() { "https://playlist.m3u8" },
                     Poster = "//image1.jpeg",
                     Thumbnail = "//image1.jpeg",
@@ -104,25 +69,26 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Create New Category Id = {0} Success", createResult.Data.id));
 
-                var resultUpdate = UizaServices.Live.Update(new UpdateLiveStreamingParameter()
+                var resultUpdate = UizaServices.Live.Update(new UpdateLiveParameter()
                 {
                     Id = createResult.Data.id,
                     Name = Guid.NewGuid().ToString(),
                     Mode = "pull",
                     Encode = EncodeTypes.Encode,
-                    Drv = DvrTypes.ActiveFeatureRecord,
+                    Dvr = DvrTypes.ActiveFeatureRecord,
                     ResourceMode = ResourceModes.Single
                 });
 
                 Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 
-                var retrieveResult = UizaServices.Live.Retrieve((string)createResult.Data.id);
+                var retrieveResult = UizaServices.Live.Retrieve(new GetLiveParameter()
+                {
+                    Id = (string)createResult.Data.id
+                }
+                );
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.Live.ListRecorded();
-                Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
-
-                var startLiveFeedResult = UizaServices.Live.StartFeed((string)createResult.Data.id);
+                var startLiveFeedResult = UizaServices.Live.StartFeed(new StartFeedParameter() { Id = (string)createResult.Data.id });
                 Console.WriteLine(string.Format("Start Live Feed Success", retrieveResult.Data.id));
 
                 var getViewOfLiveFeedResult = UizaServices.Live.GetView((string)createResult.Data.id);
@@ -136,6 +102,9 @@ namespace Uiza.NetCore.ConsoleTest
 
                 var deleteRecordFileResult = UizaServices.Live.Delete((string)createResult.Data.id);
                 Console.WriteLine(string.Format("Delete Live Feed Success", deleteRecordFileResult.Data.id));
+
+                var listResult = UizaServices.Live.ListRecorded((string)retrieveResult.Data.id);
+                Console.WriteLine(string.Format("Success Get List All Recorded Files, total record {0}", listResult.MetaData != null ? listResult.MetaData.total : 0));
             }
             catch (UizaException ex)
             {
@@ -167,18 +136,21 @@ namespace Uiza.NetCore.ConsoleTest
 
                 Console.WriteLine(string.Format("Update Category Id = {0} Success", resultUpdate.Data.id));
 
-                var retrieveResult = UizaServices.Category.Retrieve((string)createResult.Data.id);
+                var retrieveResult = UizaServices.Category.Retrieve(new RetriveCategoryParameter()
+                {
+                    Id = (string)createResult.Data.id,
+                });
                 Console.WriteLine(string.Format("Get Category Id = {0} Success", retrieveResult.Data.id));
 
-                var listResult = UizaServices.Category.List(new BaseParameter());
+                var listResult = UizaServices.Category.List();
                 Console.WriteLine(string.Format("Success Get List Category, total record {0}", listResult.MetaData.result));
 
                 var listMetadata = new List<string>()
-                    {
-                        Guid.NewGuid().ToString(),
-                        Guid.NewGuid().ToString(),
-                        Guid.NewGuid().ToString(),
-                    };
+                {
+                    Guid.NewGuid().ToString(),
+                    Guid.NewGuid().ToString(),
+                    Guid.NewGuid().ToString(),
+                };
 
                 var entity = UizaServices.Entity.Create(new CreateEntityParameter()
                 {
@@ -224,17 +196,17 @@ namespace Uiza.NetCore.ConsoleTest
                 {
                     Name = Guid.NewGuid().ToString(),
                     InputType = EntityInputTypes.S3Uiza,
-                    URL = ""
+                    URL = "https://www.youtube.com/watch?v=FjHGZj2IjBk"
                 });
-                Console.WriteLine(string.Format("Create New Entity Id = {0} Success", result.Data.id));
+                Console.WriteLine(string.Format("Create New Entity Success", result.Data.id));
 
                 var getResultRetrieveCategory = UizaServices.Entity.Retrieve((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Entity Id = {0} Success", getResultRetrieveCategory.Data.id));
 
-                var getResultRetrieveCategoryList = UizaServices.Entity.List(new RetrieveListEntitiesParameter() { publishToCdn = EntityPublishStatus.Success });
+                var getResultRetrieveCategoryList = UizaServices.Entity.List();
                 Console.WriteLine(string.Format("Success Get EntitiesList, total record {0}", getResultRetrieveCategoryList.MetaData.result));
 
-                var resultUpdateCategory = UizaServices.Entity.Update(new UpdateEntityParameter()
+                var resultUpdate = UizaServices.Entity.Update(new UpdateEntityParameter()
                 {
                     Id = result.Data.id,
                     Name = "Sample update",
@@ -244,6 +216,8 @@ namespace Uiza.NetCore.ConsoleTest
                     Thumbnail = "/example.com/updateThumbnail"
                 });
 
+                Console.WriteLine(string.Format("Update Entity Success", resultUpdate.Data.id));
+
                 var getAwsUploadKey = UizaServices.Entity.GetAWSUploadKey();
                 Console.WriteLine(string.Format("Get AWS Upload Key Success : temp_access_id = {0} ", getAwsUploadKey.Data.temp_access_id));
 
@@ -252,9 +226,6 @@ namespace Uiza.NetCore.ConsoleTest
 
                 var getStatusPublish = UizaServices.Entity.GetStatusPublish((string)result.Data.id);
                 Console.WriteLine(string.Format("Get Status Publish Success : temp_access_id = {0} ", getStatusPublish.Data.status));
-
-                var searchEntity = UizaServices.Entity.Search("Sample");
-                Console.WriteLine(string.Format("Search Success, total record {0}", searchEntity.Data.Count));
 
                 var deleteEntity = UizaServices.Entity.Delete((string)result.Data.id);
                 Console.WriteLine(string.Format("Delete Entity Id = {0} Success", deleteEntity.Data.id));
@@ -285,7 +256,11 @@ namespace Uiza.NetCore.ConsoleTest
                 });
                 Console.WriteLine(string.Format("Add New Storage Id = {0} Success", result.Data.id));
 
-                var getResultRetrieveStorage = UizaServices.Storage.Retrieve((string)result.Data.id);
+                var getResultRetrieveStorage = UizaServices.Storage.Retrieve(new RetriveStorageParameter()
+                {
+                    Id = (string)result.Data.id
+                });
+
                 Console.WriteLine(string.Format("Get Storage Id = {0} Success", getResultRetrieveStorage.Data.id));
 
                 var resultUpdateStorage = UizaServices.Storage.Update(new UpdateStorageParameter()
@@ -297,8 +272,6 @@ namespace Uiza.NetCore.ConsoleTest
                     StorageType = StorageInputTypes.S3,
                     UserName = "uizaUpdate",
                     Password = "=59x@LPsd+w7qW",
-                    AwsAccessKey = "ASIAV*******GPHO2DTZ",
-                    AwsSecretKey = "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc",
                     Port = 22
                 });
                 Console.WriteLine(string.Format("Update Storage Id = {0} Success", resultUpdateStorage.Data.id));
@@ -319,49 +292,39 @@ namespace Uiza.NetCore.ConsoleTest
             LogActivity("User");
             try
             {
-                var curentPW = Guid.NewGuid().ToString();
-                var result = UizaServices.User.Create(new CreatUserParameter()
-                {
-                    Status = UserStatus.Active,
-                    UserName = Guid.NewGuid().ToString(),
-                    Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-                    PassWord = curentPW,
-                    FullName = Guid.NewGuid().ToString(),
-                    Avatar = "https://static.uiza.io/uiza_logo_128.png"
-                });
-                Console.WriteLine(string.Format("Create New User Id = {0} Success", result.Data.id));
-
-                var retrieveResult = UizaServices.User.Retrieve((string)result.Data.id);
-                Console.WriteLine(string.Format("Get User Id = {0} Success", retrieveResult.Data.id));
-
                 var listResult = UizaServices.User.List();
                 Console.WriteLine(string.Format("List User Success, total record {0}", listResult.Data.Count));
 
-                var updateResult = UizaServices.User.Update(new UpdateUserParameter()
+                if (listResult.Data.Count > 0)
                 {
-                    Id = (string)result.Data.id,
-                    Status = UserStatus.Active,
-                    UserName = Guid.NewGuid().ToString(),
-                    Email = string.Format("{0}@gmail.com", Guid.NewGuid().ToString()),
-                    PassWord = Guid.NewGuid().ToString()
-                });
+                    var user = listResult.Data[0];
+                    var retrieveResult = UizaServices.User.Retrieve((string)user.id);
+                    Console.WriteLine(string.Format("Get User Id = {0} Success", retrieveResult.Data.id));
 
-                Console.WriteLine(string.Format("Update User Id = {0} Success", updateResult.Data.id));
+                    var updateResult = UizaServices.User.Update(new UpdateUserParameter()
+                    {
+                        Id = (string)user.id,
+                        Status = UserStatus.Active,
+                        UserName = Guid.NewGuid().ToString(),
+                        DOB = DateTime.Now,
+                        Avatar = "https://example.avatar.com/user_test.png"
+                    });
+
+                    Console.WriteLine(string.Format("Update User Id = {0} Success", updateResult.Data.id));
+                }
 
                 var changePWResult = UizaServices.User.ChangePassword(new ChangePasswordParameter()
                 {
-                    Id = (string)result.Data.id,
-                    NewPassword = Guid.NewGuid().ToString(),
-                    OldPassWord = curentPW,
+                    UserId = "5167cf93-6fcd-454d-80a7-92f1b2d81fd4",
+                    NewPassword = "Huulockfc1",
+                    OldPassWord = "Huulockfc1",
                 });
 
-                Console.WriteLine(string.Format("Change Password User Id = {0} Success", result.Data.id));
-
-                var deleteResult = UizaServices.User.Delete((string)result.Data.id);
-                Console.WriteLine(string.Format("Delete User Id = {0} Success", result.Data.id));
+                Console.WriteLine(string.Format("Change Password User Success"));
 
                 var logOutResult = UizaServices.User.Logout();
                 Console.WriteLine("Logout Success");
+
             }
             catch (UizaException ex)
             {
@@ -377,14 +340,14 @@ namespace Uiza.NetCore.ConsoleTest
             {
                 UizaConfiguration.SetupUiza(new UizaConfigOptions
                 {
-                    ApiKey = "",
-                    ApiBase = ""
+                    Authorization = "uap-b2a3e6307dcf421a8a455825c01de914-3ada3aa3",
+                    AppId = "b2a3e6307dcf421a8a455825c01de914"
                 });
-                TestEntity();
-                TestCategory();
-                TestStorage();
-                TestLiveStreaming();
-                TestAnalytic();
+                //TestEntity();
+                //TestCategory();
+                //TestStorage();
+                //TestCallback();
+                //TestLive();
                 TestUser();
                 Console.ReadLine();
             }

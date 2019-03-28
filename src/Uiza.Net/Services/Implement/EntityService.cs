@@ -17,11 +17,6 @@ namespace Uiza.Net.Services
         /// <returns></returns>
         public virtual UizaData Create(CreateEntityParameter param)
         {
-            if (string.IsNullOrWhiteSpace(param.URL))
-            {
-                param.URL = string.Empty;
-                param.InputType = Enums.EntityInputTypes.S3Uiza;
-            }
             param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.CREATE);
             return this.PostRequest<UizaData>(Constants.ApiAction.ENTITY, param);
         }
@@ -65,12 +60,13 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
-        /// <param name="param"></param>
         /// <returns></returns>
-        public virtual UizaData List(BaseParameter param)
+        public virtual UizaData List()
         {
-            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.LIST);
-            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, param);
+            return this.GetRequest<UizaData>(Constants.ApiAction.ENTITY, new BaseParameter()
+            {
+                DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.LIST)
+            });
         }
 
         /// <summary>
@@ -103,6 +99,17 @@ namespace Uiza.Net.Services
         /// <summary>
         ///
         /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public virtual UizaData Update(UpdateEntityParameter param)
+        {
+            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.UPDATE);
+            return this.PutRequest<UizaData>(Constants.ApiAction.ENTITY, param);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
         public virtual UizaData Search(string keyWord)
@@ -112,17 +119,6 @@ namespace Uiza.Net.Services
                 Keyword = keyWord,
                 DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.SEARCH)
             });
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public virtual UizaData Update(UpdateEntityParameter param)
-        {
-            param.DescriptionLink = DescriptionLinkUtility.GetDescriptionLink(DescriptionLinkConstants.ENTITY.UPDATE);
-            return this.PutRequest<UizaData>(Constants.ApiAction.ENTITY, param);
         }
     }
 }

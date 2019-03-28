@@ -46,36 +46,6 @@ namespace Uiza.Net.Parameters
         public string Password { get; set; }
 
         /// <summary>
-        /// AWS Access key ID
-        /// </summary>
-        [JsonProperty("awsAccessKey")]
-        public string AwsAccessKey { get; set; }
-
-        /// <summary>
-        /// AWS Secret key ID
-        /// </summary>
-        [JsonProperty("awsSecretKey")]
-        public string AwsSecretKey { get; set; }
-
-        /// <summary>
-        /// Prefix for objects store in AWS S3	
-        /// </summary>
-        [JsonProperty("prefix")]
-        public string Prefix { get; set; }
-
-        /// <summary>
-        /// Bucket data of AWS S3
-        /// </summary>
-        [JsonProperty("bucket")]
-        public string Bucket { get; set; }
-
-        /// <summary>
-        /// AWS S3 region
-        /// </summary>
-        [JsonProperty("region")]
-        public string Region { get; set; }
-
-        /// <summary>
         /// Storage's description
         /// </summary>
         [JsonProperty("description")]

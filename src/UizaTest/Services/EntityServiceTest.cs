@@ -51,8 +51,8 @@ namespace UizaTest.Services
         [Fact]
         public void ListEntitiesSuccess()
         {
-            mockService.Setup(_ => _.List(It.IsAny<RetrieveListEntitiesParameter>())).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.List(EntityMockParameter.ListValidEntityParameter());
+            mockService.Setup(_ => _.List()).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.List();
             Assert.NotNull(result);
         }
 
@@ -90,25 +90,6 @@ namespace UizaTest.Services
             {
                 mockService.Setup(_ => _.Delete(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
                 var ex = Assert.Throws<UizaException>(() => mockService.Object.Delete(""));
-                Assert.Equal(statusCode, ex.UizaInnerException.Code);
-            }
-        }
-
-        [Fact]
-        public void SearchSuccess()
-        {
-            mockService.Setup(_ => _.Search(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
-            var result = mockService.Object.Search("Sample");
-            Assert.NotNull(result);
-        }
-
-        [Fact]
-        public void SearchFailWithAPIResponse()
-        {
-            foreach (var statusCode in this.StatusCodes)
-            {
-                mockService.Setup(_ => _.Search(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
-                var ex = Assert.Throws<UizaException>(() => mockService.Object.Search(""));
                 Assert.Equal(statusCode, ex.UizaInnerException.Code);
             }
         }
@@ -157,6 +138,26 @@ namespace UizaTest.Services
             mockService.Setup(_ => _.GetAWSUploadKey()).Returns(BaseMockResponse.SuccessResponse());
             var result = mockService.Object.GetAWSUploadKey();
             Assert.NotNull(result);
+        }
+
+
+        [Fact]
+        public void SearchSuccess()
+        {
+            mockService.Setup(_ => _.Search(It.IsAny<string>())).Returns(BaseMockResponse.ListSuccessResponse());
+            var result = mockService.Object.Search("Sample");
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void SearchFailWithAPIResponse()
+        {
+            foreach (var statusCode in this.StatusCodes)
+            {
+                mockService.Setup(_ => _.Search(It.IsAny<string>())).Throws(BaseMockResponse.ErrorResponse(statusCode));
+                var ex = Assert.Throws<UizaException>(() => mockService.Object.Search(""));
+                Assert.Equal(statusCode, ex.UizaInnerException.Code);
+            }
         }
     }
 }

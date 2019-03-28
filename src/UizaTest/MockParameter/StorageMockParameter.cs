@@ -34,8 +34,6 @@ namespace UizaTest.MockParameter
                 Id = Guid.NewGuid().ToString(),
                 Name = string.Format("Storage name {0}", Guid.NewGuid().ToString()),
                 StorageType = StorageInputTypes.S3,
-                AwsAccessKey = "ASIAV*******GPHO2DTZ",
-                AwsSecretKey = "dp****cx2mE2lZxsSq7kV++vWSL6RNatAhbqc",
             };
         }
 
