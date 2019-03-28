@@ -2,79 +2,71 @@
 {
     internal static class DescriptionLinkConstants
     {
-        internal const string BASE_DESCRIPTION_LINK = "http://dev-ap-southeast-1-api.uizadev.io/docs/";
-        public const string AUTHENTICATION = "authentication";
+        internal const string BASE_DESCRIPTION_LINK = "https://docs.uiza.io/v4/";
+        internal const string AUTHENTICATION = "authentication";
 
         internal struct ENTITY
         {
-            public const string CREATE = "api-Media-create_entity";
-            public const string RETRIEVE = "api-Media-get_entity";
-            public const string LIST = "api-Media-get_entity";
-            public const string UPDATE = "api-Media-update_entity";
-            public const string DELETE = "api-Media-delete_entity";
-            public const string PUBLISH_ENTITY_TO_CDN = "api-Media-post_transcode_standard";
-            public const string GET_STATUS_PUBLISH = "api-Media-get_publish_cdn_status";
-            public const string GET_AWS_UPLOAD_KEY = "api-App-get_aws_key";
-            public const string SEARCH = "search-entity";
+            internal const string CREATE = "create-entity";
+            internal const string RETRIEVE = "retrieve-an-entity";
+            internal const string LIST = "list-entities";
+            internal const string UPDATE = "update-an-entity";
+            internal const string DELETE = "delete-an-entity";
+            internal const string PUBLISH_ENTITY_TO_CDN = "publish-entity-to-cdn";
+            internal const string GET_STATUS_PUBLISH = "get-publish-status";
+            internal const string GET_AWS_UPLOAD_KEY = "get-aws-upload-key";
+            internal const string SEARCH = "search-entity";
         }
 
         internal struct CATEGORY
         {
-            public const string CREATE = "api-Media_Metadata-create_metadata";
-            public const string RETRIEVE = "api-Media_Metadata-get_metadata";
-            public const string LIST = "api-Media_Metadata-get_metadata";
-            public const string UPDATE = "api-Media_Metadata-update_metadata";
-            public const string DELETE = "api-Media_Metadata-delete_metadata";
-            public const string CREATE_CATEGORY_RELATION = "api-Media_Metadata-create_n_metadata_for_one_entiy";
-            public const string DELETE_CATEGORY_RELATION = "api-Media_Metadata-delete_n_metadata_for_one_entiy";
+            internal const string CREATE = "create-category";
+            internal const string RETRIEVE = "retrieve-category";
+            internal const string LIST = "list-categories";
+            internal const string UPDATE = "update-a-category";
+            internal const string DELETE = "delete-a-category";
+            internal const string CREATE_CATEGORY_RELATION = "create-category-relation";
+            internal const string DELETE_CATEGORY_RELATION = "delete-category-relation";
         }
 
         internal struct STORAGE
         {
-            public const string ADD = "api-Media_Storage-create_storage";
-            public const string RETRIEVE = "api-Media_Storage-list_storage";
-            public const string UPDATE = "api-Media_Storage-update_storage";
-            public const string REMOVE = "api-Media_Storage-delete_storage";
+            internal const string ADD = "add-a-storage";
+            internal const string RETRIEVE = "retrieve-a-storage";
+            internal const string UPDATE = "update-storage";
+            internal const string REMOVE = "delete-a-storage";
         }
 
         internal struct CALLBACK
         {
-            public const string CREATE = "";
-            public const string RETRIEVE = "";
-            public const string UPDATE = "";
-            public const string DELETE = "";
+            internal const string CREATE = "create-a-callback";
+            internal const string RETRIEVE = "retrieve-a-callback";
+            internal const string UPDATE = "update-a-callback";
+            internal const string DELETE = "delete-a-callback";
         }
 
         internal struct LIVE_STREAMING
         {
-            public const string CREATE = "api-Live-post_live_entity";
-            public const string RETRIEVE = "api-Live-get_live_entity";
-            public const string UPDATE = "api-Live-put_live_entity";
-            public const string START_A_LIVE_FEED = "api-Live_Feed-post_live_feed_start";
-            public const string GET_VIEW = "api-Live_Tracking-get_live_currentview";
-            public const string STOP_A_LIVE_FEED = "api-Live_Feed-put_live_feed_stop";
-            public const string LIST_ALL_RECORDED_FILES = "api-Live-get_live_entity_dvr";
-            public const string DELETE_A_RECORD_FILE = "api-Live-delete_live_entity_dvr";
-            public const string CONVERT_INTO_VOD = "api-Live-post_convert_to_vod";
-        }
-
-        internal struct ANALYTIC
-        {
-            public const string ANALYTIC_METRICS = "";
-            public const string TOTAL_LINE = "";
-            public const string TYPE = "";
-            public const string LINE = "";
+            internal const string CREATE = "create-a-live-event";
+            internal const string RETRIEVE = "retrieve-a-live-event";
+            internal const string UPDATE = "update-a-live-event";
+            internal const string START_A_LIVE_FEED = "start-a-live-feed";
+            internal const string GET_VIEW = "retrieve-views";
+            internal const string STOP_A_LIVE_FEED = "stop-a-live-feed";
+            internal const string LIST_ALL_RECORDED_FILES = "list-recorded-files";
+            internal const string DELETE_A_RECORD_FILE = "delete-a-record-file";
+            internal const string CONVERT_INTO_VOD = "convert-into-vod";
         }
 
         internal struct USER
         {
-            public const string CREATE = "";
-            public const string RETRIEVE = "";
-            public const string LIST = "";
-            public const string UPDATE = "";
-            public const string DELETE = "";
-            public const string CHANGE_PASSWORD = "";
-            public const string LOGOUT = "";
+            internal const string CREATE = "";
+            internal const string RETRIEVE = "";
+            internal const string LIST = "";
+            internal const string UPDATE = "";
+            internal const string DELETE = "";
+            internal const string CHANGE_PASSWORD = "";
+            internal const string LOGOUT = "";
         }
     }
 }
